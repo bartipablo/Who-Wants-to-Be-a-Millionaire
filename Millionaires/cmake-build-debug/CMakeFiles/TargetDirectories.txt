@@ -1,0 +1,3 @@
+/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/CMakeFiles/Millionaires.dir
+/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/CMakeFiles/rebuild_cache.dir
