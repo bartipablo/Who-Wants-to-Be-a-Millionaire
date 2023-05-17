@@ -10,19 +10,15 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <random>
 #include <cstdlib>
-
 
 class Reader {
 private:
-    static int readAmount(int questionNumber);
+    static int readAward(int questionNumber);
 
-    static bool readGuaranteedAmount(int questionNumber);
+    static bool readGuaranteedAward(int questionNumber);
 
-    static int getRandomNumber(int min, int max);
-
-    static CorrectAnswer readCorrectAnswer(std::string correctAnswerStr);
+    static Answer readCorrectAnswer(std::string correctAnswerStr);
 
 public:
     static Question getRandomQuestion(int questionNumber);
@@ -30,6 +26,5 @@ public:
     static int countLinesInFile(std::string fileName);
 
 };
-
 
 #endif //MILLIONAIRES_READER_H

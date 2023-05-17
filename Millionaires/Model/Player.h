@@ -17,8 +17,13 @@ private:
     int playingTime;
 
 public:
+    Player(std::string userName, int award, int playingTime);
+
     std::string getUserName();
 
+    [[nodiscard]] int getAward() const;
+
+    [[nodiscard]] int getPlayingTime() const;
 };
 
 

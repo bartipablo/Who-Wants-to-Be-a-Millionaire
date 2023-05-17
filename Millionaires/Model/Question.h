@@ -5,14 +5,10 @@
 #ifndef MILLIONAIRES_QUESTION_H
 #define MILLIONAIRES_QUESTION_H
 
+#include <vector>
 #include <iostream>
-
-enum CorrectAnswer {
-    A,
-    B,
-    C,
-    D
-};
+#include "../Functions/Answer.h"
+#include "../Functions/Random.h"
 
 
 class Question {
@@ -23,15 +19,20 @@ private:
     std::string answerC;
     std::string answerD;
 
+    bool activeAnswerA;
+    bool activeAnswerB;
+    bool activeAnswerC;
+    bool activeAnswerD;
+
     bool guaranteedAmount;
 
     int amount;
 
-    CorrectAnswer correctAnswer;
+    Answer correctAnswer;
 
 public:
     Question(std::string question, std::string answerA, std::string answerB, std::string answerC,
-             std::string answerD, CorrectAnswer correctAnswer, int amount, bool guaranteedAmount);
+             std::string answerD, Answer correctAnswer, int amount, bool guaranteedAmount);
 
     Question() {};
 
@@ -45,11 +46,33 @@ public:
 
     std::string getAnswerD();
 
+    bool isActiveAnswerA();
+
+    bool isActiveAnswerB();
+
+    bool isActiveAnswerC();
+
+    bool isActiveAnswerD();
+
+    void deactivateAnswerA();
+
+    void deactivateAnswerB();
+
+    void deactivateAnswerC();
+
+    void deactivateAnswerD();
+
     [[nodiscard]] bool isGuaranteedAmount() const;
 
     [[nodiscard]] int getAmount() const;
 
-    CorrectAnswer getCorrectAnswer();
+    Answer getCorrectAnswer();
+
+    Answer getRandomIncorrectAnswer();
+
+    std::vector<Answer> getIncorrectActiveAnswers();
+
+    std::vector<Answer> getActiveAnswers();
 
 };
 

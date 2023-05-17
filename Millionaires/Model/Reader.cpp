@@ -2,9 +2,10 @@
 // Created by Bartosz Pawłowski on 16/05/2023.
 //
 
+
 #include "Reader.h"
 
-int Reader::readAmount(int questionNumber) {
+int Reader::readAward(int questionNumber) {
     switch(questionNumber) {
         case 1:
             return 500;
@@ -35,7 +36,7 @@ int Reader::readAmount(int questionNumber) {
     }
 }
 
-bool Reader::readGuaranteedAmount(int questionNumber) {
+bool Reader::readGuaranteedAward(int questionNumber) {
     switch(questionNumber) {
         case 2:
         case 7:
@@ -43,15 +44,6 @@ bool Reader::readGuaranteedAmount(int questionNumber) {
         default:
             return false;
     }
-}
-
-
-int Reader::getRandomNumber(int min, int max) {
-    std::random_device rd;
-    std::mt19937 generator(rd());
-
-    std::uniform_int_distribution<int> distribution(min, max);
-    return distribution(generator);
 }
 
 
@@ -65,10 +57,10 @@ int Reader::countLinesInFile(std::string fileName) {
         while (std::getline(file, line)) {
             lineCount++;
         }
+        file.close();
     } else {
         std::cout << "ERROR: Could not open " << fileName << "\n";
     }
-    file.close();
 
     return lineCount;
 }
@@ -81,7 +73,7 @@ Question Reader::getRandomQuestion(int questionNumber) {
     std::ifstream file(fileName);
 
     if (file.is_open()) {
-        int questionDrawn = Reader::getRandomNumber(1, countLinesInFile(fileName));
+        int questionDrawn = getRandomNumber(1, countLinesInFile(fileName));
         std::string readLine;
 
         for (int i = 0; i < questionDrawn; i++) {
@@ -109,14 +101,14 @@ Question Reader::getRandomQuestion(int questionNumber) {
 
         return Question(question, answerA, answerB, answerC,
                         answerD, readCorrectAnswer(correctAnswerString),
-                        readAmount(questionNumber), readGuaranteedAmount(questionNumber));
+                        readAward(questionNumber), readGuaranteedAward(questionNumber));
     } else {
         std::cout << "ERROR: Could not open " << fileName << "\n";
         return Question();
     }
 }
 
-CorrectAnswer Reader::readCorrectAnswer(std::string correctAnswerStr) {
+Answer Reader::readCorrectAnswer(std::string correctAnswerStr) {
     char correctAnswerNumber = correctAnswerStr[0];
     switch(correctAnswerNumber) {
         case 'A':
@@ -131,6 +123,8 @@ CorrectAnswer Reader::readCorrectAnswer(std::string correctAnswerStr) {
             return A;
     }
 }
+
+
 
 
 

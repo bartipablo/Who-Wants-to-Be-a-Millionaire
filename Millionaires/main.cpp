@@ -1,24 +1,52 @@
 #include <iostream>
-#include "Question.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
-#include "Writer.h"
-#include "Reader.h"
+#include "Model/Lifelines/Lifeline.h"
+#include "Model/Lifelines/FiftyFifty.h"
+#include "Model/Question.h"
 
 
-void question_TEST() {
-    Question question = Reader::getRandomQuestion(1);
-    std::cout << question.getQuestion() << std::endl;
-    std::cout << question.getAnswerA() << std::endl;
-    std::cout << question.getAnswerB() << std::endl;
-    std::cout << question.getAnswerC() << std::endl;
-    std::cout << question.getAnswerD() << std::endl;
-    std::cout << question.getCorrectAnswer() << std::endl;
-    std::cout << question.getAmount() << std::endl;
-    std::cout << question.isGuaranteedAmount() << std::endl;
-}
+
 
 int main() {
-    question_TEST();
+    Question question("std::string question", "std::string answerA", "std::string answerB", "std::string answerC",
+                      "std::string answerD", A, 123, true);
+
+    FiftyFifty fiftyFifty(question);
+    Lifeline* kolo = &fiftyFifty;
+
+    bool flag = kolo->isAvailable();
+    kolo->use();
+
+    /*
+    GameFrame gameFrame;
+    sf::SoundBuffer buffer;
+    if (!buffer.loadFromFile("sciezka/do/pliku/dzwiekowego.wav"))
+    {
+        // Obsługa błędu ładowania pliku
+    }
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    sound.play();
+
+    sf::RenderWindow window(sf::VideoMode(2000, 1600), "Who want to be a millionaire?");
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        window.clear();
+        // Tutaj umieść kod rysowania elementów GUI
+        window.display();
+    }
+
+    //question_TEST();
+     */
     return 0;
 }
 

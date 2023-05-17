@@ -3,4 +3,9 @@ project(Millionaires)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Millionaires main.cpp Question.cpp Question.h Reader.cpp Reader.h Lifelines.cpp Lifelines.h Player.cpp Player.h Writer.cpp Writer.h)
+add_executable(Millionaires main.cpp Model/Question.cpp Model/Question.h Model/Reader.cpp Model/Reader.h Model/Player.cpp Model/Player.h Model/Writer.cpp Model/Writer.h View/GameFrame.cpp View/GameFrame.h Model/Lifelines/Lifeline.h Model/Lifelines/FiftyFifty.cpp Model/Lifelines/FiftyFifty.h Functions/Answer.h Functions/Random.h Functions/Random.cpp Functions/Answer.cpp Model/Lifelines/PhoneToFriend.cpp Model/Lifelines/PhoneToFriend.h Model/Lifelines/AudienceSupport.cpp Model/Lifelines/AudienceSupport.h View/MainMenu.cpp View/MainMenu.h)
+
+include_directories(/usr/local/include)
+find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
+include_directories(${SFML_INCLUDE_DIRS})
+target_link_libraries(Millionaires sfml-system sfml-window sfml-graphics sfml-audio sfml-network)

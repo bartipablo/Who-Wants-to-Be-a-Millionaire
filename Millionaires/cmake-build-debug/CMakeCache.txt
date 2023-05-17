@@ -219,6 +219,12 @@ Millionaires_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Millionaires_SOURCE_DIR:STATIC=/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires
 
+//The directory containing a CMake configuration file for SFML.
+SFML_DIR:PATH=/opt/homebrew/lib/cmake/SFML
+
+//Path to a file.
+SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
