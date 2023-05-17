@@ -89,7 +89,8 @@
 				17,
 				18,
 				20,
-				22
+				22,
+				24
 			]
 		}
 	],
@@ -162,7 +163,8 @@
 				17,
 				18,
 				20,
-				22
+				22,
+				24
 			]
 		},
 		{
@@ -180,7 +182,8 @@
 				15,
 				19,
 				21,
-				23
+				23,
+				25
 			]
 		}
 	],
@@ -316,6 +319,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "View/MainMenu.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "View/StartView.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "View/StartView.h",
 			"sourceGroupIndex" : 1
 		}
 	],
