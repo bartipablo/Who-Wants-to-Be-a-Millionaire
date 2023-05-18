@@ -10,7 +10,7 @@
 #include <iostream>
 
 class View {
-public:
+protected:
     void prepareSprite(sf::Texture* texture, sf::Sprite* sprite, std::string path);
 
     void prepareSound(sf::SoundBuffer* soundBuffer, sf::Sound* sound, std::string path);

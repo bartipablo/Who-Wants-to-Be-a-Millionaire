@@ -9,6 +9,7 @@ void StartView::runStartView() {
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
 
     startMusic.play();
+    bool menuMusicIsPlaying = false;
 
     startButton.setFillColor(sf::Color::White);
     startButton.setPosition(930, 1300);
@@ -32,8 +33,8 @@ void StartView::runStartView() {
                     sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
                     //START BUTTON HANDLER
                     if (startButton.getGlobalBounds().contains(mousePosition)) {
-                        //handleClickStart(startButton);
                         window.close();
+                        handleClickStart(startButton);
                     }
                 }
             }
@@ -47,6 +48,12 @@ void StartView::runStartView() {
         window.draw(logoSprite);
         window.draw(startButton);
 
+        if (startMusic.getStatus() == sf::Music::Stopped && !menuMusicIsPlaying) {
+            menuMusicIsPlaying = true;
+            menuMusic.play();
+            menuMusic.setLoop(true);
+        }
+
         window.display();
     }
 }
@@ -54,9 +61,12 @@ void StartView::runStartView() {
 StartView::StartView() {
     View::prepareSprite(&logoTexture, &logoSprite, "./resources/images/logo.png");
     View::prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/background.png");
+
     View::prepareSound(&startMusicBuffer, &startMusic, "./resources/sounds/StartGame.wav");
+    View::prepareSound(&menuMusicBuffer, &menuMusic, "./resources/sounds/music01.wav");
+
     View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
-    View::prepareText(&startButton, "Start", &font, 120); //button
+    View::prepareText(&startButton, "Start", &font, 120);
 }
 
 
@@ -67,7 +77,9 @@ void runNewGame() {
 
 void StartView::handleClickStart(sf::Text &button) {
     startMusic.stop();
-    std::thread newGame(runNewGame);
+    menuMusic.stop();
+    GameView gameView;
+    gameView.runGameView();
 }
 
 

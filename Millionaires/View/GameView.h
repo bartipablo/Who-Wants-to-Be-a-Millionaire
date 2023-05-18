@@ -16,6 +16,9 @@ private:
     sf::Texture backgroundTexture;
 
     sf::Sprite backgroundSprite;
+
+    sf::Sound gameMusic;
+
 public:
     GameView();
 

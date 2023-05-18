@@ -27,6 +27,10 @@ private:
 
     sf::Sound startMusic;
 
+    sf::SoundBuffer menuMusicBuffer;
+
+    sf::Sound menuMusic;
+
     sf::Font font;
 
     sf::Text startButton;
