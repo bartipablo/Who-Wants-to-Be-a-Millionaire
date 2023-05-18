@@ -11,8 +11,13 @@
 int main() {
     StartView startView;
     startView.runStartView();
+    //GameView gameView;
+    //gameView.runGameView();
 
+    //std::chrono::seconds sleepDuration(100);
+    //std::this_thread::sleep_for(sleepDuration);
 
+    std::cout << "Program po uśpieniu." << std::endl;
     return 0;
 }
 

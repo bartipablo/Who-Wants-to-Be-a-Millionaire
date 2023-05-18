@@ -10,9 +10,32 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include "GameView.h"
+#include "View.h"
 
-class StartView {
+class StartView: public View {
+private:
+    sf::Texture logoTexture;
+
+    sf::Texture backgroundTexture;
+
+    sf::Sprite logoSprite;
+
+    sf::Sprite backgroundSprite;
+
+    sf::SoundBuffer startMusicBuffer;
+
+    sf::Sound startMusic;
+
+    sf::Font font;
+
+    sf::Text startButton;
+
+    void handleClickStart(sf::Text& button);
+
 public:
+    StartView();
+
     void runStartView();
 
 };

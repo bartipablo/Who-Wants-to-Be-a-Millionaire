@@ -8,52 +8,16 @@
 void StartView::runStartView() {
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
 
-    bool buttonVisible = false;
+    startMusic.play();
 
-    //playing song
-    sf::SoundBuffer buffer;
-    if (!buffer.loadFromFile("resources/sounds/StartGame.wav"))
-    {
-        std::cout << "ERROR: Faile to load StartGame.wav" << std::endl;
-    }
-    sf::Sound sound;
-    sound.setBuffer(buffer);
-    sound.setLoop(true);
-    sound.play();
-    //playing song
+    startButton.setFillColor(sf::Color::White);
+    startButton.setPosition(930, 1300);
 
-    //texture
-    sf::Texture texture1;
-    if (!texture1.loadFromFile("resources/images/background.png")) // Wstaw ścieżkę do pliku obrazka
-    {
-        std::cout << "ERROR: Faile to load rays.jpeg" << std::endl;
-    }
-
-    sf::Texture texture2;
-    if (!texture2.loadFromFile("resources/images/logo.png")) // Wstaw ścieżkę do pliku obrazka
-    {
-        std::cout << "ERROR: Faile to load rays.jpeg" << std::endl;
-    }
-
-    sf::Font font;
-    if (!font.loadFromFile("resources/fonts/OpenSans-Bold.ttf")) // Wstaw ścieżkę do pliku czcionki
-    {
-        std::cout << "ERROR: Faile to load rays.jpeg" << std::endl;
-    }
-
-    sf::Text buttonText("Start", font, 120);
-    buttonText.setFillColor(sf::Color::White);
-    buttonText.setPosition(930, 1300);
-
-
-    sf::Sprite sprite1(texture1);
-    sf::Sprite sprite2(texture2);
-    sprite1.setOrigin(sprite1.getLocalBounds().width / 2, sprite1.getLocalBounds().height / 2);
-    sprite1.setPosition(window.getSize().x / 2, window.getSize().y / 2);
-    sprite2.setOrigin(sprite2.getLocalBounds().width / 2, sprite2.getLocalBounds().height / 2);
-    sprite2.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    backgroundSprite.setOrigin(backgroundSprite.getLocalBounds().width / 2, backgroundSprite.getLocalBounds().height / 2);
+    backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    logoSprite.setOrigin(logoSprite.getLocalBounds().width / 2, logoSprite.getLocalBounds().height / 2);
+    logoSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
     float rotationSpeed = 0.015f;
-    //texture
 
     while (window.isOpen()) {
         sf::Event event;
@@ -61,20 +25,53 @@ void StartView::runStartView() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-        }
 
+            //LEFT MOUSE BUTTON CLICK
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
+                    //START BUTTON HANDLER
+                    if (startButton.getGlobalBounds().contains(mousePosition)) {
+                        //handleClickStart(startButton);
+                        window.close();
+                    }
+                }
+            }
+        }
 
         window.clear();
 
-        sprite1.rotate(rotationSpeed * 0.5f); // Mnożnik prędkości wynosi 0.5f
+        backgroundSprite.rotate(rotationSpeed * 0.5f); // Mnożnik prędkości wynosi 0.5f
 
-        window.draw(sprite1);
-        window.draw(sprite2);
-        window.draw(buttonText);
+        window.draw(backgroundSprite);
+        window.draw(logoSprite);
+        window.draw(startButton);
 
         window.display();
     }
 }
+
+StartView::StartView() {
+    View::prepareSprite(&logoTexture, &logoSprite, "./resources/images/logo.png");
+    View::prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/background.png");
+    View::prepareSound(&startMusicBuffer, &startMusic, "./resources/sounds/StartGame.wav");
+    View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    View::prepareText(&startButton, "Start", &font, 120); //button
+}
+
+
+void runNewGame() {
+    GameView gameView;
+    gameView.runGameView();
+}
+
+void StartView::handleClickStart(sf::Text &button) {
+    startMusic.stop();
+    std::thread newGame(runNewGame);
+}
+
+
+
 
 
 
