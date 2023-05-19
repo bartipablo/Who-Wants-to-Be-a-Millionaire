@@ -5,9 +5,7 @@
 #include "GameController.h"
 
 GameController::GameController() : fiftyFifty(&question), phoneToFriend(&question), audienceSupport(&question) {
-    this->questionNumber = 1;
-    this->question = Reader::getRandomQuestion(questionNumber);
-
+    this->questionNumber = 0;
     this->lifeLineA = &fiftyFifty;
     this->lifeLineB = &phoneToFriend;
     this->lifeLineC = &audienceSupport;

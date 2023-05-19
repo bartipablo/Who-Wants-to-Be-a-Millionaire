@@ -14,6 +14,8 @@
 
 class GameController {
 private:
+    Answer selectedAnswer;
+
     Question question;
 
     //lifelines

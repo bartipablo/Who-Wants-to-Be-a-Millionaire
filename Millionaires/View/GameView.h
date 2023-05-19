@@ -23,6 +23,8 @@ typedef struct {
 
 class GameView: public View {
 private:
+    std::thread waitForCorrectAnswer;
+
     GameController gameController;
 
     sf::Texture backgroundTexture;
@@ -81,16 +83,24 @@ private:
     SpriteCoordinate answerDSpriteCoordinate;
 
     sf::Sprite correctAnswerSprite;
-    
+
     sf::Sprite selectedAnswerSprite;
 
     sf::SoundBuffer gameMusicBuffer1;
 
     sf::SoundBuffer nextQuestionBuffer;
 
+    sf::SoundBuffer selectAnswerBuffer;
+
+    sf::SoundBuffer selectLifeLineBuffer;
+
     sf::Sound gameMusic1;
 
     sf::Sound nextQuestionSound;
+
+    sf::Sound selectAnswerSound;
+
+    sf::Sound selectLifeLineSound;
 
     sf::Text awards[12];
 
@@ -110,6 +120,21 @@ private:
     void leftMouseClickHandler(sf::Vector2i mousePosition);
 
     SpriteCoordinate getSpriteCoordinate(sf::Sprite sprite);
+
+    void answerAButtonHandler();
+
+    void answerBButtonHandler();
+
+    void answerCButtonHandler();
+
+    void answerDButtonHandler();
+
+    void lifeLineAButtonHandler();
+
+    void lifeLineBButtonHandler();
+
+    void lifeLineCButtonHandler();
+
 
 public:
     GameView();
