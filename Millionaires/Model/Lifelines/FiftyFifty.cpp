@@ -9,8 +9,8 @@ void FiftyFifty::use() {
         return;
     }
 
-    Answer correctAnswer = question.getCorrectAnswer();
-    std::vector <Answer> otherAnswers = question.getIncorrectActiveAnswers();
+    Answer correctAnswer = question->getCorrectAnswer();
+    std::vector <Answer> otherAnswers = question->getIncorrectActiveAnswers();
 
     int randIndex = getRandomNumber(0, 2);
     Answer incorrectAnswer1 = otherAnswers[randIndex];

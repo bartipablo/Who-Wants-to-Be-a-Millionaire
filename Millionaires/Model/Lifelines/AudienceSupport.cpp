@@ -3,3 +3,7 @@
 //
 
 #include "AudienceSupport.h"
+
+void AudienceSupport::use() {
+    return;
+}

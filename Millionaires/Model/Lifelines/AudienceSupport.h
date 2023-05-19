@@ -5,9 +5,19 @@
 #ifndef MILLIONAIRES_AUDIENCESUPPORT_H
 #define MILLIONAIRES_AUDIENCESUPPORT_H
 
+#include "Lifeline.h"
+#include "../Question.h"
 
-class AudienceSupport {
+class AudienceSupport: public Lifeline {
+private:
+    Question* question;
 
+public:
+    explicit AudienceSupport(Question* question) : Lifeline(true) {
+        this->question = question;
+    }
+
+    void use() override;
 };
 
 

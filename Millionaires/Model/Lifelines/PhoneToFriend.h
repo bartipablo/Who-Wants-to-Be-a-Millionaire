@@ -21,7 +21,7 @@ enum FriendReaction {
 
 class PhoneToFriend: public Lifeline {
 private:
-    Question question;
+    Question* question;
 
     std::string answer1 = "Jestem pewny że to odpowiedź ";
     std::string answer2 = "Wydaje mi się, że to odpowiedź ";
@@ -32,7 +32,7 @@ private:
     Answer getFriendAnswer(FriendReaction friendReaction);
 
 public:
-    explicit PhoneToFriend(Question question) : Lifeline(true) {
+    explicit PhoneToFriend(Question* question) : Lifeline(true) {
         this->question = question;
     }
 

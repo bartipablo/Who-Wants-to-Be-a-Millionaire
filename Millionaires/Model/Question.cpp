@@ -69,7 +69,7 @@ std::string Question::getQuestion() {
 }
 
 Question::Question(std::string question, std::string answerA, std::string answerB, std::string answerC,
-                   std::string answerD, Answer correctAnswer, int amount, bool guaranteedAmount) {
+                   std::string answerD, Answer correctAnswer, int amount, bool guaranteedAmount, int questionNumber) {
     this->question = question;
     this->answerA = answerA;
     this->answerB = answerB;
@@ -78,6 +78,7 @@ Question::Question(std::string question, std::string answerA, std::string answer
     this->correctAnswer = correctAnswer;
     this->amount = amount;
     this->guaranteedAmount = guaranteedAmount;
+    this->questionNumber = questionNumber;
 }
 
 Answer Question::getRandomIncorrectAnswer() {

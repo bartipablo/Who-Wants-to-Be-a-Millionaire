@@ -101,7 +101,7 @@ Question Reader::getRandomQuestion(int questionNumber) {
 
         return Question(question, answerA, answerB, answerC,
                         answerD, readCorrectAnswer(correctAnswerString),
-                        readAward(questionNumber), readGuaranteedAward(questionNumber));
+                        readAward(questionNumber), readGuaranteedAward(questionNumber), questionNumber);
     } else {
         std::cout << "ERROR: Could not open " << fileName << "\n";
         return Question();

@@ -8,8 +8,8 @@
 
 
 void PhoneToFriend::use() {
-    std::vector<Answer> activeAnswers = question.getActiveAnswers();
-    Answer correctAnswer = question.getCorrectAnswer();
+    std::vector<Answer> activeAnswers = question->getActiveAnswers();
+    Answer correctAnswer = question->getCorrectAnswer();
 
     FriendReaction friendReaction = getRandomFriendReaction(activeAnswers);
     Answer friendAnswer = getFriendAnswer(friendReaction);
@@ -40,28 +40,28 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
 
     if (friendReaction == sure) {
         if (randomNumber <= 90) {
-            return question.getCorrectAnswer();
+            return question->getCorrectAnswer();
         }
         else {
-            return question.getRandomIncorrectAnswer();
+            return question->getRandomIncorrectAnswer();
         }
     }
 
     else if (friendReaction == uncertain) {
         if (randomNumber <= 50) {
-            return question.getCorrectAnswer();
+            return question->getCorrectAnswer();
         }
         else {
-            return question.getRandomIncorrectAnswer();
+            return question->getRandomIncorrectAnswer();
         }
     }
 
     else if (friendReaction == doesNotKnow) {
         if (randomNumber <= 25) {
-            return question.getCorrectAnswer();
+            return question->getCorrectAnswer();
         }
         else {
-            return question.getRandomIncorrectAnswer();
+            return question->getRandomIncorrectAnswer();
         }
     }
     return A;

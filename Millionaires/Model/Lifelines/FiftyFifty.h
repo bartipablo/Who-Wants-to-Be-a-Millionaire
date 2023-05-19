@@ -11,10 +11,10 @@
 
 class FiftyFifty: public Lifeline {
 private:
-    Question question;
+    Question* question;
 
 public:
-    explicit FiftyFifty(Question question) : Lifeline(true) {
+    explicit FiftyFifty(Question* question) : Lifeline(true) {
         this->question = question;
     }
 
