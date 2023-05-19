@@ -19,6 +19,10 @@ public:
         return available;
     }
 
+    void deactivate() {
+        this->available = false;
+    }
+
     virtual void use() = 0;
 
 };

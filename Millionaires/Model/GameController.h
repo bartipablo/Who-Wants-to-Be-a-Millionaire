@@ -48,6 +48,8 @@ public:
 
     void setGuaranteedAmount(int guaranteedAmount);
 
+    int getQuestionNumber();
+
     int getGainedAmount();
 
     void setGainedAmount(int gainedAmount);

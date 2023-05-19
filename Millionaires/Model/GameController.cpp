@@ -72,6 +72,10 @@ Lifeline *GameController::getLifeLineC() {
     return lifeLineC;
 }
 
+int GameController::getQuestionNumber() {
+    return questionNumber;
+}
+
 
 
 

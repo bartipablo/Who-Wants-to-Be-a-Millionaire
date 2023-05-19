@@ -34,3 +34,5 @@ void View::prepareText(sf::Text* text, std::string content, sf::Font* font, int 
 }
 
 
+
+
