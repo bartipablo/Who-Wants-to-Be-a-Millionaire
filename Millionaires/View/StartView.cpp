@@ -18,6 +18,9 @@ void StartView::runStartView() {
     backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
     logoSprite.setOrigin(logoSprite.getLocalBounds().width / 2, logoSprite.getLocalBounds().height / 2);
     logoSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    loading.setOrigin(loading.getLocalBounds().width / 2, loading.getLocalBounds().height / 2);
+    loading.setPosition(window.getSize().x / 2, window.getSize().y / 2 + 700);
+
     float rotationSpeed = 0.015f;
 
     while (window.isOpen()) {
@@ -33,6 +36,8 @@ void StartView::runStartView() {
                     sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
                     //START BUTTON HANDLER
                     if (startButton.getGlobalBounds().contains(mousePosition)) {
+                        window.draw(loading);
+                        window.display();
                         window.close();
                         handleClickStart(startButton);
                     }
@@ -67,6 +72,7 @@ StartView::StartView() {
 
     View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
     View::prepareText(&startButton, "Start", &font, 120);
+    View::prepareText(&loading, "Loading...", &font, 60);
 }
 
 

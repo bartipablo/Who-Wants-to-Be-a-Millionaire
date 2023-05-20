@@ -15,9 +15,20 @@ bool answerIsSelected = false;
 
 bool showCorrectAnswer = false;
 
+bool decideAnswerIsCorrect = false;
+
+bool resetAll = false;
+
 void waitForCorrectAnswerFunction() {
     std::this_thread::sleep_for(std::chrono::seconds(3));
     showCorrectAnswer = true;
+    decideAnswerIsCorrect = true;
+}
+
+void waitForNextQuestionFunction(int questionNumber) {
+    if (questionNumber == 2 || questionNumber == 7) std::this_thread::sleep_for(std::chrono::seconds(9));
+    else std::this_thread::sleep_for(std::chrono::seconds(4));
+    resetAll = true;
 }
 
 
@@ -34,14 +45,25 @@ GameView::GameView() {
     prepareSprite(&answerTexture, &answerASprite, "./resources/images/answer.png");
     prepareSprite(&selectedAnswerTexture, &selectedAnswerSprite, "./resources/images/incorrect-answer.png");
     prepareSprite(&correctAnswerTexture, &correctAnswerSprite, "./resources/images/correct-answer.png");
+    prepareSprite(&moneyTreeTexture, &moneyTreeSprite, "./resources/images/money-tree.png");
     answerBSprite.setTexture(answerTexture);
     answerCSprite.setTexture(answerTexture);
     answerDSprite.setTexture(answerTexture);
 
     prepareSound(&gameMusicBuffer1, &gameMusic1, "./resources/sounds/music01.wav");
+    prepareSound(&gameMusicBuffer2, &gameMusic2, "./resources/sounds/music02.wav");
+    //prepareSound(&gameMusicBuffer3, &gameMusic3, "./resources/sounds/music03.wav");
+    prepareSound(&gameMusicBuffer4, &gameMusic4, "./resources/sounds/music04.wav");
+    //prepareSound(&gameMusicBuffer5, &gameMusic5, "./resources/sounds/music05.wav");
+    //prepareSound(&gameMusicBuffer6, &gameMusic6, "./resources/sounds/music06.wav");
+    prepareSound(&gameMusicBuffer7, &gameMusic7, "./resources/sounds/music07.wav");
     prepareSound(&nextQuestionBuffer, &nextQuestionSound, "./resources/sounds/newQuestion.wav");
     prepareSound(&selectAnswerBuffer, &selectAnswerSound, "./resources/sounds/selectAnswer.wav");
     prepareSound(&selectLifeLineBuffer, &selectLifeLineSound, "./resources/sounds/lifeLine.wav");
+    prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "./resources/sounds/correctAnswer1.wav");
+    prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "./resources/sounds/correctAnswer2.wav");
+    prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "./resources/sounds/incorrectAnswer.wav");
+
     View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
 
     for (int i = 0; i < 12; i++) {
@@ -69,6 +91,7 @@ void GameView::runGameView() {
             gameController.loadNextQuestion();
             nextQuestionFlag = false;
             nextQuestionSound.play();
+            calculateMoneyTreeCoordinate();
         }
 
         //music*************************
@@ -93,6 +116,10 @@ void GameView::runGameView() {
         window.draw(backgroundSprite);
 
         //AWARD VIEW
+        if (gameController.getQuestionNumber() > 1) {
+            window.draw(moneyTreeSprite);
+        }
+
         for (const auto & award : awards) {
             window.draw(award);
         }
@@ -121,6 +148,12 @@ void GameView::runGameView() {
 
         if (answerIsSelected) window.draw(selectedAnswerSprite);
         if (showCorrectAnswer) window.draw(correctAnswerSprite);
+        if (decideAnswerIsCorrect) {
+            decideAnswerIsCorrect = false;
+            handlingTheSelectedAnswer();
+        }
+
+        if(resetAll) handlingTheNextQuestion();
 
         window.display();
     }
@@ -137,6 +170,11 @@ void GameView::prepareAwardView() {
         award.setFillColor(sf::Color(255, 140, 0));
         award.setScale(newScale);
     }
+
+    sf::Vector2f  moneyTreeCurrentScale = moneyTreeSprite.getScale();
+    sf::Vector2f  newMoneyTreeScale(moneyTreeCurrentScale.x * 0.25f, moneyTreeCurrentScale.y * 0.5f);
+    moneyTreeSprite.setScale(newMoneyTreeScale);
+
     awards[1].setFillColor(sf::Color::White);
     awards[6].setFillColor(sf::Color::White);
     awards[11].setFillColor(sf::Color::White);
@@ -153,6 +191,67 @@ void GameView::prepareAwardView() {
     awards[9].setPosition(1930, 180);
     awards[10].setPosition(1930, 90);
     awards[11].setPosition(1930, 0);
+}
+
+void GameView::calculateMoneyTreeCoordinate() {
+    switch (gameController.getQuestionNumber()) {
+        case 2:
+            awards[0].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 990-5);
+            break;
+        case 3:
+            awards[0].setFillColor(sf::Color(255, 140, 0));
+            awards[1].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 900-5);
+            break;
+        case 4:
+            awards[1].setFillColor(sf::Color::White);
+            awards[2].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 810-5);
+            break;
+        case 5:
+            awards[2].setFillColor(sf::Color(255, 140, 0));
+            awards[3].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 720-5);
+            break;
+        case 6:
+            awards[3].setFillColor(sf::Color(255, 140, 0));
+            awards[4].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 630-5);
+            break;
+        case 7:
+            awards[4].setFillColor(sf::Color(255, 140, 0));
+            awards[5].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 540-5);
+            break;
+        case 8:
+            awards[5].setFillColor(sf::Color(255, 140, 0));
+            awards[6].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 450-5);
+            break;
+        case 9:
+            awards[6].setFillColor(sf::Color::White);
+            awards[7].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 360-5);
+            break;
+        case 10:
+            awards[7].setFillColor(sf::Color(255, 140, 0));
+            awards[8].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 270-5);
+            break;
+        case 11:
+            awards[8].setFillColor(sf::Color(255, 140, 0));
+            awards[9].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 180-5);
+            break;
+        case 12:
+            awards[9].setFillColor(sf::Color(255, 140, 0));
+            awards[10].setFillColor(sf::Color::Black);
+            moneyTreeSprite.setPosition(1930, 90-5);
+            break;
+        default:
+            moneyTreeSprite.setPosition(1930, 990-5);
+    }
 }
 
 void GameView::prepareLifeLinesView() {
@@ -177,6 +276,7 @@ void GameView::prepareLifeLinesView() {
     audienceSupportOrangeSprite.setScale(newScale);
     audienceSupportOrangeSprite.setPosition(1960, 1410);
 }
+
 
 void GameView::prepareQuestionsAndAnswerPanel() {
     sf::Vector2f questionCurrentScale = questionPanelSprite.getScale();
@@ -219,10 +319,44 @@ void GameView::prepareQuestionsAndAnswerPanel() {
 
 
 void GameView::startMusic() {
+    gameMusic1.stop();
+    gameMusic2.stop();
+    gameMusic3.stop();
+    gameMusic4.stop();
+    gameMusic5.stop();
+    gameMusic6.stop();
+    gameMusic7.stop();
+
     switch (gameController.getQuestionNumber()) {
         case 1:
+        case 2:
             gameMusic1.play();
             gameMusic1.setLoop(true);
+            break;
+        case 3:
+        case 4:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+            break;
+        case 5:
+        case 6:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+            break;
+        case 7:
+        case 8:
+        case 9:
+            gameMusic2.play();
+            gameMusic2.setLoop(true);
+            break;
+        case 10:
+        case 11:
+            gameMusic4.play();
+            gameMusic4.setLoop(true);
+            break;
+        case 12:
+            gameMusic7.play();
+            gameMusic7.setLoop(true);
             break;
         default:
             gameMusic1.play();
@@ -303,21 +437,29 @@ void GameView::answerAButtonHandler() {
     selectedAnswerSprite.setPosition(70, 1290);
     answerIsSelected = true;
     selectAnswerSound.play();
+    gameController.setSelectedAnswer(A);
+    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 }
+
 
 void GameView::answerBButtonHandler() {
     selectedAnswerSprite.setPosition(980, 1290);
     answerIsSelected = true;
     selectAnswerSound.play();
+    gameController.setSelectedAnswer(B);
+    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 
 }
+
 
 void GameView::answerCButtonHandler() {
     selectedAnswerSprite.setPosition(70, 1420);
     answerIsSelected = true;
     selectAnswerSound.play();
+    gameController.setSelectedAnswer(C);
+    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 
 }
@@ -326,23 +468,57 @@ void GameView::answerDButtonHandler() {
     selectedAnswerSprite.setPosition(980, 1420);
     answerIsSelected = true;
     selectAnswerSound.play();
+    gameController.setSelectedAnswer(D);
+    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 }
 
 
 void GameView::lifeLineAButtonHandler() {
+    if (!gameController.getLifeLineA()->isAvailable()) return;
     selectLifeLineSound.play();
     gameController.getLifeLineA()->deactivate();
 }
 
 void GameView::lifeLineBButtonHandler() {
+    if (!gameController.getLifeLineB()->isAvailable()) return;
     selectLifeLineSound.play();
     gameController.getLifeLineB()->deactivate();
 
 }
 
 void GameView::lifeLineCButtonHandler() {
+    if (!gameController.getLifeLineC()->isAvailable()) return;
     selectLifeLineSound.play();
     gameController.getLifeLineC()->deactivate();
 
+}
+
+void GameView::handlingTheSelectedAnswer() {
+    if (gameController.getSelectedAnswer() == gameController.getQuestion().getCorrectAnswer()) {
+        switch(gameController.getQuestionNumber()) {
+            case 2:
+            case 7:
+                correctAnswerSound2.play();
+                break;
+            default:
+                correctAnswerSound1.play();
+        }
+        waitForCorrectAnswer.join();
+        waitForCorrectAnswer = std::thread(waitForNextQuestionFunction, gameController.getQuestionNumber());
+    }
+
+    else {
+        incorrectAnswerSound.play();
+        gameMusic1.stop();
+    }
+}
+
+void GameView::handlingTheNextQuestion() {
+    nextQuestionFlag = true;
+    musicPlaysFlag = false;
+    answerIsSelected = false;
+    showCorrectAnswer = false;
+    decideAnswerIsCorrect = false;
+    resetAll = false;
 }

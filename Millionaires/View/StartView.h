@@ -35,6 +35,8 @@ private:
 
     sf::Text startButton;
 
+    sf::Text loading;
+
     void handleClickStart(sf::Text& button);
 
 public:

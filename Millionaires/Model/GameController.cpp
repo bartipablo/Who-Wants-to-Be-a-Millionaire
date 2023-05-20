@@ -74,6 +74,14 @@ int GameController::getQuestionNumber() {
     return questionNumber;
 }
 
+Answer GameController::getSelectedAnswer() {
+    return selectedAnswer;
+}
+
+void GameController::setSelectedAnswer(Answer answer) {
+    this->selectedAnswer = answer;
+}
+
 
 
 

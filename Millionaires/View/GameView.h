@@ -51,6 +51,8 @@ private:
 
     sf::Texture selectedAnswerTexture;
 
+    sf::Texture moneyTreeTexture;
+
     sf::Sprite backgroundSprite;
 
     sf::Sprite fiftySprite;
@@ -86,7 +88,21 @@ private:
 
     sf::Sprite selectedAnswerSprite;
 
+    sf::Sprite moneyTreeSprite;
+
     sf::SoundBuffer gameMusicBuffer1;
+
+    sf::SoundBuffer gameMusicBuffer2;
+
+    sf::SoundBuffer gameMusicBuffer3;
+
+    sf::SoundBuffer gameMusicBuffer4;
+
+    sf::SoundBuffer gameMusicBuffer5;
+
+    sf::SoundBuffer gameMusicBuffer6;
+
+    sf::SoundBuffer gameMusicBuffer7;
 
     sf::SoundBuffer nextQuestionBuffer;
 
@@ -94,13 +110,37 @@ private:
 
     sf::SoundBuffer selectLifeLineBuffer;
 
+    sf::SoundBuffer correctAnswerBuffer1;
+
+    sf::SoundBuffer correctAnswerBuffer2;
+
+    sf::SoundBuffer incorrectAnswerBuffer;
+
     sf::Sound gameMusic1;
+
+    sf::Sound gameMusic2;
+
+    sf::Sound gameMusic3;
+
+    sf::Sound gameMusic4;
+
+    sf::Sound gameMusic5;
+
+    sf::Sound gameMusic6;
+
+    sf::Sound gameMusic7;
 
     sf::Sound nextQuestionSound;
 
     sf::Sound selectAnswerSound;
 
     sf::Sound selectLifeLineSound;
+
+    sf::Sound correctAnswerSound1;
+
+    sf::Sound correctAnswerSound2;
+
+    sf::Sound incorrectAnswerSound;
 
     sf::Text awards[12];
 
@@ -135,6 +175,11 @@ private:
 
     void lifeLineCButtonHandler();
 
+    void handlingTheSelectedAnswer();
+
+    void handlingTheNextQuestion();
+
+    void calculateMoneyTreeCoordinate();
 
 public:
     GameView();

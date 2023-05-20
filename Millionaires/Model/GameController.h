@@ -64,6 +64,10 @@ public:
 
     Lifeline* getLifeLineC();
 
+    Answer getSelectedAnswer();
+
+    void setSelectedAnswer(Answer answer);
+
 
 };
 
