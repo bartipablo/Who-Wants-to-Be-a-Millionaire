@@ -22,10 +22,38 @@ void FiftyFifty::use() {
         otherAnswers.erase(it);
     }
 
-    randIndex = getRandomNumber(0, 2);
+    randIndex = getRandomNumber(0, 1);
     Answer incorrectAnswer2 = otherAnswers[randIndex];
 
-    //tu wpisać kod który usunie dwie wytypowane odpowiedzi***************
+    switch (incorrectAnswer1) {
+        case A:
+            question->deactivateAnswerA();
+            break;
+        case B:
+            question->deactivateAnswerB();
+            break;
+        case C:
+            question->deactivateAnswerC();
+            break;
+        case D:
+            question->deactivateAnswerD();
+            break;
+    }
+
+    switch (incorrectAnswer2) {
+        case A:
+            question->deactivateAnswerA();
+            break;
+        case B:
+            question->deactivateAnswerB();
+            break;
+        case C:
+            question->deactivateAnswerC();
+            break;
+        case D:
+            question->deactivateAnswerD();
+            break;
+    }
 
     Lifeline::available = false;
 }

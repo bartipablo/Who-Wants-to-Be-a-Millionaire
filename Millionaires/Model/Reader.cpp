@@ -90,12 +90,12 @@ Question Reader::getRandomQuestion(int questionNumber) {
         std::string correctAnswerString;
 
 
-        std::getline(ss, question, ',');
-        std::getline(ss, answerA, ',');
-        std::getline(ss, answerB, ',');
-        std::getline(ss, answerC, ',');
-        std::getline(ss, answerD, ',');
-        std::getline(ss, correctAnswerString, ',');
+        std::getline(ss, question, ';');
+        std::getline(ss, answerA, ';');
+        std::getline(ss, answerB, ';');
+        std::getline(ss, answerC, ';');
+        std::getline(ss, answerD, ';');
+        std::getline(ss, correctAnswerString, ';');
 
         file.close();
 

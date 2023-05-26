@@ -23,6 +23,8 @@ typedef struct {
 
 class GameView: public View {
 private:
+    bool loadPolishCharacter = true;
+
     std::thread waitForCorrectAnswer;
 
     GameController gameController;
@@ -71,6 +73,8 @@ private:
     sf::Sprite audienceSupportOrangeSprite;
 
     sf::Sprite questionPanelSprite;
+    SpriteCoordinate questionPanelSpriteCoordinate;
+
 
     sf::Sprite answerASprite;
     SpriteCoordinate answerASpriteCoordinate;
@@ -144,9 +148,24 @@ private:
 
     sf::Text awards[12];
 
+    sf::Text questionText[3];
+    int questionTextWidth[3] = {0, 0, 0};
+
+    sf::Text answerA;
+
+    sf::Text answerB;
+
+    sf::Text answerC;
+
+    sf::Text answerD;
+
     sf::Font font;
 
     //methods
+    void prepareQuestionView();
+
+    void prepareAnswerView();
+
     void prepareAwardView();
 
     void prepareLifeLinesView();
@@ -180,6 +199,10 @@ private:
     void handlingTheNextQuestion();
 
     void calculateMoneyTreeCoordinate();
+
+    std::string centerString(std::string string, int width, int fontSize, sf::Font font);
+
+    void setCorrectAnswerCoordinate();
 
 public:
     GameView();

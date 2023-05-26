@@ -79,6 +79,10 @@ Question::Question(std::string question, std::string answerA, std::string answer
     this->amount = amount;
     this->guaranteedAmount = guaranteedAmount;
     this->questionNumber = questionNumber;
+    this->activeAnswerA = true;
+    this->activeAnswerB = true;
+    this->activeAnswerC = true;
+    this->activeAnswerD = true;
 }
 
 Answer Question::getRandomIncorrectAnswer() {

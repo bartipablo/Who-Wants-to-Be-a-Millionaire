@@ -2,6 +2,7 @@
 // Created by Bartosz Pawłowski on 16/05/2023.
 //
 
+#include <codecvt>
 #include "GameView.h"
 
 std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $50,000",
@@ -24,6 +25,7 @@ void waitForCorrectAnswerFunction() {
     showCorrectAnswer = true;
     decideAnswerIsCorrect = true;
 }
+
 
 void waitForNextQuestionFunction(int questionNumber) {
     if (questionNumber == 2 || questionNumber == 7) std::this_thread::sleep_for(std::chrono::seconds(9));
@@ -52,10 +54,7 @@ GameView::GameView() {
 
     prepareSound(&gameMusicBuffer1, &gameMusic1, "./resources/sounds/music01.wav");
     prepareSound(&gameMusicBuffer2, &gameMusic2, "./resources/sounds/music02.wav");
-    //prepareSound(&gameMusicBuffer3, &gameMusic3, "./resources/sounds/music03.wav");
     prepareSound(&gameMusicBuffer4, &gameMusic4, "./resources/sounds/music04.wav");
-    //prepareSound(&gameMusicBuffer5, &gameMusic5, "./resources/sounds/music05.wav");
-    //prepareSound(&gameMusicBuffer6, &gameMusic6, "./resources/sounds/music06.wav");
     prepareSound(&gameMusicBuffer7, &gameMusic7, "./resources/sounds/music07.wav");
     prepareSound(&nextQuestionBuffer, &nextQuestionSound, "./resources/sounds/newQuestion.wav");
     prepareSound(&selectAnswerBuffer, &selectAnswerSound, "./resources/sounds/selectAnswer.wav");
@@ -89,6 +88,8 @@ void GameView::runGameView() {
     {
         if (nextQuestionFlag) {
             gameController.loadNextQuestion();
+            prepareQuestionView();
+            prepareAnswerView();
             nextQuestionFlag = false;
             nextQuestionSound.play();
             calculateMoneyTreeCoordinate();
@@ -102,8 +103,11 @@ void GameView::runGameView() {
 
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
+                waitForCorrectAnswer.join();
                 window.close();
+
+            }
             else if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
@@ -138,16 +142,28 @@ void GameView::runGameView() {
 
         //QUESTION VIEW
         window.draw(questionPanelSprite);
+        window.draw(questionText[0]);
+        window.draw(questionText[1]);
+        window.draw(questionText[2]);
         //QUESTION VIEW
 
-        //ANSWERS VIEW
+        //ANSWERS SPRITE VIEW
         window.draw(answerASprite);
         window.draw(answerBSprite);
         window.draw(answerCSprite);
         window.draw(answerDSprite);
+        //ANSWERS SPRITE VIEW
 
         if (answerIsSelected) window.draw(selectedAnswerSprite);
         if (showCorrectAnswer) window.draw(correctAnswerSprite);
+
+        //ANSWERS TEXT VIEW
+        if (gameController.getQuestion().isActiveAnswerA()) window.draw(answerA);
+        if (gameController.getQuestion().isActiveAnswerB()) window.draw(answerB);
+        if (gameController.getQuestion().isActiveAnswerC()) window.draw(answerC);
+        if (gameController.getQuestion().isActiveAnswerD()) window.draw(answerD);
+        //ANSWERS TEXT VIEW
+
         if (decideAnswerIsCorrect) {
             decideAnswerIsCorrect = false;
             handlingTheSelectedAnswer();
@@ -192,6 +208,7 @@ void GameView::prepareAwardView() {
     awards[10].setPosition(1930, 90);
     awards[11].setPosition(1930, 0);
 }
+
 
 void GameView::calculateMoneyTreeCoordinate() {
     switch (gameController.getQuestionNumber()) {
@@ -253,6 +270,7 @@ void GameView::calculateMoneyTreeCoordinate() {
             moneyTreeSprite.setPosition(1930, 990-5);
     }
 }
+
 
 void GameView::prepareLifeLinesView() {
     sf::Vector2f currentScale = fiftySprite.getScale();
@@ -370,12 +388,14 @@ void GameView::prepareSpritesCoordinate() {
     fiftySpriteCoordinate = getSpriteCoordinate(fiftySprite);
     phoneToFriendSpriteCoordinate = getSpriteCoordinate(phoneToFriendSprite);
     audienceSupportSpriteCoordinate = getSpriteCoordinate(audienceSupportSprite);
+    questionPanelSpriteCoordinate = getSpriteCoordinate(questionPanelSprite);
     answerASpriteCoordinate = getSpriteCoordinate(answerASprite);
     answerBSpriteCoordinate = getSpriteCoordinate(answerBSprite);
     answerCSpriteCoordinate = getSpriteCoordinate(answerCSprite);
     answerDSpriteCoordinate = getSpriteCoordinate(answerDSprite);
 
 }
+
 
 SpriteCoordinate GameView::getSpriteCoordinate(sf::Sprite sprite) {
     SpriteCoordinate result;
@@ -386,29 +406,36 @@ SpriteCoordinate GameView::getSpriteCoordinate(sf::Sprite sprite) {
     return result;
 }
 
+
 void GameView::leftMouseClickHandler(sf::Vector2i mousePosition) {
     if (answerIsSelected) return;
 
+    setCorrectAnswerCoordinate();
+
     if (mousePosition.x >= answerASpriteCoordinate.spritePosition.x && mousePosition.x < answerASpriteCoordinate.spritePosition.x + answerASpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= answerASpriteCoordinate.spritePosition.y && mousePosition.y < answerASpriteCoordinate.spritePosition.y + answerASpriteCoordinate.spriteSize.y)
+        mousePosition.y >= answerASpriteCoordinate.spritePosition.y && mousePosition.y < answerASpriteCoordinate.spritePosition.y + answerASpriteCoordinate.spriteSize.y &&
+        gameController.getQuestion().isActiveAnswerA())
     {
         answerAButtonHandler();
     }
 
     else if (mousePosition.x >= answerBSpriteCoordinate.spritePosition.x && mousePosition.x < answerBSpriteCoordinate.spritePosition.x + answerBSpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= answerBSpriteCoordinate.spritePosition.y && mousePosition.y < answerBSpriteCoordinate.spritePosition.y + answerBSpriteCoordinate.spriteSize.y)
+        mousePosition.y >= answerBSpriteCoordinate.spritePosition.y && mousePosition.y < answerBSpriteCoordinate.spritePosition.y + answerBSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerB())
     {
         answerBButtonHandler();
     }
 
     else if (mousePosition.x >= answerCSpriteCoordinate.spritePosition.x && mousePosition.x < answerCSpriteCoordinate.spritePosition.x + answerCSpriteCoordinate.spriteSize.x &&
-             mousePosition.y >= answerCSpriteCoordinate.spritePosition.y && mousePosition.y < answerCSpriteCoordinate.spritePosition.y + answerCSpriteCoordinate.spriteSize.y)
+             mousePosition.y >= answerCSpriteCoordinate.spritePosition.y && mousePosition.y < answerCSpriteCoordinate.spritePosition.y + answerCSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerC())
     {
         answerCButtonHandler();
     }
 
     else if (mousePosition.x >= answerDSpriteCoordinate.spritePosition.x && mousePosition.x < answerDSpriteCoordinate.spritePosition.x + answerDSpriteCoordinate.spriteSize.x &&
-             mousePosition.y >= answerDSpriteCoordinate.spritePosition.y && mousePosition.y < answerDSpriteCoordinate.spritePosition.y + answerDSpriteCoordinate.spriteSize.y)
+             mousePosition.y >= answerDSpriteCoordinate.spritePosition.y && mousePosition.y < answerDSpriteCoordinate.spritePosition.y + answerDSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerD())
     {
         answerDButtonHandler();
     }
@@ -477,6 +504,7 @@ void GameView::answerDButtonHandler() {
 void GameView::lifeLineAButtonHandler() {
     if (!gameController.getLifeLineA()->isAvailable()) return;
     selectLifeLineSound.play();
+    gameController.getLifeLineA()->use();
     gameController.getLifeLineA()->deactivate();
 }
 
@@ -522,3 +550,135 @@ void GameView::handlingTheNextQuestion() {
     decideAnswerIsCorrect = false;
     resetAll = false;
 }
+
+
+void GameView::prepareQuestionView() {
+    std::string texts[3] = {"", "", ""};
+    sf::Text tempText;
+    prepareText(&tempText, "", &font, 40);
+
+    int usingLines = 0;
+
+    std::string wrappedText;
+    std::string word;
+    std::istringstream iss(gameController.getQuestion().getQuestion());
+
+    while (iss >> word) {
+        std::string tmpstr1 = wrappedText + " " + word;
+        tempText.setString(tmpstr1);
+
+        if (tempText.getLocalBounds().width > questionPanelSpriteCoordinate.spriteSize.x - 300) {
+            wrappedText = centerString(wrappedText, (int) questionPanelSpriteCoordinate.spriteSize.x - 200, 40, font);
+            texts[usingLines] = wrappedText;
+            if (usingLines + 1 > 2) {
+                break;
+            }
+            wrappedText = "";
+            wrappedText += word;
+            usingLines++;
+        }
+        else {
+            if (!wrappedText.empty()) {
+                wrappedText += " ";
+            }
+            wrappedText += word;
+        }
+    }
+    wrappedText = centerString(wrappedText, questionPanelSpriteCoordinate.spriteSize.x - 200, 40, font);
+    texts[usingLines] = wrappedText;
+
+    prepareText(&questionText[0], texts[0], &font, 40);
+    prepareText(&questionText[1], texts[1], &font, 40);
+    prepareText(&questionText[2], texts[2], &font, 40);
+
+    if (loadPolishCharacter) {
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        std::wstring questionLine1 = converter.from_bytes(texts[0]);
+        std::wstring questionLine2 = converter.from_bytes(texts[1]);
+        std::wstring questionLine3 = converter.from_bytes(texts[2]);
+
+        questionText[0].setString(questionLine1);
+        questionText[1].setString(questionLine2);
+        questionText[2].setString(questionLine3);
+    }
+
+    switch(usingLines) {
+        case 0:
+            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 80);
+            break;
+        case 1:
+            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 40);
+            questionText[1].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 90);
+            break;
+
+        default:
+            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 40);
+            questionText[1].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 80);
+            questionText[2].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
+                                        questionPanelSpriteCoordinate.spritePosition.y + 120);
+    }
+}
+
+
+std::string GameView::centerString(std::string string, int width, int fontSize, sf::Font font) {
+    sf::Text tempText;
+    tempText.setCharacterSize(fontSize);
+    tempText.setString(string);
+    tempText.setFont(font);
+    while (tempText.getLocalBounds().width < width) {
+        string = " " + string + " ";
+        tempText.setString(string);
+    }
+    return string;
+}
+
+
+void GameView::prepareAnswerView() {
+    prepareText(&answerA, gameController.getQuestion().getAnswerA(), &font, 40);
+    prepareText(&answerB, gameController.getQuestion().getAnswerB(), &font, 40);
+    prepareText(&answerC, gameController.getQuestion().getAnswerC(), &font, 40);
+    prepareText(&answerD, gameController.getQuestion().getAnswerD(), &font, 40);
+
+    if (loadPolishCharacter) {
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        std::wstring wStringAnswerA = converter.from_bytes(gameController.getQuestion().getAnswerA());
+        std::wstring wStringAnswerB = converter.from_bytes(gameController.getQuestion().getAnswerB());
+        std::wstring wStringAnswerC = converter.from_bytes(gameController.getQuestion().getAnswerC());
+        std::wstring wStringAnswerD = converter.from_bytes(gameController.getQuestion().getAnswerD());
+
+        answerA.setString(wStringAnswerA);
+        answerB.setString(wStringAnswerB);
+        answerC.setString(wStringAnswerC);
+        answerD.setString(wStringAnswerD);
+    }
+
+
+    answerA.setPosition(answerASpriteCoordinate.spritePosition.x + 80, answerASpriteCoordinate.spritePosition.y + 40);
+    answerB.setPosition(answerBSpriteCoordinate.spritePosition.x + 80, answerBSpriteCoordinate.spritePosition.y + 40);
+    answerC.setPosition(answerCSpriteCoordinate.spritePosition.x + 80, answerCSpriteCoordinate.spritePosition.y + 40);
+    answerD.setPosition(answerDSpriteCoordinate.spritePosition.x + 80, answerDSpriteCoordinate.spritePosition.y + 40);
+}
+
+void GameView::setCorrectAnswerCoordinate() {
+    switch(gameController.getQuestion().getCorrectAnswer()) {
+        case A:
+            correctAnswerSprite.setPosition(answerASpriteCoordinate.spritePosition.x, answerASpriteCoordinate.spritePosition.y);
+            break;
+        case B:
+            correctAnswerSprite.setPosition(answerBSpriteCoordinate.spritePosition.x, answerBSpriteCoordinate.spritePosition.y);
+            break;
+        case C:
+            correctAnswerSprite.setPosition(answerCSpriteCoordinate.spritePosition.x, answerCSpriteCoordinate.spritePosition.y);
+            break;
+        case D:
+            correctAnswerSprite.setPosition(answerDSpriteCoordinate.spritePosition.x, answerDSpriteCoordinate.spritePosition.y);
+            break;
+    }
+}
+
+

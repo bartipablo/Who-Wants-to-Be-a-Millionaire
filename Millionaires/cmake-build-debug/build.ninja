@@ -147,6 +147,13 @@ build CMakeFiles/Millionaires.dir/Model/GameController.cpp.o: CXX_COMPILER__Mill
   OBJECT_DIR = CMakeFiles/Millionaires.dir
   OBJECT_FILE_DIR = CMakeFiles/Millionaires.dir/Model
 
+build CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o: CXX_COMPILER__Millionaires_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/View/PhoneToFriendView.cpp || cmake_object_order_depends_target_Millionaires
+  DEP_FILE = CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++17
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/Millionaires.dir
+  OBJECT_FILE_DIR = CMakeFiles/Millionaires.dir/View
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Millionaires
@@ -155,7 +162,7 @@ build CMakeFiles/Millionaires.dir/Model/GameController.cpp.o: CXX_COMPILER__Mill
 #############################################
 # Link the executable Millionaires
 
-build Millionaires: CXX_EXECUTABLE_LINKER__Millionaires_Debug CMakeFiles/Millionaires.dir/main.cpp.o CMakeFiles/Millionaires.dir/Model/Question.cpp.o CMakeFiles/Millionaires.dir/Model/Reader.cpp.o CMakeFiles/Millionaires.dir/Model/Player.cpp.o CMakeFiles/Millionaires.dir/Model/Writer.cpp.o CMakeFiles/Millionaires.dir/View/GameView.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/FiftyFifty.cpp.o CMakeFiles/Millionaires.dir/Functions/Random.cpp.o CMakeFiles/Millionaires.dir/Functions/Answer.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/PhoneToFriend.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/AudienceSupport.cpp.o CMakeFiles/Millionaires.dir/View/StartView.cpp.o CMakeFiles/Millionaires.dir/View/View.cpp.o CMakeFiles/Millionaires.dir/Model/GameController.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
+build Millionaires: CXX_EXECUTABLE_LINKER__Millionaires_Debug CMakeFiles/Millionaires.dir/main.cpp.o CMakeFiles/Millionaires.dir/Model/Question.cpp.o CMakeFiles/Millionaires.dir/Model/Reader.cpp.o CMakeFiles/Millionaires.dir/Model/Player.cpp.o CMakeFiles/Millionaires.dir/Model/Writer.cpp.o CMakeFiles/Millionaires.dir/View/GameView.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/FiftyFifty.cpp.o CMakeFiles/Millionaires.dir/Functions/Random.cpp.o CMakeFiles/Millionaires.dir/Functions/Answer.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/PhoneToFriend.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/AudienceSupport.cpp.o CMakeFiles/Millionaires.dir/View/StartView.cpp.o CMakeFiles/Millionaires.dir/View/View.cpp.o CMakeFiles/Millionaires.dir/Model/GameController.cpp.o CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib  /opt/homebrew/lib/libsfml-audio.2.5.1.dylib  /opt/homebrew/lib/libsfml-network.2.5.1.dylib  /opt/homebrew/lib/libsfml-window.2.5.1.dylib  /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   OBJECT_DIR = CMakeFiles/Millionaires.dir
