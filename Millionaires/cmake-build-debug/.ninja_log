@@ -24,3 +24,8 @@
 6	506	1684251166305108833	CMakeFiles/Millionaires.dir/Model/Writer.cpp.o	9b763acb7565eac4
 5	497	1685140644214832339	CMakeFiles/Millionaires.dir/Model/Reader.cpp.o	270e2963c597bd01
 6	508	1684256117333700838	CMakeFiles/Millionaires.dir/Model/Lifelines.cpp.o	2c03c9e238c0e662
+12	606	1685145255622637815	CMakeFiles/Millionaires.dir/main.cpp.o	dbfeedfc1aa2ade5
+13	608	1685145255625680471	CMakeFiles/Millionaires.dir/View/StartView.cpp.o	294bcb7ede2beeee
+13	674	1685145255691034607	CMakeFiles/Millionaires.dir/View/GameView.cpp.o	cac15c506dc7c614
+11	482	1685145298713799027	CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o	7f38f3432b9d556e
+482	531	1685145298765635402	Millionaires	65781b92453f0fb9

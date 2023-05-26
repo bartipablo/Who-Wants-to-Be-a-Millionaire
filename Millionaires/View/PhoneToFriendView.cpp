@@ -3,3 +3,7 @@
 //
 
 #include "PhoneToFriendView.h"
+
+void PhoneToFriendView::runPhoneToFriendView() {
+
+}

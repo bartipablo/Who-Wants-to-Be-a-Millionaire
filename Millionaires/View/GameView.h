@@ -27,6 +27,10 @@ private:
 
     std::thread waitForCorrectAnswer;
 
+    std::thread phoneToFriendThread;
+
+    std::thread audienceSupportThread;
+
     GameController gameController;
 
     sf::Texture backgroundTexture;
