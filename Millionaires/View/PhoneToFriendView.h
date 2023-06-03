@@ -7,13 +7,45 @@
 
 #include "../Model/Lifelines/PhoneToFriend.h"
 #include "../Model/GameController.h"
+#include "View.h"
+#include <SFML/Graphics.hpp>
+#include <thread>
 
-class PhoneToFriendView {
+class PhoneToFriendView : public View {
 private:
-    GameController gameController;
+    void dialogsHandler();
+
+    bool loadPolishCharacters = true;
+
+    std::string friendAnswer;
+
+    Question* question;
+
+    sf::Texture backgroundTexture;
+
+    sf::Sprite backgroundSprite;
+
+    sf::Text dialogs[10];
+
+    sf::Text closeButton;
+
+    int dialogsNo;
+
+    int dialogsToShow = 0;
+
+    sf::Font font;
+
+    std::string wrapText(std::string inputString, float maxWidth);
+
+    int countLines(const std::string& text);
+
 
 public:
+    PhoneToFriendView(Question* question, std::string friendAnswer);
+
     void runPhoneToFriendView();
+
+    void prepareText();
 };
 
 

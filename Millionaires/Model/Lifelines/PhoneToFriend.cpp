@@ -3,7 +3,7 @@
 //
 
 #include "PhoneToFriend.h"
-
+#include "../../View/PhoneToFriendView.h"
 
 
 
@@ -14,8 +14,22 @@ void PhoneToFriend::use() {
     FriendReaction friendReaction = getRandomFriendReaction(activeAnswers);
     Answer friendAnswer = getFriendAnswer(friendReaction);
 
-    //tutaj umieścić dalszy kod
+    std::string finallyAnswer;
 
+    switch (friendReaction) {
+        case sure:
+            finallyAnswer = "Jestem pewien, że to odpowiedź: " + answerToString(friendAnswer);
+            break;
+        case uncertain:
+            finallyAnswer = "Wydaje mi się, że to odpowiedź: " + answerToString(friendAnswer);
+            break;
+        case doesNotKnow:
+            finallyAnswer = "Nic nie przychodzi mi do głowy, ale zgaduję, że to: " + answerToString(friendAnswer);
+            break;
+    }
+
+    PhoneToFriendView phoneToFriendView(question, finallyAnswer);
+    phoneToFriendView.runPhoneToFriendView();
 }
 
 
