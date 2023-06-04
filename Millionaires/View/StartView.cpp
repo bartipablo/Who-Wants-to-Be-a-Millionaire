@@ -7,6 +7,9 @@
 
 void StartView::runStartView() {
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
+    std::thread dialogsThread([this]() {
+        loadGameView();
+    });
 
     startMusic.play();
     bool menuMusicIsPlaying = false;
@@ -19,7 +22,7 @@ void StartView::runStartView() {
     logoSprite.setOrigin(logoSprite.getLocalBounds().width / 2, logoSprite.getLocalBounds().height / 2);
     logoSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
     loading.setOrigin(loading.getLocalBounds().width / 2, loading.getLocalBounds().height / 2);
-    loading.setPosition(window.getSize().x / 2, window.getSize().y / 2 + 700);
+    loading.setPosition(window.getSize().x / 2, window.getSize().y / 2 + 680);
 
     float rotationSpeed = 0.015f;
 
@@ -28,6 +31,7 @@ void StartView::runStartView() {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+                return;
             }
 
             //LEFT MOUSE BUTTON CLICK
@@ -35,7 +39,7 @@ void StartView::runStartView() {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
                     //START BUTTON HANDLER
-                    if (startButton.getGlobalBounds().contains(mousePosition)) {
+                    if (startButton.getGlobalBounds().contains(mousePosition) && isLoadedGameView) {
                         window.draw(loading);
                         window.display();
                         window.close();
@@ -51,7 +55,8 @@ void StartView::runStartView() {
 
         window.draw(backgroundSprite);
         window.draw(logoSprite);
-        window.draw(startButton);
+        if (!isLoadedGameView) window.draw(loading);
+        else window.draw(startButton);
 
         if (startMusic.getStatus() == sf::Music::Stopped && !menuMusicIsPlaying) {
             menuMusicIsPlaying = true;
@@ -76,16 +81,16 @@ StartView::StartView() {
 }
 
 
-void runNewGame() {
-    GameView gameView;
-    gameView.runGameView();
-}
-
 void StartView::handleClickStart(sf::Text &button) {
     startMusic.stop();
     menuMusic.stop();
-    GameView gameView;
-    gameView.runGameView();
+    gameView->runGameView();
+}
+
+void StartView::loadGameView() {
+    std::unique_ptr<GameView> newGameView = std::make_unique<GameView>();
+    gameView = std::move(newGameView);
+    isLoadedGameView = true;
 }
 
 

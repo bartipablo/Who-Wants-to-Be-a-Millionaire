@@ -12,7 +12,6 @@
 class WinnerView: public View {
 
 private:
-    GameController gameController;
 
     sf::Texture backgroundTexture;
 
@@ -37,7 +36,7 @@ private:
     int gainedAmount;
 
 public:
-    explicit WinnerView(const GameController &gameController, int gainedAmount);
+    explicit WinnerView(int gainedAmount);
 
     void runWinnerView();
 

@@ -13,7 +13,7 @@
 #include "View.h"
 #include "../Model/Question.h"
 #include "../Model/GameController.h"
-
+#include "WinnerView.h"
 
 typedef struct {
     sf::Vector2f spritePosition;
@@ -24,6 +24,8 @@ typedef struct {
 class GameView: public View {
 private:
     bool loadPolishCharacter = true;
+
+    std::thread waitForSumUpThread;
 
     std::thread waitForCorrectAnswer;
 
@@ -58,6 +60,11 @@ private:
     sf::Texture selectedAnswerTexture;
 
     sf::Texture moneyTreeTexture;
+
+    sf::Texture resignButtonTexture;
+
+    sf::Sprite resignButtonSprite;
+    SpriteCoordinate resignButtonCoordinate;
 
     sf::Sprite backgroundSprite;
 
@@ -165,6 +172,8 @@ private:
 
     sf::Font font;
 
+    int winAmount = 0;
+
     //methods
     void prepareQuestionView();
 
@@ -202,11 +211,15 @@ private:
 
     void handlingTheNextQuestion();
 
+    void handlingWinnerView();
+
     void calculateMoneyTreeCoordinate();
 
     std::string centerString(std::string string, int width, int fontSize, sf::Font font);
 
     void setCorrectAnswerCoordinate();
+
+    void waitForSumUp();
 
 public:
     GameView();

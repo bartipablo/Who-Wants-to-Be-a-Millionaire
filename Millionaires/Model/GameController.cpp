@@ -30,7 +30,7 @@ void GameController::setGuaranteedAmount(int guaranteedAmount) {
 }
 
 int GameController::getGainedAmount() {
-    gainedAmount;
+    return gainedAmount;
 }
 
 void GameController::setGainedAmount(int gainedAmount) {

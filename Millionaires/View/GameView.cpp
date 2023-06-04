@@ -20,6 +20,8 @@ bool decideAnswerIsCorrect = false;
 
 bool resetAll = false;
 
+bool sumUp = false;
+
 void waitForCorrectAnswerFunction() {
     std::this_thread::sleep_for(std::chrono::seconds(3));
     showCorrectAnswer = true;
@@ -69,6 +71,9 @@ GameView::GameView() {
         prepareText(&awards[i], awardsStr[i], &font, 50);
     }
 
+    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/answer.png");
+    resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
+
     //setting positions
     prepareAwardView();
     prepareLifeLinesView();
@@ -106,6 +111,7 @@ void GameView::runGameView() {
             if (event.type == sf::Event::Closed) {
                 waitForCorrectAnswer.join();
                 window.close();
+                exit(0);
 
             }
             else if (event.type == sf::Event::MouseButtonPressed) {
@@ -118,6 +124,8 @@ void GameView::runGameView() {
         window.clear();
 
         window.draw(backgroundSprite);
+
+        window.draw(resignButtonSprite);
 
         //AWARD VIEW
         if (gameController.getQuestionNumber() > 1) {
@@ -170,6 +178,13 @@ void GameView::runGameView() {
         }
 
         if(resetAll) handlingTheNextQuestion();
+
+        if (sumUp) {
+            window.close();
+            WinnerView winnerView(winAmount);
+            winnerView.runWinnerView();
+            return;
+        }
 
         window.display();
     }
@@ -457,6 +472,13 @@ void GameView::leftMouseClickHandler(sf::Vector2i mousePosition) {
     {
         lifeLineCButtonHandler();
     }
+
+    else if (mousePosition.x >= resignButtonCoordinate.spritePosition.x && mousePosition.x < resignButtonCoordinate.spritePosition.x + resignButtonCoordinate.spriteSize.x &&
+        mousePosition.y >= resignButtonCoordinate.spritePosition.y && mousePosition.y < resignButtonCoordinate.spritePosition.y + resignButtonCoordinate.spriteSize.y)
+    {
+        winAmount = gameController.getGainedAmount();
+        sumUp = true;
+    }
 }
 
 
@@ -539,7 +561,12 @@ void GameView::handlingTheSelectedAnswer() {
 
     else {
         incorrectAnswerSound.play();
-        gameMusic1.stop();
+        //gameMusic1.stop();
+        std::thread dialogsThread([this]() {
+            waitForSumUp();
+        });
+        waitForSumUpThread = std::move(dialogsThread);
+        winAmount = gameController.getGuaranteedAmount();
     }
 }
 
@@ -681,5 +708,12 @@ void GameView::setCorrectAnswerCoordinate() {
             break;
     }
 }
+
+void GameView::waitForSumUp() {
+    std::this_thread::sleep_for(std::chrono::seconds(4));
+    sumUp = true;
+}
+
+
 
 

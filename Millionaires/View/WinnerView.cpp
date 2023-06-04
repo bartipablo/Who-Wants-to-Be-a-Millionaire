@@ -4,7 +4,7 @@
 
 #include "WinnerView.h"
 
-WinnerView::WinnerView(const GameController &gameController, int gainedAmount) : gameController(gameController), gainedAmount(gainedAmount) {
+WinnerView::WinnerView(int gainedAmount) :  gainedAmount(gainedAmount) {
     prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/winner-background.png");
     backgroundSprite.setPosition(-100, 0);
     prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");

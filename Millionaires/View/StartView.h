@@ -39,6 +39,12 @@ private:
 
     void handleClickStart(sf::Text& button);
 
+    void loadGameView();
+
+    std::unique_ptr<GameView> gameView;
+
+    bool isLoadedGameView;
+
 public:
     StartView();
 
