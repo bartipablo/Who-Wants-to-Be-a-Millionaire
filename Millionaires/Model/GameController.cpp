@@ -30,7 +30,7 @@ void GameController::setGuaranteedAmount(int guaranteedAmount) {
 }
 
 int GameController::getGainedAmount() {
-    gainedAmount;
+    return gainedAmount;
 }
 
 void GameController::setGainedAmount(int gainedAmount) {
@@ -52,7 +52,6 @@ void GameController::loadNextQuestion() {
     }
 
     question = Reader::getRandomQuestion(questionNumber);
-
 }
 
 
@@ -80,6 +79,15 @@ Answer GameController::getSelectedAnswer() {
 
 void GameController::setSelectedAnswer(Answer answer) {
     this->selectedAnswer = answer;
+}
+
+void GameController::resetGameController() {
+    lifeLineA->setAvailable(true);
+    lifeLineB->setAvailable(true);
+    lifeLineC->setAvailable(true);
+    questionNumber = 0;
+    guaranteedAmount = 0;
+    gainedAmount = 0;
 }
 
 

@@ -29,9 +29,9 @@ private:
 
     int questionNumber;
 
-    int guaranteedAmount;
+    int guaranteedAmount = 0;
 
-    int gainedAmount;
+    int gainedAmount = 0;
 
     Lifeline* lifeLineA;
 
@@ -68,6 +68,8 @@ public:
     Answer getSelectedAnswer();
 
     void setSelectedAnswer(Answer answer);
+
+    void resetGameController();
 
 
 };

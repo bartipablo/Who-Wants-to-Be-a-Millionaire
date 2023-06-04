@@ -13,7 +13,7 @@
 #include "View.h"
 #include "../Model/Question.h"
 #include "../Model/GameController.h"
-
+#include "WinnerView.h"
 
 typedef struct {
     sf::Vector2f spritePosition;
@@ -23,16 +23,48 @@ typedef struct {
 
 class GameView: public View {
 private:
+    /**************************************
+        GUI FLAGS
+    **************************************/
     bool loadPolishCharacter = true;
 
-    std::thread waitForCorrectAnswer;
+    bool nextQuestionFlag = true;
+
+    bool musicPlaysFlag = false;
+
+    bool answerIsSelected = false;
+
+    bool showCorrectAnswer = false;
+
+    bool decideAnswerIsCorrect = false;
+
+    bool resetAll = false;
+
+    bool sumUp = false;
+    /**************************************
+        ~GUI FLAGS
+    **************************************/
+
+    /**************************************
+        THREADS
+    **************************************/
+    std::thread waitForSumUpThread;
+    void waitForSumUpAfterChosenAnswer();
+
+    std::thread waitForCorrectAnswerThread;
+    void waitForCorrectAnswerAfterSelectedAnswer();
+    void waitForNextQuestionAfterSelectedAnswer();
 
     std::thread phoneToFriendThread;
 
     std::thread audienceSupportThread;
+    /**************************************
+        ~THREADS
+    **************************************/
 
-    GameController gameController;
-
+    /**************************************
+        SFML ELEMENTS
+    **************************************/
     sf::Texture backgroundTexture;
 
     sf::Texture fiftyTexture;
@@ -58,6 +90,11 @@ private:
     sf::Texture selectedAnswerTexture;
 
     sf::Texture moneyTreeTexture;
+
+    sf::Texture resignButtonTexture;
+
+    sf::Sprite resignButtonSprite;
+    SpriteCoordinate resignButtonCoordinate;
 
     sf::Sprite backgroundSprite;
 
@@ -124,6 +161,10 @@ private:
 
     sf::SoundBuffer incorrectAnswerBuffer;
 
+    sf::SoundBuffer winningBuffer1;
+
+    sf::SoundBuffer winningBuffer2;
+
     sf::Sound gameMusic1;
 
     sf::Sound gameMusic2;
@@ -150,6 +191,10 @@ private:
 
     sf::Sound incorrectAnswerSound;
 
+    sf::Sound winningSound1;
+
+    sf::Sound winningSound2;
+
     sf::Text awards[12];
 
     sf::Text questionText[3];
@@ -163,9 +208,24 @@ private:
 
     sf::Text answerD;
 
+    sf::Text resignText;
+
     sf::Font font;
 
-    //methods
+    /**************************************
+        ~SFML ELEMENTS
+    **************************************/
+
+    int winAmount = 0;
+
+    GameController gameController;
+
+    std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $40,000",
+                                 " 8.    $75,000", " 9.   $125,000", "10.  $250,000", "11.  $500,000", "12.$1 MILLION"};
+
+    /**************************************
+             Methods
+    **************************************/
     void prepareQuestionView();
 
     void prepareAnswerView();
@@ -180,6 +240,8 @@ private:
 
     void prepareSpritesCoordinate();
 
+    void prepareResignButton();
+
     void leftMouseClickHandler(sf::Vector2i mousePosition);
 
     SpriteCoordinate getSpriteCoordinate(sf::Sprite sprite);
@@ -191,6 +253,8 @@ private:
     void answerCButtonHandler();
 
     void answerDButtonHandler();
+
+    void commonHandlerAfterSelectedAnswer();
 
     void lifeLineAButtonHandler();
 
@@ -208,12 +272,21 @@ private:
 
     void setCorrectAnswerCoordinate();
 
+    void stopMusics();
+
+    void resignButtonHandler();
+
+    /**************************************
+             Methods
+    **************************************/
+
 public:
     GameView();
 
     void runGameView();
 
-};
+    void resetGame();
 
+};
 
 #endif //MILLIONAIRES_GAMEVIEW_H

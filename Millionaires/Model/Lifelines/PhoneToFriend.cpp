@@ -3,19 +3,38 @@
 //
 
 #include "PhoneToFriend.h"
-
+#include "../../View/PhoneToFriendView.h"
 
 
 
 void PhoneToFriend::use() {
+    if (!available) {
+        return;
+    }
+
     std::vector<Answer> activeAnswers = question->getActiveAnswers();
     Answer correctAnswer = question->getCorrectAnswer();
 
     FriendReaction friendReaction = getRandomFriendReaction(activeAnswers);
     Answer friendAnswer = getFriendAnswer(friendReaction);
 
-    //tutaj umieścić dalszy kod
+    std::string finallyAnswer;
 
+    switch (friendReaction) {
+        case sure:
+            finallyAnswer = "Jestem pewien, że to odpowiedź: " + answerToString(friendAnswer);
+            break;
+        case uncertain:
+            finallyAnswer = "Wydaje mi się, że to odpowiedź: " + answerToString(friendAnswer);
+            break;
+        case doesNotKnow:
+            finallyAnswer = "Niestety, nic nie przychodzi mi do głowy";
+            break;
+    }
+
+    PhoneToFriendView phoneToFriendView(question, finallyAnswer);
+    phoneToFriendView.runPhoneToFriendView();
+    Lifeline::available = false;
 }
 
 
@@ -23,13 +42,13 @@ FriendReaction PhoneToFriend::getRandomFriendReaction(std::vector<Answer> active
     int randomNumber = getRandomNumber(0, 100);
 
     if (activeAnswers.size() > 2) {
-        if (randomNumber < 30) return sure;
-        if (randomNumber >= 30 && randomNumber <= 70) return uncertain;
+        if (randomNumber < 40) return sure;
+        if (randomNumber >= 40 && randomNumber <= 70) return uncertain;
         if (randomNumber > 70) return doesNotKnow;
     }
     else {
-        if (randomNumber < 40) return sure;
-        if (randomNumber >= 40 && randomNumber <= 80) return uncertain;
+        if (randomNumber < 60) return sure;
+        if (randomNumber >= 60 && randomNumber <= 80) return uncertain;
         if (randomNumber > 80) return doesNotKnow;
     }
     return doesNotKnow;
@@ -39,7 +58,7 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
     int randomNumber = getRandomNumber(0, 100);
 
     if (friendReaction == sure) {
-        if (randomNumber <= 90) {
+        if (randomNumber <= 95) {
             return question->getCorrectAnswer();
         }
         else {
@@ -48,7 +67,7 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
     }
 
     else if (friendReaction == uncertain) {
-        if (randomNumber <= 50) {
+        if (randomNumber <= 70) {
             return question->getCorrectAnswer();
         }
         else {

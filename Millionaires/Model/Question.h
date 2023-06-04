@@ -64,6 +64,8 @@ public:
 
     void deactivateAnswerD();
 
+    int getQuestionNumber();
+
     [[nodiscard]] bool isGuaranteedAmount() const;
 
     [[nodiscard]] int getAmount() const;

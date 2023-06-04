@@ -12,6 +12,7 @@
 #include <chrono>
 #include "GameView.h"
 #include "View.h"
+#include "../Configuration.h"
 
 class StartView: public View {
 private:
@@ -38,6 +39,12 @@ private:
     sf::Text loading;
 
     void handleClickStart(sf::Text& button);
+
+    void loadGameView();
+
+    std::unique_ptr<GameView> gameView;
+
+    bool isLoadedGameView;
 
 public:
     StartView();

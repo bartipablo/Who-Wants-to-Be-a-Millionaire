@@ -23,9 +23,7 @@ class PhoneToFriend: public Lifeline {
 private:
     Question* question;
 
-    std::string answer1 = "Jestem pewny że to odpowiedź ";
-    std::string answer2 = "Wydaje mi się, że to odpowiedź ";
-    std::string answer3 = "Niestety nie znam odpowiedzi na to pytanie, zgaduję że to: ";
+    std::string friendAnswer;
 
     FriendReaction getRandomFriendReaction(std::vector<Answer> activeAnswers);
 
