@@ -48,7 +48,6 @@ public:
 
     void runAudienceSupportView();
 
-public:
 };
 
 

@@ -7,7 +7,7 @@
 
 void StartView::runStartView() {
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
-    std::thread dialogsThread([this]() {
+    std::thread loadingThread([this]() {
         loadGameView();
     });
 
@@ -30,8 +30,8 @@ void StartView::runStartView() {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
+                Configuration::disableProgram();
                 window.close();
-                return;
             }
 
             //LEFT MOUSE BUTTON CLICK
@@ -40,7 +40,6 @@ void StartView::runStartView() {
                     sf::Vector2f mousePosition = sf::Vector2f(event.mouseButton.x, event.mouseButton.y);
                     //START BUTTON HANDLER
                     if (startButton.getGlobalBounds().contains(mousePosition) && isLoadedGameView) {
-                        window.draw(loading);
                         window.display();
                         window.close();
                         handleClickStart(startButton);
@@ -51,7 +50,7 @@ void StartView::runStartView() {
 
         window.clear();
 
-        backgroundSprite.rotate(rotationSpeed * 0.5f); // Mnożnik prędkości wynosi 0.5f
+        backgroundSprite.rotate(rotationSpeed * 0.5f);
 
         window.draw(backgroundSprite);
         window.draw(logoSprite);
@@ -65,6 +64,12 @@ void StartView::runStartView() {
         }
 
         window.display();
+    }
+
+    try {
+        loadingThread.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 

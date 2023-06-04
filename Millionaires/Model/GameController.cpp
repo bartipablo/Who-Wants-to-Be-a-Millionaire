@@ -52,7 +52,6 @@ void GameController::loadNextQuestion() {
     }
 
     question = Reader::getRandomQuestion(questionNumber);
-
 }
 
 

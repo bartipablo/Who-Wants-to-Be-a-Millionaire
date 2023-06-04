@@ -7,16 +7,16 @@
 
 
 void PhoneToFriendView::dialogsHandler() {
-    dialogsToShow = 0;
-    for (int i = 0; i < dialogsNo; i++) {
-        if (dialogsToShow == dialogsNo - 1) {
+    lineDialogsToShow = 0;
+    for (int i = 0; i < lineDialogsNo; i++) {
+        if (lineDialogsToShow == lineDialogsNo - 1) {
             std::this_thread::sleep_for(std::chrono::seconds(3));
-        } else if (dialogsToShow == 1) {
+        } else if (lineDialogsToShow == 1) {
             std::this_thread::sleep_for(std::chrono::seconds(2));
         } else {
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        dialogsToShow++;
+        lineDialogsToShow++;
     }
 }
 
@@ -37,7 +37,7 @@ void PhoneToFriendView::runPhoneToFriendView() {
                 window.close();
             }
             else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left &&
-                    dialogsToShow == dialogsNo)
+                     lineDialogsToShow == lineDialogsNo)
             {
                 sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
                 sf::Vector2f mousePositionFloat = window.mapPixelToCoords(mousePosition);
@@ -52,16 +52,21 @@ void PhoneToFriendView::runPhoneToFriendView() {
         window.clear(sf::Color::Black);
 
         window.draw(backgroundSprite);
-        for (int i = 0; i < dialogsToShow; i++) {
+        for (int i = 0; i < lineDialogsToShow; i++) {
             window.draw(dialogs[i]);
         }
-        if (dialogsToShow == dialogsNo) {
+        if (lineDialogsToShow == lineDialogsNo) {
             window.draw(closeButton);
         }
 
         window.display();
     }
-    dialogsThread.join();
+
+    try {
+        dialogsThread.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
 }
 
 PhoneToFriendView::PhoneToFriendView(Question *question, std::string friendAnswer) {
@@ -207,7 +212,7 @@ void PhoneToFriendView::prepareText() {
     dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
     i++;
 
-    dialogsNo = i;
+    lineDialogsNo = i;
 
     View::prepareText(&closeButton, "Close", &font, 80);
     closeButton.setPosition(970, 1400);

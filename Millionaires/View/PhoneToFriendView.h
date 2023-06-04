@@ -29,9 +29,9 @@ private:
 
     sf::Text closeButton;
 
-    int dialogsNo;
+    int lineDialogsNo;
 
-    int dialogsToShow = 0;
+    int lineDialogsToShow = 0;
 
     sf::Font font;
 

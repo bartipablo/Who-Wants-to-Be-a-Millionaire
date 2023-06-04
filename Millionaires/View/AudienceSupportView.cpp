@@ -26,9 +26,6 @@ AudienceSupportView::AudienceSupportView(int answerAVotes, int answerBVotes, int
 
     int votesSum = answerAVotes + answerBVotes + answerCVotes + answerDVotes;
 
-    int ohoint = std::round(100 * answerBVotes / votesSum);
-    std::string oho = std::to_string(static_cast<int>(std::round(answerBVotes / votesSum)));
-
     View::prepareText(&noVotesByPercentageA, std::to_string((int) std::round(100 * answerAVotes / votesSum)) + " %", &font, 80);
     View::prepareText(&noVotesByPercentageB, std::to_string((int) std::round(100 * answerBVotes / votesSum)) + " %", &font, 80);
     View::prepareText(&noVotesByPercentageC, std::to_string((int) std::round(100 * answerCVotes / votesSum)) + " %", &font, 80);

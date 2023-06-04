@@ -498,7 +498,11 @@ void GameView::answerAButtonHandler() {
     answerIsSelected = true;
     selectAnswerSound.play();
     gameController.setSelectedAnswer(A);
-    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
+    try {
+        waitForCorrectAnswer.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 }
 
@@ -508,9 +512,12 @@ void GameView::answerBButtonHandler() {
     answerIsSelected = true;
     selectAnswerSound.play();
     gameController.setSelectedAnswer(B);
-    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
+    try {
+        waitForCorrectAnswer.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
-
 }
 
 
@@ -519,7 +526,11 @@ void GameView::answerCButtonHandler() {
     answerIsSelected = true;
     selectAnswerSound.play();
     gameController.setSelectedAnswer(C);
-    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
+    try {
+        waitForCorrectAnswer.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 
 }
@@ -529,7 +540,11 @@ void GameView::answerDButtonHandler() {
     answerIsSelected = true;
     selectAnswerSound.play();
     gameController.setSelectedAnswer(D);
-    if (gameController.getQuestionNumber() > 1) waitForCorrectAnswer.join();
+    try {
+        waitForCorrectAnswer.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
     waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
 }
 
@@ -538,20 +553,17 @@ void GameView::lifeLineAButtonHandler() {
     if (!gameController.getLifeLineA()->isAvailable()) return;
     selectLifeLineSound.play();
     gameController.getLifeLineA()->use();
-    gameController.getLifeLineA()->deactivate();
 }
 
 void GameView::lifeLineBButtonHandler() {
     if (!gameController.getLifeLineB()->isAvailable()) return;
     selectLifeLineSound.play();
-    gameController.getLifeLineB()->deactivate();
     gameController.getLifeLineB()->use();
 }
 
 void GameView::lifeLineCButtonHandler() {
     if (!gameController.getLifeLineC()->isAvailable()) return;
     selectLifeLineSound.play();
-    gameController.getLifeLineC()->deactivate();
     gameController.getLifeLineC()->use();
 
 }

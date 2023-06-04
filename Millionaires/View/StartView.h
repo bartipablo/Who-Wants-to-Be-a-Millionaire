@@ -12,6 +12,7 @@
 #include <chrono>
 #include "GameView.h"
 #include "View.h"
+#include "../Configuration.h"
 
 class StartView: public View {
 private:

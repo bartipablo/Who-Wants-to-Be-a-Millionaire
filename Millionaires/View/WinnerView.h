@@ -7,7 +7,7 @@
 
 #include "View.h"
 #include "../Model/GameController.h"
-
+#include "../Configuration.h"
 
 class WinnerView: public View {
 

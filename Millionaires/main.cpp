@@ -9,13 +9,12 @@
 #include "View/PhoneToFriendView.h"
 #include "View/AudienceSupportView.h"
 #include "View/WinnerView.h"
-
+#include "Configuration.h"
 
 int main() {
-
     StartView startView;
 
-    while (true) {
+    while (Configuration::programIsRunning()) {
         startView.runStartView();
     }
 

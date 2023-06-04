@@ -45,7 +45,8 @@ void WinnerView::runWinnerView() {
                 sf::Vector2f mousePositionFloat = window.mapPixelToCoords(mousePosition);
 
                 if (exitButton.getGlobalBounds().contains(mousePositionFloat)) {
-                    exit(0);
+                    Configuration::disableProgram();
+                    window.close();
                 }
 
                 if (playAgainButton.getGlobalBounds().contains(mousePositionFloat)) {
@@ -117,8 +118,6 @@ void WinnerView::prepareGainedAmount() {
     prepareText(&gainedAmountDescriptionText, gainedAmountDescriptionStr, &font, 40);
     gainedAmountDescriptionText.setFillColor(sf::Color::Black);
     gainedAmountDescriptionText.setPosition(750, 1030);
-
-
 }
 
 void WinnerView::prepareDate() {

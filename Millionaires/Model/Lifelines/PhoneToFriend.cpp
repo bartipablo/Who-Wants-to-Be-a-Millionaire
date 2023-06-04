@@ -8,6 +8,10 @@
 
 
 void PhoneToFriend::use() {
+    if (!available) {
+        return;
+    }
+
     std::vector<Answer> activeAnswers = question->getActiveAnswers();
     Answer correctAnswer = question->getCorrectAnswer();
 
@@ -30,6 +34,7 @@ void PhoneToFriend::use() {
 
     PhoneToFriendView phoneToFriendView(question, finallyAnswer);
     phoneToFriendView.runPhoneToFriendView();
+    Lifeline::available = false;
 }
 
 

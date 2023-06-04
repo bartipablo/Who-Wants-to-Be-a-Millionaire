@@ -15,7 +15,7 @@ void FiftyFifty::use() {
     int randIndex = getRandomNumber(0, 2);
     Answer incorrectAnswer1 = otherAnswers[randIndex];
 
-    if (randIndex >= 0 && randIndex < otherAnswers.size()) {
+    if (randIndex >= 0 && randIndex < otherAnswers.size()) { //removing the selected answer from otherAnswers.
         auto it = otherAnswers.begin();
         std::advance(it, randIndex);
 

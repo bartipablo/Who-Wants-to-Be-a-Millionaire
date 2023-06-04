@@ -6,6 +6,10 @@
 #include "../../View/AudienceSupportView.h"
 
 void AudienceSupport::use() {
+    if (!available) {
+        return;
+    }
+
     int chanceOfAnsweringCorrectly = determineChanceOfAnsweringCorrectly();
 
     for (int i = 0; i < numberOfAudiences; i++) {
@@ -21,6 +25,7 @@ void AudienceSupport::use() {
 
     AudienceSupportView audienceSupportView(answerAVotes, answerBVotes, answerCVotes, answerDVotes);
     audienceSupportView.runAudienceSupportView();
+    Lifeline::available = false;
 
 }
 

@@ -23,6 +23,9 @@ private:
 
     int answerDVotes = 0;
 
+    int determineChanceOfAnsweringCorrectly();
+
+    void vote(Answer answer);
 
 public:
     explicit AudienceSupport(Question* question) : Lifeline(true) {
@@ -31,9 +34,7 @@ public:
 
     void use() override;
 
-    int determineChanceOfAnsweringCorrectly();
 
-    void vote(Answer answer);
 };
 
 
