@@ -175,6 +175,13 @@ build CMakeFiles/Millionaires.dir/Configuration.cpp.o: CXX_COMPILER__Millionaire
   OBJECT_DIR = CMakeFiles/Millionaires.dir
   OBJECT_FILE_DIR = CMakeFiles/Millionaires.dir
 
+build CMakeFiles/Millionaires.dir/tests/test2.cpp.o: CXX_COMPILER__Millionaires_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/test2.cpp || cmake_object_order_depends_target_Millionaires
+  DEP_FILE = CMakeFiles/Millionaires.dir/tests/test2.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++17
+  INCLUDES = -I/usr/local/include -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/Millionaires.dir
+  OBJECT_FILE_DIR = CMakeFiles/Millionaires.dir/tests
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Millionaires
@@ -183,7 +190,7 @@ build CMakeFiles/Millionaires.dir/Configuration.cpp.o: CXX_COMPILER__Millionaire
 #############################################
 # Link the executable Millionaires
 
-build Millionaires: CXX_EXECUTABLE_LINKER__Millionaires_Debug CMakeFiles/Millionaires.dir/main.cpp.o CMakeFiles/Millionaires.dir/Model/Question.cpp.o CMakeFiles/Millionaires.dir/Model/Reader.cpp.o CMakeFiles/Millionaires.dir/Model/Player.cpp.o CMakeFiles/Millionaires.dir/Model/Writer.cpp.o CMakeFiles/Millionaires.dir/View/GameView.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/FiftyFifty.cpp.o CMakeFiles/Millionaires.dir/Functions/Random.cpp.o CMakeFiles/Millionaires.dir/Functions/Answer.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/PhoneToFriend.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/AudienceSupport.cpp.o CMakeFiles/Millionaires.dir/View/StartView.cpp.o CMakeFiles/Millionaires.dir/View/View.cpp.o CMakeFiles/Millionaires.dir/Model/GameController.cpp.o CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o CMakeFiles/Millionaires.dir/View/AudienceSupportView.cpp.o CMakeFiles/Millionaires.dir/View/WinnerView.cpp.o CMakeFiles/Millionaires.dir/Configuration.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
+build Millionaires: CXX_EXECUTABLE_LINKER__Millionaires_Debug CMakeFiles/Millionaires.dir/main.cpp.o CMakeFiles/Millionaires.dir/Model/Question.cpp.o CMakeFiles/Millionaires.dir/Model/Reader.cpp.o CMakeFiles/Millionaires.dir/Model/Player.cpp.o CMakeFiles/Millionaires.dir/Model/Writer.cpp.o CMakeFiles/Millionaires.dir/View/GameView.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/FiftyFifty.cpp.o CMakeFiles/Millionaires.dir/Functions/Random.cpp.o CMakeFiles/Millionaires.dir/Functions/Answer.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/PhoneToFriend.cpp.o CMakeFiles/Millionaires.dir/Model/Lifelines/AudienceSupport.cpp.o CMakeFiles/Millionaires.dir/View/StartView.cpp.o CMakeFiles/Millionaires.dir/View/View.cpp.o CMakeFiles/Millionaires.dir/Model/GameController.cpp.o CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o CMakeFiles/Millionaires.dir/View/AudienceSupportView.cpp.o CMakeFiles/Millionaires.dir/View/WinnerView.cpp.o CMakeFiles/Millionaires.dir/Configuration.cpp.o CMakeFiles/Millionaires.dir/tests/test2.cpp.o | /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib /opt/homebrew/lib/libsfml-audio.2.5.1.dylib /opt/homebrew/lib/libsfml-network.2.5.1.dylib /opt/homebrew/lib/libsfml-window.2.5.1.dylib /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib  /opt/homebrew/lib/libsfml-graphics.2.5.1.dylib  /opt/homebrew/lib/libsfml-audio.2.5.1.dylib  /opt/homebrew/lib/libsfml-network.2.5.1.dylib  /opt/homebrew/lib/libsfml-window.2.5.1.dylib  /opt/homebrew/lib/libsfml-system.2.5.1.dylib
   OBJECT_DIR = CMakeFiles/Millionaires.dir
@@ -215,8 +222,520 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for list_install_components
+
+build list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build CMakeFiles/install.util: CUSTOM_COMMAND all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build install: phony CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build CMakeFiles/install/local.util: CUSTOM_COMMAND all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build install/local: phony CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build install/strip: phony CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Google_Tests_run
+
+
+#############################################
+# Order-only phony target for Google_Tests_run
+
+build cmake_object_order_depends_target_Google_Tests_run: phony || cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
+
+build tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o: CXX_COMPILER__Google_Tests_run_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/test1.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++17
+  INCLUDES = -I/usr/local/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/CMakeFiles/Google_Tests_run.dir
+  OBJECT_FILE_DIR = tests/CMakeFiles/Google_Tests_run.dir
+
+build tests/CMakeFiles/Google_Tests_run.dir/test2.cpp.o: CXX_COMPILER__Google_Tests_run_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/test2.cpp || cmake_object_order_depends_target_Google_Tests_run
+  DEP_FILE = tests/CMakeFiles/Google_Tests_run.dir/test2.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics -std=gnu++17
+  INCLUDES = -I/usr/local/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/CMakeFiles/Google_Tests_run.dir
+  OBJECT_FILE_DIR = tests/CMakeFiles/Google_Tests_run.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Google_Tests_run
+
+
+#############################################
+# Link the executable tests/Google_Tests_run
+
+build tests/Google_Tests_run: CXX_EXECUTABLE_LINKER__Google_Tests_run_Debug tests/CMakeFiles/Google_Tests_run.dir/test1.cpp.o tests/CMakeFiles/Google_Tests_run.dir/test2.cpp.o | lib/libgtest.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
+  LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  lib/libgtest.a
+  OBJECT_DIR = tests/CMakeFiles/Google_Tests_run.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = tests/Google_Tests_run
+  TARGET_PDB = Google_Tests_run.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build tests/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build tests/edit_cache: phony tests/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tests/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires -B/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tests/rebuild_cache: phony tests/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tests/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tests/CMakeFiles/install.util: CUSTOM_COMMAND tests/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tests/install: phony tests/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tests/CMakeFiles/install/local.util: CUSTOM_COMMAND tests/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tests/install/local: phony tests/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build tests/CMakeFiles/install/strip.util: CUSTOM_COMMAND tests/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build tests/install/strip: phony tests/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build tests/lib/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build tests/lib/googletest/edit_cache: phony tests/lib/googletest/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tests/lib/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires -B/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/rebuild_cache: phony tests/lib/googletest/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tests/lib/googletest/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tests/lib/googletest/CMakeFiles/install.util: CUSTOM_COMMAND tests/lib/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/install: phony tests/lib/googletest/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tests/lib/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND tests/lib/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/install/local: phony tests/lib/googletest/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build tests/lib/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND tests/lib/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/install/strip: phony tests/lib/googletest/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gmock
+
+
+#############################################
+# Order-only phony target for gmock
+
+build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depends_target_gtest
+
+build tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CXX_COMPILER__gmock_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
+  DEP_FILE = tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++17
+  INCLUDES = -I/usr/local/include -I/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/include -I/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock.dir
+  OBJECT_FILE_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gmock
+
+
+#############################################
+# Link the static library lib/libgmock.a
+
+build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug tests/lib/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o || lib/libgtest.a
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = lib/libgmock.a
+  TARGET_PDB = gmock.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gmock_main
+
+
+#############################################
+# Order-only phony target for gmock_main
+
+build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest
+
+build tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o: CXX_COMPILER__gmock_main_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
+  DEP_FILE = tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++17
+  INCLUDES = -I/usr/local/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir
+  OBJECT_FILE_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gmock_main
+
+
+#############################################
+# Link the static library lib/libgmock_main.a
+
+build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o || lib/libgmock.a lib/libgtest.a
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = tests/lib/googletest/googlemock/CMakeFiles/gmock_main.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = lib/libgmock_main.a
+  TARGET_PDB = gmock_main.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build tests/lib/googletest/googlemock/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build tests/lib/googletest/googlemock/edit_cache: phony tests/lib/googletest/googlemock/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tests/lib/googletest/googlemock/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires -B/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googlemock/rebuild_cache: phony tests/lib/googletest/googlemock/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tests/lib/googletest/googlemock/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tests/lib/googletest/googlemock/CMakeFiles/install.util: CUSTOM_COMMAND tests/lib/googletest/googlemock/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googlemock/install: phony tests/lib/googletest/googlemock/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tests/lib/googletest/googlemock/CMakeFiles/install/local.util: CUSTOM_COMMAND tests/lib/googletest/googlemock/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googlemock/install/local: phony tests/lib/googletest/googlemock/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build tests/lib/googletest/googlemock/CMakeFiles/install/strip.util: CUSTOM_COMMAND tests/lib/googletest/googlemock/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googlemock/install/strip: phony tests/lib/googletest/googlemock/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gtest
+
+
+#############################################
+# Order-only phony target for gtest
+
+build cmake_object_order_depends_target_gtest: phony || tests/lib/googletest/googletest/CMakeFiles/gtest.dir
+
+build tests/lib/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CXX_COMPILER__gtest_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
+  DEP_FILE = tests/lib/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++17
+  INCLUDES = -I/usr/local/include -I/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -I/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest.dir
+  OBJECT_FILE_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gtest
+
+
+#############################################
+# Link the static library lib/libgtest.a
+
+build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug tests/lib/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = lib/libgtest.a
+  TARGET_PDB = gtest.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target gtest_main
+
+
+#############################################
+# Order-only phony target for gtest_main
+
+build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_depends_target_gtest
+
+build tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: CXX_COMPILER__gtest_main_Debug /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
+  DEP_FILE = tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0 -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1   -std=c++17
+  INCLUDES = -I/usr/local/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/include -isystem /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest
+  OBJECT_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir
+  OBJECT_FILE_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target gtest_main
+
+
+#############################################
+# Link the static library lib/libgtest_main.a
+
+build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o || lib/libgtest.a
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.0
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = tests/lib/googletest/googletest/CMakeFiles/gtest_main.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = lib/libgtest_main.a
+  TARGET_PDB = gtest_main.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build tests/lib/googletest/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build tests/lib/googletest/googletest/edit_cache: phony tests/lib/googletest/googletest/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tests/lib/googletest/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires -B/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googletest/rebuild_cache: phony tests/lib/googletest/googletest/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tests/lib/googletest/googletest/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tests/lib/googletest/googletest/CMakeFiles/install.util: CUSTOM_COMMAND tests/lib/googletest/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googletest/install: phony tests/lib/googletest/googletest/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tests/lib/googletest/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND tests/lib/googletest/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googletest/install/local: phony tests/lib/googletest/googletest/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build tests/lib/googletest/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND tests/lib/googletest/googletest/all
+  COMMAND = cd /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build tests/lib/googletest/googletest/install/strip: phony tests/lib/googletest/googletest/CMakeFiles/install/strip.util
+
 # =============================================================================
 # Target aliases.
+
+build Google_Tests_run: phony tests/Google_Tests_run
+
+build gmock: phony lib/libgmock.a
+
+build gmock_main: phony lib/libgmock_main.a
+
+build gtest: phony lib/libgtest.a
+
+build gtest_main: phony lib/libgtest_main.a
+
+build libgmock.a: phony lib/libgmock.a
+
+build libgmock_main.a: phony lib/libgmock_main.a
+
+build libgtest.a: phony lib/libgtest.a
+
+build libgtest_main.a: phony lib/libgtest_main.a
 
 # =============================================================================
 # Folder targets.
@@ -226,7 +745,35 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
 
-build all: phony Millionaires
+build all: phony Millionaires tests/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests
+
+build tests/all: phony tests/Google_Tests_run tests/lib/googletest/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest
+
+build tests/lib/googletest/all: phony tests/lib/googletest/googlemock/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock
+
+build tests/lib/googletest/googlemock/all: phony lib/libgmock.a lib/libgmock_main.a tests/lib/googletest/googletest/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googletest
+
+build tests/lib/googletest/googletest/all: phony lib/libgtest.a lib/libgtest_main.a
 
 # =============================================================================
 # Built-in targets
@@ -235,14 +782,14 @@ build all: phony Millionaires
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/CMakeLists.txt /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython/Support.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/cmake/gmock.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/cmake/gmock_main.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/Config.cmake.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/gtest.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/gtest_main.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/internal_utils.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/CMakeLists.txt /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
+build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython/Support.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/cmake/gmock.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googlemock/cmake/gmock_main.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/CMakeLists.txt /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/Config.cmake.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/gtest.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/gtest_main.pc.in /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest/googletest/cmake/internal_utils.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake /opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets-release.cmake /opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
 
 
 #############################################
