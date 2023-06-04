@@ -5,86 +5,39 @@
 #include <codecvt>
 #include "GameView.h"
 
-std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $50,000",
-                          " 8.    $75,000", " 9.   $150,000", "10.  $250,000", "11.  $500,000", "12.$1 MILLION"};
-
-bool nextQuestionFlag = true;
-
-bool musicPlaysFlag = false;
-
-bool answerIsSelected = false;
-
-bool showCorrectAnswer = false;
-
-bool decideAnswerIsCorrect = false;
-
-bool resetAll = false;
-
-bool sumUp = false;
-
-void waitForCorrectAnswerFunction() {
+/**************************************
+        FUNCTION TO THREADS
+ **************************************/
+void GameView::waitForCorrectAnswerAfterSelectedAnswer() {
     std::this_thread::sleep_for(std::chrono::seconds(3));
     showCorrectAnswer = true;
     decideAnswerIsCorrect = true;
 }
 
 
-void waitForNextQuestionFunction(int questionNumber) {
+void GameView::waitForSumUpAfterChosenAnswer() {
+    stopMusics();
+    std::this_thread::sleep_for(std::chrono::seconds(4));
+    winningSound2.play();
+    sumUp = true;
+}
+
+
+void GameView::waitForNextQuestionAfterSelectedAnswer() {
+    int questionNumber = gameController.getQuestionNumber();
     if (questionNumber == 2 || questionNumber == 7) std::this_thread::sleep_for(std::chrono::seconds(9));
     else if (questionNumber == 12) std::this_thread::sleep_for(std::chrono::seconds(12));
     else std::this_thread::sleep_for(std::chrono::seconds(4));
     resetAll = true;
 }
+/**************************************
+        ~FUNCTION TO THREADS
+ **************************************/
 
 
-GameView::GameView() {
-    //loading from resources:
-    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/game-background.png");
-    prepareSprite(&fiftyTexture, &fiftySprite, "./resources/images/lifeline-50.png");
-    prepareSprite(&fiftyOrangeTexture, &fiftyOrangeSprite, "./resources/images/lifeline-50-orange.png");
-    prepareSprite(&phoneToFriendTexture, &phoneToFriendSprite, "./resources/images/lifeline-phone-a-friend.png");
-    prepareSprite(&phoneToFriendOrangeTexture, &phoneToFriendOrangeSprite, "./resources/images/lifeline-phone-a-friend-orange.png");
-    prepareSprite(&audienceSupportTexture, &audienceSupportSprite, "./resources/images/lifeline-ask-the-audience.png");
-    prepareSprite(&audienceSupportOrangeTexture, &audienceSupportOrangeSprite, "./resources/images/lifeline-ask-the-audience-orange.png");
-    prepareSprite(&questionPanelTexture, &questionPanelSprite, "./resources/images/last-question.png");
-    prepareSprite(&answerTexture, &answerASprite, "./resources/images/answer.png");
-    prepareSprite(&selectedAnswerTexture, &selectedAnswerSprite, "./resources/images/incorrect-answer.png");
-    prepareSprite(&correctAnswerTexture, &correctAnswerSprite, "./resources/images/correct-answer.png");
-    prepareSprite(&moneyTreeTexture, &moneyTreeSprite, "./resources/images/money-tree.png");
-    answerBSprite.setTexture(answerTexture);
-    answerCSprite.setTexture(answerTexture);
-    answerDSprite.setTexture(answerTexture);
-
-    prepareSound(&gameMusicBuffer1, &gameMusic1, "./resources/sounds/music01.wav");
-    prepareSound(&gameMusicBuffer2, &gameMusic2, "./resources/sounds/music02.wav");
-    prepareSound(&gameMusicBuffer4, &gameMusic4, "./resources/sounds/music04.wav");
-    prepareSound(&gameMusicBuffer7, &gameMusic7, "./resources/sounds/music07.wav");
-    prepareSound(&nextQuestionBuffer, &nextQuestionSound, "./resources/sounds/newQuestion.wav");
-    prepareSound(&selectAnswerBuffer, &selectAnswerSound, "./resources/sounds/selectAnswer.wav");
-    prepareSound(&selectLifeLineBuffer, &selectLifeLineSound, "./resources/sounds/lifeLine.wav");
-    prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "./resources/sounds/correctAnswer1.wav");
-    prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "./resources/sounds/correctAnswer2.wav");
-    prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "./resources/sounds/incorrectAnswer.wav");
-    prepareSound(&winningBuffer1, &winningSound1, "./resources/sounds/Winning2.wav");
-    prepareSound(&winningBuffer2, &winningSound2, "./resources/sounds/Winning1.wav");
-
-    View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
-
-    for (int i = 0; i < 12; i++) {
-        prepareText(&awards[i], awardsStr[i], &font, 50);
-    }
-
-    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/answer.png");
-    resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
-
-    //setting positions
-    prepareAwardView();
-    prepareLifeLinesView();
-    prepareQuestionsAndAnswerPanel();
-    prepareSpritesCoordinate();
-}
-
-//VIEW-------------------------------------
+/**************************************
+        VIEW
+ **************************************/
 void GameView::runGameView() {
 
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
@@ -119,10 +72,18 @@ void GameView::runGameView() {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
-                waitForCorrectAnswer.join();
+                try {
+                    waitForCorrectAnswerThread.join();
+                } catch (const std::exception& e) {
+                    std::cout << "Exception: " << e.what() << std::endl;
+                }
+                try {
+                    waitForSumUpThread.join();
+                } catch (const std::exception& e) {
+                    std::cout << "Exception: " << e.what() << std::endl;
+                }
                 window.close();
-                exit(0);
-
+                Configuration::disableProgram();
             }
             else if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
@@ -192,8 +153,60 @@ void GameView::runGameView() {
         window.display();
     }
 }
-//VIEW-------------------------------------
+/**************************************
+        ~VIEW
+ **************************************/
 
+
+/**************************************
+        VIEW PREPARING AND SERVICE
+ **************************************/
+GameView::GameView() {
+    //loading from resources:
+    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/game-background.png");
+    prepareSprite(&fiftyTexture, &fiftySprite, "./resources/images/lifeline-50.png");
+    prepareSprite(&fiftyOrangeTexture, &fiftyOrangeSprite, "./resources/images/lifeline-50-orange.png");
+    prepareSprite(&phoneToFriendTexture, &phoneToFriendSprite, "./resources/images/lifeline-phone-a-friend.png");
+    prepareSprite(&phoneToFriendOrangeTexture, &phoneToFriendOrangeSprite, "./resources/images/lifeline-phone-a-friend-orange.png");
+    prepareSprite(&audienceSupportTexture, &audienceSupportSprite, "./resources/images/lifeline-ask-the-audience.png");
+    prepareSprite(&audienceSupportOrangeTexture, &audienceSupportOrangeSprite, "./resources/images/lifeline-ask-the-audience-orange.png");
+    prepareSprite(&questionPanelTexture, &questionPanelSprite, "./resources/images/last-question.png");
+    prepareSprite(&answerTexture, &answerASprite, "./resources/images/answer.png");
+    prepareSprite(&selectedAnswerTexture, &selectedAnswerSprite, "./resources/images/incorrect-answer.png");
+    prepareSprite(&correctAnswerTexture, &correctAnswerSprite, "./resources/images/correct-answer.png");
+    prepareSprite(&moneyTreeTexture, &moneyTreeSprite, "./resources/images/money-tree.png");
+    answerBSprite.setTexture(answerTexture);
+    answerCSprite.setTexture(answerTexture);
+    answerDSprite.setTexture(answerTexture);
+
+    prepareSound(&gameMusicBuffer1, &gameMusic1, "./resources/sounds/music01.wav");
+    prepareSound(&gameMusicBuffer2, &gameMusic2, "./resources/sounds/music02.wav");
+    prepareSound(&gameMusicBuffer4, &gameMusic4, "./resources/sounds/music04.wav");
+    prepareSound(&gameMusicBuffer7, &gameMusic7, "./resources/sounds/music07.wav");
+    prepareSound(&nextQuestionBuffer, &nextQuestionSound, "./resources/sounds/newQuestion.wav");
+    prepareSound(&selectAnswerBuffer, &selectAnswerSound, "./resources/sounds/selectAnswer.wav");
+    prepareSound(&selectLifeLineBuffer, &selectLifeLineSound, "./resources/sounds/lifeLine.wav");
+    prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "./resources/sounds/correctAnswer1.wav");
+    prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "./resources/sounds/correctAnswer2.wav");
+    prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "./resources/sounds/incorrectAnswer.wav");
+    prepareSound(&winningBuffer1, &winningSound1, "./resources/sounds/Winning2.wav");
+    prepareSound(&winningBuffer2, &winningSound2, "./resources/sounds/Winning1.wav");
+
+    View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+
+    for (int i = 0; i < 12; i++) {
+        prepareText(&awards[i], awardsStr[i], &font, 50);
+    }
+
+    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/answer.png");
+    resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
+
+    //setting positions
+    prepareAwardView();
+    prepareLifeLinesView();
+    prepareQuestionsAndAnswerPanel();
+    prepareSpritesCoordinate();
+}
 
 
 void GameView::prepareAwardView() {
@@ -354,54 +367,6 @@ void GameView::prepareQuestionsAndAnswerPanel() {
 }
 
 
-void GameView::startMusic() {
-    gameMusic1.stop();
-    gameMusic2.stop();
-    gameMusic3.stop();
-    gameMusic4.stop();
-    gameMusic5.stop();
-    gameMusic6.stop();
-    gameMusic7.stop();
-
-    switch (gameController.getQuestionNumber()) {
-        case 1:
-        case 2:
-            gameMusic1.play();
-            gameMusic1.setLoop(true);
-            break;
-        case 3:
-        case 4:
-            gameMusic1.play();
-            gameMusic1.setLoop(true);
-            break;
-        case 5:
-        case 6:
-            gameMusic1.play();
-            gameMusic1.setLoop(true);
-            break;
-        case 7:
-        case 8:
-        case 9:
-            gameMusic2.play();
-            gameMusic2.setLoop(true);
-            break;
-        case 10:
-        case 11:
-            gameMusic4.play();
-            gameMusic4.setLoop(true);
-            break;
-        case 12:
-            gameMusic7.play();
-            gameMusic7.setLoop(true);
-            break;
-        default:
-            gameMusic1.play();
-            gameMusic1.setLoop(true);
-    }
-    musicPlaysFlag = true;
-}
-
-
 void GameView::prepareSpritesCoordinate() {
     fiftySpriteCoordinate = getSpriteCoordinate(fiftySprite);
     phoneToFriendSpriteCoordinate = getSpriteCoordinate(phoneToFriendSprite);
@@ -411,202 +376,6 @@ void GameView::prepareSpritesCoordinate() {
     answerBSpriteCoordinate = getSpriteCoordinate(answerBSprite);
     answerCSpriteCoordinate = getSpriteCoordinate(answerCSprite);
     answerDSpriteCoordinate = getSpriteCoordinate(answerDSprite);
-
-}
-
-
-SpriteCoordinate GameView::getSpriteCoordinate(sf::Sprite sprite) {
-    SpriteCoordinate result;
-    result.spritePosition = sprite.getPosition();
-    sf::FloatRect spriteBounds = sprite.getGlobalBounds();
-    sf::Vector2f spriteSize(spriteBounds.width, spriteBounds.height);
-    result.spriteSize = spriteSize;
-    return result;
-}
-
-
-void GameView::leftMouseClickHandler(sf::Vector2i mousePosition) {
-    if (answerIsSelected) return;
-
-    setCorrectAnswerCoordinate();
-
-    if (mousePosition.x >= answerASpriteCoordinate.spritePosition.x && mousePosition.x < answerASpriteCoordinate.spritePosition.x + answerASpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= answerASpriteCoordinate.spritePosition.y && mousePosition.y < answerASpriteCoordinate.spritePosition.y + answerASpriteCoordinate.spriteSize.y &&
-        gameController.getQuestion().isActiveAnswerA())
-    {
-        answerAButtonHandler();
-    }
-
-    else if (mousePosition.x >= answerBSpriteCoordinate.spritePosition.x && mousePosition.x < answerBSpriteCoordinate.spritePosition.x + answerBSpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= answerBSpriteCoordinate.spritePosition.y && mousePosition.y < answerBSpriteCoordinate.spritePosition.y + answerBSpriteCoordinate.spriteSize.y &&
-            gameController.getQuestion().isActiveAnswerB())
-    {
-        answerBButtonHandler();
-    }
-
-    else if (mousePosition.x >= answerCSpriteCoordinate.spritePosition.x && mousePosition.x < answerCSpriteCoordinate.spritePosition.x + answerCSpriteCoordinate.spriteSize.x &&
-             mousePosition.y >= answerCSpriteCoordinate.spritePosition.y && mousePosition.y < answerCSpriteCoordinate.spritePosition.y + answerCSpriteCoordinate.spriteSize.y &&
-            gameController.getQuestion().isActiveAnswerC())
-    {
-        answerCButtonHandler();
-    }
-
-    else if (mousePosition.x >= answerDSpriteCoordinate.spritePosition.x && mousePosition.x < answerDSpriteCoordinate.spritePosition.x + answerDSpriteCoordinate.spriteSize.x &&
-             mousePosition.y >= answerDSpriteCoordinate.spritePosition.y && mousePosition.y < answerDSpriteCoordinate.spritePosition.y + answerDSpriteCoordinate.spriteSize.y &&
-            gameController.getQuestion().isActiveAnswerD())
-    {
-        answerDButtonHandler();
-    }
-
-    else if (mousePosition.x >= fiftySpriteCoordinate.spritePosition.x && mousePosition.x < fiftySpriteCoordinate.spritePosition.x + fiftySpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= fiftySpriteCoordinate.spritePosition.y && mousePosition.y < fiftySpriteCoordinate.spritePosition.y + fiftySpriteCoordinate.spriteSize.y)
-    {
-        lifeLineAButtonHandler();
-    }
-
-    else if (mousePosition.x >= phoneToFriendSpriteCoordinate.spritePosition.x && mousePosition.x < phoneToFriendSpriteCoordinate.spritePosition.x + phoneToFriendSpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= phoneToFriendSpriteCoordinate.spritePosition.y && mousePosition.y < phoneToFriendSpriteCoordinate.spritePosition.y + phoneToFriendSpriteCoordinate.spriteSize.y)
-    {
-        lifeLineBButtonHandler();
-    }
-
-    else if (mousePosition.x >= audienceSupportSpriteCoordinate.spritePosition.x && mousePosition.x < audienceSupportSpriteCoordinate.spritePosition.x + audienceSupportSpriteCoordinate.spriteSize.x &&
-        mousePosition.y >= audienceSupportSpriteCoordinate.spritePosition.y && mousePosition.y < audienceSupportSpriteCoordinate.spritePosition.y + audienceSupportSpriteCoordinate.spriteSize.y)
-    {
-        lifeLineCButtonHandler();
-    }
-
-    else if (mousePosition.x >= resignButtonCoordinate.spritePosition.x && mousePosition.x < resignButtonCoordinate.spritePosition.x + resignButtonCoordinate.spriteSize.x &&
-        mousePosition.y >= resignButtonCoordinate.spritePosition.y && mousePosition.y < resignButtonCoordinate.spritePosition.y + resignButtonCoordinate.spriteSize.y)
-    {
-        gameMusic1.stop();
-        gameMusic2.stop();
-        gameMusic3.stop();
-        gameMusic4.stop();
-        gameMusic5.stop();
-        gameMusic6.stop();
-        gameMusic7.stop();
-        winningSound2.play();
-        winAmount = gameController.getGainedAmount();
-        sumUp = true;
-    }
-}
-
-
-void GameView::answerAButtonHandler() {
-    selectedAnswerSprite.setPosition(70, 1290);
-    answerIsSelected = true;
-    selectAnswerSound.play();
-    gameController.setSelectedAnswer(A);
-    try {
-        waitForCorrectAnswer.join();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
-}
-
-
-void GameView::answerBButtonHandler() {
-    selectedAnswerSprite.setPosition(980, 1290);
-    answerIsSelected = true;
-    selectAnswerSound.play();
-    gameController.setSelectedAnswer(B);
-    try {
-        waitForCorrectAnswer.join();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
-}
-
-
-void GameView::answerCButtonHandler() {
-    selectedAnswerSprite.setPosition(70, 1420);
-    answerIsSelected = true;
-    selectAnswerSound.play();
-    gameController.setSelectedAnswer(C);
-    try {
-        waitForCorrectAnswer.join();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
-
-}
-
-void GameView::answerDButtonHandler() {
-    selectedAnswerSprite.setPosition(980, 1420);
-    answerIsSelected = true;
-    selectAnswerSound.play();
-    gameController.setSelectedAnswer(D);
-    try {
-        waitForCorrectAnswer.join();
-    } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    waitForCorrectAnswer = std::thread(waitForCorrectAnswerFunction);
-}
-
-
-void GameView::lifeLineAButtonHandler() {
-    if (!gameController.getLifeLineA()->isAvailable()) return;
-    selectLifeLineSound.play();
-    gameController.getLifeLineA()->use();
-}
-
-void GameView::lifeLineBButtonHandler() {
-    if (!gameController.getLifeLineB()->isAvailable()) return;
-    selectLifeLineSound.play();
-    gameController.getLifeLineB()->use();
-}
-
-void GameView::lifeLineCButtonHandler() {
-    if (!gameController.getLifeLineC()->isAvailable()) return;
-    selectLifeLineSound.play();
-    gameController.getLifeLineC()->use();
-
-}
-
-void GameView::handlingTheSelectedAnswer() {
-    if (gameController.getSelectedAnswer() == gameController.getQuestion().getCorrectAnswer()) {
-        switch(gameController.getQuestionNumber()) {
-            case 2:
-            case 7:
-                correctAnswerSound2.play();
-                break;
-            case 12:
-                winningSound1.play();
-            default:
-                correctAnswerSound1.play();
-        }
-        waitForCorrectAnswer.join();
-        waitForCorrectAnswer = std::thread(waitForNextQuestionFunction, gameController.getQuestionNumber());
-    }
-
-    else {
-        incorrectAnswerSound.play();
-        //gameMusic1.stop();
-        std::thread dialogsThread([this]() {
-            waitForSumUp();
-        });
-        waitForSumUpThread = std::move(dialogsThread);
-        winAmount = gameController.getGuaranteedAmount();
-    }
-}
-
-void GameView::handlingTheNextQuestion() {
-    if (gameController.getQuestion().getQuestionNumber() == 12) {
-        sumUp = true;
-        winAmount = 1000000;
-        gameMusic7.stop();
-    }
-    nextQuestionFlag = true;
-    musicPlaysFlag = false;
-    answerIsSelected = false;
-    showCorrectAnswer = false;
-    decideAnswerIsCorrect = false;
-    resetAll = false;
 }
 
 
@@ -683,19 +452,6 @@ void GameView::prepareQuestionView() {
 }
 
 
-std::string GameView::centerString(std::string string, int width, int fontSize, sf::Font font) {
-    sf::Text tempText;
-    tempText.setCharacterSize(fontSize);
-    tempText.setString(string);
-    tempText.setFont(font);
-    while (tempText.getLocalBounds().width < width) {
-        string = " " + string + " ";
-        tempText.setString(string);
-    }
-    return string;
-}
-
-
 void GameView::prepareAnswerView() {
     prepareText(&answerA, gameController.getQuestion().getAnswerA(), &font, 40);
     prepareText(&answerB, gameController.getQuestion().getAnswerB(), &font, 40);
@@ -722,6 +478,7 @@ void GameView::prepareAnswerView() {
     answerD.setPosition(answerDSpriteCoordinate.spritePosition.x + 80, answerDSpriteCoordinate.spritePosition.y + 40);
 }
 
+
 void GameView::setCorrectAnswerCoordinate() {
     switch(gameController.getQuestion().getCorrectAnswer()) {
         case A:
@@ -739,7 +496,50 @@ void GameView::setCorrectAnswerCoordinate() {
     }
 }
 
-void GameView::waitForSumUp() {
+
+void GameView::startMusic() {
+    stopMusics();
+
+    switch (gameController.getQuestionNumber()) {
+        case 1:
+        case 2:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+            break;
+        case 3:
+        case 4:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+            break;
+        case 5:
+        case 6:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+            break;
+        case 7:
+        case 8:
+        case 9:
+            gameMusic2.play();
+            gameMusic2.setLoop(true);
+            break;
+        case 10:
+        case 11:
+            gameMusic4.play();
+            gameMusic4.setLoop(true);
+            break;
+        case 12:
+            gameMusic7.play();
+            gameMusic7.setLoop(true);
+            break;
+        default:
+            gameMusic1.play();
+            gameMusic1.setLoop(true);
+    }
+    musicPlaysFlag = true;
+}
+
+
+void GameView::stopMusics() {
     gameMusic1.stop();
     gameMusic2.stop();
     gameMusic3.stop();
@@ -747,12 +547,219 @@ void GameView::waitForSumUp() {
     gameMusic5.stop();
     gameMusic6.stop();
     gameMusic7.stop();
-
-    std::this_thread::sleep_for(std::chrono::seconds(4));
-    winningSound2.play();
-    sumUp = true;
 }
 
 
+SpriteCoordinate GameView::getSpriteCoordinate(sf::Sprite sprite) {
+    SpriteCoordinate result;
+    result.spritePosition = sprite.getPosition();
+    sf::FloatRect spriteBounds = sprite.getGlobalBounds();
+    sf::Vector2f spriteSize(spriteBounds.width, spriteBounds.height);
+    result.spriteSize = spriteSize;
+    return result;
+}
 
 
+std::string GameView::centerString(std::string string, int width, int fontSize, sf::Font font) {
+    sf::Text tempText;
+    tempText.setCharacterSize(fontSize);
+    tempText.setString(string);
+    tempText.setFont(font);
+    while (tempText.getLocalBounds().width < width) {
+        string = " " + string + " ";
+        tempText.setString(string);
+    }
+    return string;
+}
+
+/**************************************
+        ~VIEW PREPARING AND SERVICE
+ **************************************/
+
+
+/**************************************
+        ACTION HANDLERS
+ **************************************/
+
+void GameView::leftMouseClickHandler(sf::Vector2i mousePosition) {
+    if (answerIsSelected) return;
+
+    setCorrectAnswerCoordinate();
+
+    if (mousePosition.x >= answerASpriteCoordinate.spritePosition.x && mousePosition.x < answerASpriteCoordinate.spritePosition.x + answerASpriteCoordinate.spriteSize.x &&
+        mousePosition.y >= answerASpriteCoordinate.spritePosition.y && mousePosition.y < answerASpriteCoordinate.spritePosition.y + answerASpriteCoordinate.spriteSize.y &&
+        gameController.getQuestion().isActiveAnswerA())
+    {
+        answerAButtonHandler();
+    }
+
+    else if (mousePosition.x >= answerBSpriteCoordinate.spritePosition.x && mousePosition.x < answerBSpriteCoordinate.spritePosition.x + answerBSpriteCoordinate.spriteSize.x &&
+        mousePosition.y >= answerBSpriteCoordinate.spritePosition.y && mousePosition.y < answerBSpriteCoordinate.spritePosition.y + answerBSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerB())
+    {
+        answerBButtonHandler();
+    }
+
+    else if (mousePosition.x >= answerCSpriteCoordinate.spritePosition.x && mousePosition.x < answerCSpriteCoordinate.spritePosition.x + answerCSpriteCoordinate.spriteSize.x &&
+             mousePosition.y >= answerCSpriteCoordinate.spritePosition.y && mousePosition.y < answerCSpriteCoordinate.spritePosition.y + answerCSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerC())
+    {
+        answerCButtonHandler();
+    }
+
+    else if (mousePosition.x >= answerDSpriteCoordinate.spritePosition.x && mousePosition.x < answerDSpriteCoordinate.spritePosition.x + answerDSpriteCoordinate.spriteSize.x &&
+             mousePosition.y >= answerDSpriteCoordinate.spritePosition.y && mousePosition.y < answerDSpriteCoordinate.spritePosition.y + answerDSpriteCoordinate.spriteSize.y &&
+            gameController.getQuestion().isActiveAnswerD())
+    {
+        answerDButtonHandler();
+    }
+
+    else if (mousePosition.x >= fiftySpriteCoordinate.spritePosition.x && mousePosition.x < fiftySpriteCoordinate.spritePosition.x + fiftySpriteCoordinate.spriteSize.x &&
+        mousePosition.y >= fiftySpriteCoordinate.spritePosition.y && mousePosition.y < fiftySpriteCoordinate.spritePosition.y + fiftySpriteCoordinate.spriteSize.y)
+    {
+        lifeLineAButtonHandler();
+    }
+
+    else if (mousePosition.x >= phoneToFriendSpriteCoordinate.spritePosition.x && mousePosition.x < phoneToFriendSpriteCoordinate.spritePosition.x + phoneToFriendSpriteCoordinate.spriteSize.x &&
+        mousePosition.y >= phoneToFriendSpriteCoordinate.spritePosition.y && mousePosition.y < phoneToFriendSpriteCoordinate.spritePosition.y + phoneToFriendSpriteCoordinate.spriteSize.y)
+    {
+        lifeLineBButtonHandler();
+    }
+
+    else if (mousePosition.x >= audienceSupportSpriteCoordinate.spritePosition.x && mousePosition.x < audienceSupportSpriteCoordinate.spritePosition.x + audienceSupportSpriteCoordinate.spriteSize.x &&
+        mousePosition.y >= audienceSupportSpriteCoordinate.spritePosition.y && mousePosition.y < audienceSupportSpriteCoordinate.spritePosition.y + audienceSupportSpriteCoordinate.spriteSize.y)
+    {
+        lifeLineCButtonHandler();
+    }
+
+    else if (mousePosition.x >= resignButtonCoordinate.spritePosition.x && mousePosition.x < resignButtonCoordinate.spritePosition.x + resignButtonCoordinate.spriteSize.x &&
+        mousePosition.y >= resignButtonCoordinate.spritePosition.y && mousePosition.y < resignButtonCoordinate.spritePosition.y + resignButtonCoordinate.spriteSize.y)
+    {
+        resignButtonHandler();
+    }
+}
+
+
+void GameView::commonHandlerAfterSelectedAnswer() {
+    answerIsSelected = true;
+    selectAnswerSound.play();
+    try {
+        waitForCorrectAnswerThread.join();
+    } catch (const std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    std::thread thread([this]() {
+        waitForCorrectAnswerAfterSelectedAnswer();
+    });
+    waitForCorrectAnswerThread = std::move(thread);
+}
+
+
+void GameView::answerAButtonHandler() {
+    selectedAnswerSprite.setPosition(70, 1290);
+    gameController.setSelectedAnswer(A);
+    commonHandlerAfterSelectedAnswer();
+}
+
+
+void GameView::answerBButtonHandler() {
+    selectedAnswerSprite.setPosition(980, 1290);
+    gameController.setSelectedAnswer(B);
+    commonHandlerAfterSelectedAnswer();
+}
+
+
+void GameView::answerCButtonHandler() {
+    selectedAnswerSprite.setPosition(70, 1420);
+    gameController.setSelectedAnswer(C);
+    commonHandlerAfterSelectedAnswer();
+}
+
+
+void GameView::answerDButtonHandler() {
+    selectedAnswerSprite.setPosition(980, 1420);
+    gameController.setSelectedAnswer(D);
+    commonHandlerAfterSelectedAnswer();
+}
+
+
+void GameView::lifeLineAButtonHandler() {
+    if (!gameController.getLifeLineA()->isAvailable()) return;
+    selectLifeLineSound.play();
+    gameController.getLifeLineA()->use();
+}
+
+
+void GameView::lifeLineBButtonHandler() {
+    if (!gameController.getLifeLineB()->isAvailable()) return;
+    selectLifeLineSound.play();
+    gameController.getLifeLineB()->use();
+}
+
+
+void GameView::lifeLineCButtonHandler() {
+    if (!gameController.getLifeLineC()->isAvailable()) return;
+    selectLifeLineSound.play();
+    gameController.getLifeLineC()->use();
+
+}
+
+
+void GameView::handlingTheSelectedAnswer() {
+    if (gameController.getSelectedAnswer() == gameController.getQuestion().getCorrectAnswer()) {
+        switch(gameController.getQuestionNumber()) {
+            case 2:
+            case 7:
+                correctAnswerSound2.play();
+                break;
+            case 12:
+                winningSound1.play();
+            default:
+                correctAnswerSound1.play();
+        }
+        try {
+            waitForCorrectAnswerThread.join();
+        } catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        std::thread thread([this]() {
+            waitForNextQuestionAfterSelectedAnswer();
+        });
+        waitForCorrectAnswerThread = std::move(thread);
+    }
+
+    else {
+        incorrectAnswerSound.play();
+        std::thread dialogsThread([this]() {
+            waitForSumUpAfterChosenAnswer();
+        });
+        waitForSumUpThread = std::move(dialogsThread);
+        winAmount = gameController.getGuaranteedAmount();
+    }
+}
+
+
+void GameView::handlingTheNextQuestion() {
+    if (gameController.getQuestion().getQuestionNumber() == 12) {
+        sumUp = true;
+        winAmount = 1000000;
+        stopMusics();
+    }
+    nextQuestionFlag = true;
+    musicPlaysFlag = false;
+    answerIsSelected = false;
+    showCorrectAnswer = false;
+    decideAnswerIsCorrect = false;
+    resetAll = false;
+}
+
+
+void GameView::resignButtonHandler() {
+    stopMusics();
+    winningSound2.play();
+    winAmount = gameController.getGainedAmount();
+    sumUp = true;
+}
+/**************************************
+        ~ACTION HANDLERS
+ **************************************/

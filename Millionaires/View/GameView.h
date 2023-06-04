@@ -23,18 +23,48 @@ typedef struct {
 
 class GameView: public View {
 private:
+    /**************************************
+        GUI FLAGS
+    **************************************/
     bool loadPolishCharacter = true;
 
-    std::thread waitForSumUpThread;
+    bool nextQuestionFlag = true;
 
-    std::thread waitForCorrectAnswer;
+    bool musicPlaysFlag = false;
+
+    bool answerIsSelected = false;
+
+    bool showCorrectAnswer = false;
+
+    bool decideAnswerIsCorrect = false;
+
+    bool resetAll = false;
+
+    bool sumUp = false;
+    /**************************************
+        ~GUI FLAGS
+    **************************************/
+
+    /**************************************
+        THREADS
+    **************************************/
+    std::thread waitForSumUpThread;
+    void waitForSumUpAfterChosenAnswer();
+
+    std::thread waitForCorrectAnswerThread;
+    void waitForCorrectAnswerAfterSelectedAnswer();
+    void waitForNextQuestionAfterSelectedAnswer();
 
     std::thread phoneToFriendThread;
 
     std::thread audienceSupportThread;
+    /**************************************
+        ~THREADS
+    **************************************/
 
-    GameController gameController;
-
+    /**************************************
+        SFML ELEMENTS
+    **************************************/
     sf::Texture backgroundTexture;
 
     sf::Texture fiftyTexture;
@@ -180,9 +210,20 @@ private:
 
     sf::Font font;
 
+    /**************************************
+        ~SFML ELEMENTS
+    **************************************/
+
     int winAmount = 0;
 
-    //methods
+    GameController gameController;
+
+    std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $50,000",
+                                 " 8.    $75,000", " 9.   $150,000", "10.  $250,000", "11.  $500,000", "12.$1 MILLION"};
+
+    /**************************************
+             Methods
+    **************************************/
     void prepareQuestionView();
 
     void prepareAnswerView();
@@ -209,6 +250,8 @@ private:
 
     void answerDButtonHandler();
 
+    void commonHandlerAfterSelectedAnswer();
+
     void lifeLineAButtonHandler();
 
     void lifeLineBButtonHandler();
@@ -219,15 +262,19 @@ private:
 
     void handlingTheNextQuestion();
 
-    void handlingWinnerView();
-
     void calculateMoneyTreeCoordinate();
 
     std::string centerString(std::string string, int width, int fontSize, sf::Font font);
 
     void setCorrectAnswerCoordinate();
 
-    void waitForSumUp();
+    void stopMusics();
+
+    void resignButtonHandler();
+
+    /**************************************
+             Methods
+    **************************************/
 
 public:
     GameView();
@@ -235,6 +282,5 @@ public:
     void runGameView();
 
 };
-
 
 #endif //MILLIONAIRES_GAMEVIEW_H
