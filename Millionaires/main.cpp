@@ -8,15 +8,16 @@
 #include "View/StartView.h"
 #include "View/PhoneToFriendView.h"
 #include "View/AudienceSupportView.h"
+#include "View/WinnerView.h"
 
 
 int main() {
+
     StartView startView;
-    startView.runStartView();
 
-    //AudienceSupportView audienceSupportView(1, 99, 3, 4);
-    //audienceSupportView.runAudienceSupportView();
-
+    while (true) {
+        startView.runStartView();
+    }
 
     return 0;
 }

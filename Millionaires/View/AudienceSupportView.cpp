@@ -39,8 +39,6 @@ AudienceSupportView::AudienceSupportView(int answerAVotes, int answerBVotes, int
     noVotesByPercentageC.setPosition(1250, 470);
     noVotesByPercentageD.setPosition(1650, 470);
 
-
-
 }
 
 void AudienceSupportView::runAudienceSupportView() {
@@ -117,9 +115,6 @@ void AudienceSupportView::runAudienceSupportView() {
         window.draw(BBar);
         window.draw(CBar);
         window.draw(DBar);
-
-
-        //drawing bar chart
 
         window.display();
     }
