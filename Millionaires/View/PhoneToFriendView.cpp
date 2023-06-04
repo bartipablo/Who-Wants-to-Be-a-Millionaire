@@ -44,7 +44,13 @@ void PhoneToFriendView::runPhoneToFriendView() {
 
                 if (closeButton.getGlobalBounds().contains(mousePositionFloat))
                 {
+                    try {
+                        dialogsThread.join();
+                    } catch (const std::exception& e) {
+                        std::cout << "Exception: " << e.what() << std::endl;
+                    }
                     window.close();
+                    return;
                 }
             }
         }

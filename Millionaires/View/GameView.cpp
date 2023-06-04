@@ -84,6 +84,7 @@ void GameView::runGameView() {
                 }
                 window.close();
                 Configuration::disableProgram();
+                return;
             }
             else if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
@@ -729,6 +730,16 @@ void GameView::handlingTheSelectedAnswer() {
     }
 
     else {
+        try {
+            waitForCorrectAnswerThread.join();
+        } catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
+        try {
+            waitForSumUpThread.join();
+        } catch (const std::exception& e) {
+            std::cout << "Exception: " << e.what() << std::endl;
+        }
         incorrectAnswerSound.play();
         std::thread dialogsThread([this]() {
             waitForSumUpAfterChosenAnswer();
@@ -759,6 +770,18 @@ void GameView::resignButtonHandler() {
     winningSound2.play();
     winAmount = gameController.getGainedAmount();
     sumUp = true;
+}
+
+void GameView::resetGame() {
+    gameController.resetGameController();
+    loadPolishCharacter = true;
+    nextQuestionFlag = true;
+    musicPlaysFlag = false;
+    answerIsSelected = false;
+    showCorrectAnswer = false;
+    decideAnswerIsCorrect = false;
+    resetAll = false;
+    sumUp = false;
 }
 /**************************************
         ~ACTION HANDLERS

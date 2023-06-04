@@ -19,6 +19,10 @@ public:
         return available;
     }
 
+    void setAvailable(bool available) {
+        this->available = available;
+    }
+
     virtual void use() = 0;
 
 };

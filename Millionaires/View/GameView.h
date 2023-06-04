@@ -281,6 +281,8 @@ public:
 
     void runGameView();
 
+    void resetGame();
+
 };
 
 #endif //MILLIONAIRES_GAMEVIEW_H

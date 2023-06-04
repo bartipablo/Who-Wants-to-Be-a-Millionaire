@@ -81,6 +81,15 @@ void GameController::setSelectedAnswer(Answer answer) {
     this->selectedAnswer = answer;
 }
 
+void GameController::resetGameController() {
+    lifeLineA->setAvailable(true);
+    lifeLineB->setAvailable(true);
+    lifeLineC->setAvailable(true);
+    questionNumber = 0;
+    guaranteedAmount = 0;
+    gainedAmount = 0;
+}
+
 
 
 

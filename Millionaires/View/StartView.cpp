@@ -7,6 +7,7 @@
 
 void StartView::runStartView() {
     sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
+
     std::thread loadingThread([this]() {
         loadGameView();
     });
@@ -89,13 +90,16 @@ StartView::StartView() {
 void StartView::handleClickStart(sf::Text &button) {
     startMusic.stop();
     menuMusic.stop();
+    gameView->resetGame();
     gameView->runGameView();
 }
 
 void StartView::loadGameView() {
+    if (!Configuration::isTheFirstRunning()) return;
     std::unique_ptr<GameView> newGameView = std::make_unique<GameView>();
     gameView = std::move(newGameView);
     isLoadedGameView = true;
+    Configuration::disableTheFirstRunning();
 }
 
 

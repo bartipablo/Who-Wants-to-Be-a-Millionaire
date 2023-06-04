@@ -10,10 +10,16 @@ class Configuration {
 private:
     static bool runProgram;
 
+    static bool firstRunning;
+
 public:
     static bool programIsRunning();
 
     static void disableProgram();
+
+    static bool isTheFirstRunning();
+
+    static void disableTheFirstRunning();
 };
 
 
