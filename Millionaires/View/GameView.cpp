@@ -519,6 +519,7 @@ void GameView::lifeLineCButtonHandler() {
     if (!gameController.getLifeLineC()->isAvailable()) return;
     selectLifeLineSound.play();
     gameController.getLifeLineC()->deactivate();
+    gameController.getLifeLineC()->use();
 
 }
 

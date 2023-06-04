@@ -112,5 +112,9 @@ std::vector<Answer> Question::getActiveAnswers() {
     return answers;
 }
 
+int Question::getQuestionNumber() {
+    return questionNumber;
+}
+
 
 
