@@ -131,6 +131,10 @@ private:
 
     sf::SoundBuffer incorrectAnswerBuffer;
 
+    sf::SoundBuffer winningBuffer1;
+
+    sf::SoundBuffer winningBuffer2;
+
     sf::Sound gameMusic1;
 
     sf::Sound gameMusic2;
@@ -156,6 +160,10 @@ private:
     sf::Sound correctAnswerSound2;
 
     sf::Sound incorrectAnswerSound;
+
+    sf::Sound winningSound1;
+
+    sf::Sound winningSound2;
 
     sf::Text awards[12];
 

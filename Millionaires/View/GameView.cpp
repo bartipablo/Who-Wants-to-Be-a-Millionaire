@@ -31,6 +31,7 @@ void waitForCorrectAnswerFunction() {
 
 void waitForNextQuestionFunction(int questionNumber) {
     if (questionNumber == 2 || questionNumber == 7) std::this_thread::sleep_for(std::chrono::seconds(9));
+    else if (questionNumber == 12) std::this_thread::sleep_for(std::chrono::seconds(12));
     else std::this_thread::sleep_for(std::chrono::seconds(4));
     resetAll = true;
 }
@@ -64,6 +65,8 @@ GameView::GameView() {
     prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "./resources/sounds/correctAnswer1.wav");
     prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "./resources/sounds/correctAnswer2.wav");
     prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "./resources/sounds/incorrectAnswer.wav");
+    prepareSound(&winningBuffer1, &winningSound1, "./resources/sounds/Winning2.wav");
+    prepareSound(&winningBuffer2, &winningSound2, "./resources/sounds/Winning1.wav");
 
     View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
 
@@ -91,6 +94,13 @@ void GameView::runGameView() {
 
     while (window.isOpen())
     {
+        if (sumUp) {
+            window.close();
+            WinnerView winnerView(winAmount);
+            winnerView.runWinnerView();
+            return;
+        }
+
         if (nextQuestionFlag) {
             gameController.loadNextQuestion();
             prepareQuestionView();
@@ -178,13 +188,6 @@ void GameView::runGameView() {
         }
 
         if(resetAll) handlingTheNextQuestion();
-
-        if (sumUp) {
-            window.close();
-            WinnerView winnerView(winAmount);
-            winnerView.runWinnerView();
-            return;
-        }
 
         window.display();
     }
@@ -476,6 +479,14 @@ void GameView::leftMouseClickHandler(sf::Vector2i mousePosition) {
     else if (mousePosition.x >= resignButtonCoordinate.spritePosition.x && mousePosition.x < resignButtonCoordinate.spritePosition.x + resignButtonCoordinate.spriteSize.x &&
         mousePosition.y >= resignButtonCoordinate.spritePosition.y && mousePosition.y < resignButtonCoordinate.spritePosition.y + resignButtonCoordinate.spriteSize.y)
     {
+        gameMusic1.stop();
+        gameMusic2.stop();
+        gameMusic3.stop();
+        gameMusic4.stop();
+        gameMusic5.stop();
+        gameMusic6.stop();
+        gameMusic7.stop();
+        winningSound2.play();
         winAmount = gameController.getGainedAmount();
         sumUp = true;
     }
@@ -552,6 +563,8 @@ void GameView::handlingTheSelectedAnswer() {
             case 7:
                 correctAnswerSound2.play();
                 break;
+            case 12:
+                winningSound1.play();
             default:
                 correctAnswerSound1.play();
         }
@@ -571,6 +584,11 @@ void GameView::handlingTheSelectedAnswer() {
 }
 
 void GameView::handlingTheNextQuestion() {
+    if (gameController.getQuestion().getQuestionNumber() == 12) {
+        sumUp = true;
+        winAmount = 1000000;
+        gameMusic7.stop();
+    }
     nextQuestionFlag = true;
     musicPlaysFlag = false;
     answerIsSelected = false;
@@ -710,7 +728,16 @@ void GameView::setCorrectAnswerCoordinate() {
 }
 
 void GameView::waitForSumUp() {
+    gameMusic1.stop();
+    gameMusic2.stop();
+    gameMusic3.stop();
+    gameMusic4.stop();
+    gameMusic5.stop();
+    gameMusic6.stop();
+    gameMusic7.stop();
+
     std::this_thread::sleep_for(std::chrono::seconds(4));
+    winningSound2.play();
     sumUp = true;
 }
 
