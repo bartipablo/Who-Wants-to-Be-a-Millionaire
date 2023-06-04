@@ -98,6 +98,7 @@ void GameView::runGameView() {
         window.draw(backgroundSprite);
 
         window.draw(resignButtonSprite);
+        window.draw(resignText);
 
         //AWARD VIEW
         if (gameController.getQuestionNumber() > 1) {
@@ -199,14 +200,17 @@ GameView::GameView() {
         prepareText(&awards[i], awardsStr[i], &font, 50);
     }
 
-    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/answer.png");
+    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/incorrect-answer.png");
+    prepareText(&resignText, "resign", &font, 50);
     resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
+
 
     //setting positions
     prepareAwardView();
     prepareLifeLinesView();
     prepareQuestionsAndAnswerPanel();
     prepareSpritesCoordinate();
+    prepareResignButton();
 }
 
 
@@ -477,6 +481,18 @@ void GameView::prepareAnswerView() {
     answerB.setPosition(answerBSpriteCoordinate.spritePosition.x + 80, answerBSpriteCoordinate.spritePosition.y + 40);
     answerC.setPosition(answerCSpriteCoordinate.spritePosition.x + 80, answerCSpriteCoordinate.spritePosition.y + 40);
     answerD.setPosition(answerDSpriteCoordinate.spritePosition.x + 80, answerDSpriteCoordinate.spritePosition.y + 40);
+}
+
+
+void GameView::prepareResignButton() {
+    sf::Vector2f currentSize = resignButtonSprite.getScale();
+    resignButtonSprite.setScale(currentSize.x * 0.25f, currentSize.y * 0.50f);
+    resignButtonSprite.setPosition(30, 30);
+
+    sf::Color color(72,34,120);
+    resignText.setFillColor(color);
+    resignText.setPosition(140, 38);
+
 }
 
 
@@ -773,6 +789,14 @@ void GameView::resignButtonHandler() {
 }
 
 void GameView::resetGame() {
+    for (auto & award : awards) {
+        award.setFillColor(sf::Color(255, 140, 0));
+    }
+
+    awards[1].setFillColor(sf::Color::White);
+    awards[6].setFillColor(sf::Color::White);
+    awards[11].setFillColor(sf::Color::White);
+
     gameController.resetGameController();
     loadPolishCharacter = true;
     nextQuestionFlag = true;

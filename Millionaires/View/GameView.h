@@ -208,6 +208,8 @@ private:
 
     sf::Text answerD;
 
+    sf::Text resignText;
+
     sf::Font font;
 
     /**************************************
@@ -218,8 +220,8 @@ private:
 
     GameController gameController;
 
-    std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $50,000",
-                                 " 8.    $75,000", " 9.   $150,000", "10.  $250,000", "11.  $500,000", "12.$1 MILLION"};
+    std::string awardsStr[12] = {" 1.      $500", " 2.     $1,000", " 3.     $2,000", " 4.     $5,000", " 5.    $10,000", " 6.    $20,000", " 7.    $40,000",
+                                 " 8.    $75,000", " 9.   $125,000", "10.  $250,000", "11.  $500,000", "12.$1 MILLION"};
 
     /**************************************
              Methods
@@ -237,6 +239,8 @@ private:
     void startMusic();
 
     void prepareSpritesCoordinate();
+
+    void prepareResignButton();
 
     void leftMouseClickHandler(sf::Vector2i mousePosition);
 

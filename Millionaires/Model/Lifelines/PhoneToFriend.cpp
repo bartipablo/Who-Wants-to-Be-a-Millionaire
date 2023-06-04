@@ -28,7 +28,7 @@ void PhoneToFriend::use() {
             finallyAnswer = "Wydaje mi się, że to odpowiedź: " + answerToString(friendAnswer);
             break;
         case doesNotKnow:
-            finallyAnswer = "Nic nie przychodzi mi do głowy, ale zgaduję, że to: " + answerToString(friendAnswer);
+            finallyAnswer = "Niestety, nic nie przychodzi mi do głowy";
             break;
     }
 
@@ -42,13 +42,13 @@ FriendReaction PhoneToFriend::getRandomFriendReaction(std::vector<Answer> active
     int randomNumber = getRandomNumber(0, 100);
 
     if (activeAnswers.size() > 2) {
-        if (randomNumber < 30) return sure;
-        if (randomNumber >= 30 && randomNumber <= 70) return uncertain;
+        if (randomNumber < 40) return sure;
+        if (randomNumber >= 40 && randomNumber <= 70) return uncertain;
         if (randomNumber > 70) return doesNotKnow;
     }
     else {
-        if (randomNumber < 40) return sure;
-        if (randomNumber >= 40 && randomNumber <= 80) return uncertain;
+        if (randomNumber < 60) return sure;
+        if (randomNumber >= 60 && randomNumber <= 80) return uncertain;
         if (randomNumber > 80) return doesNotKnow;
     }
     return doesNotKnow;
@@ -58,7 +58,7 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
     int randomNumber = getRandomNumber(0, 100);
 
     if (friendReaction == sure) {
-        if (randomNumber <= 90) {
+        if (randomNumber <= 95) {
             return question->getCorrectAnswer();
         }
         else {
@@ -67,7 +67,7 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
     }
 
     else if (friendReaction == uncertain) {
-        if (randomNumber <= 50) {
+        if (randomNumber <= 70) {
             return question->getCorrectAnswer();
         }
         else {

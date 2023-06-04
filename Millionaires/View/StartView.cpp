@@ -96,6 +96,7 @@ void StartView::handleClickStart(sf::Text &button) {
 
 void StartView::loadGameView() {
     if (!Configuration::isTheFirstRunning()) return;
+
     std::unique_ptr<GameView> newGameView = std::make_unique<GameView>();
     gameView = std::move(newGameView);
     isLoadedGameView = true;

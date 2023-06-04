@@ -47,6 +47,7 @@ void WinnerView::runWinnerView() {
                 if (exitButton.getGlobalBounds().contains(mousePositionFloat)) {
                     Configuration::disableProgram();
                     window.close();
+                    return;
                 }
 
                 if (playAgainButton.getGlobalBounds().contains(mousePositionFloat)) {
