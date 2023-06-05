@@ -7,10 +7,10 @@
 AudienceSupportView::AudienceSupportView(int answerAVotes, int answerBVotes, int answerCVotes, int answerDVotes)
         : answerAVotes(answerAVotes), answerBVotes(answerBVotes), answerCVotes(answerCVotes),
           answerDVotes(answerDVotes) {
-    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/audience-support-background.png");
+    prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/audience-support-background.png");
     backgroundSprite.setPosition(-100, 0);
 
-    prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
     View::prepareText(&answerA, "A", &font, 80);
     View::prepareText(&answerB, "B", &font, 80);

@@ -79,10 +79,10 @@ PhoneToFriendView::PhoneToFriendView(Question *question, std::string friendAnswe
     this->question = question;
     this->friendAnswer = friendAnswer;
 
-    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/output-onlinepngtools.png");
+    prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/output-onlinepngtools.png");
     backgroundSprite.setPosition(-100, 0);
 
-    prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
     prepareText();
 }

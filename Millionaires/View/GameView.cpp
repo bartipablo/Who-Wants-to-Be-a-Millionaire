@@ -165,42 +165,42 @@ void GameView::runGameView() {
  **************************************/
 GameView::GameView() {
     //loading from resources:
-    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/game-background.png");
-    prepareSprite(&fiftyTexture, &fiftySprite, "./resources/images/lifeline-50.png");
-    prepareSprite(&fiftyOrangeTexture, &fiftyOrangeSprite, "./resources/images/lifeline-50-orange.png");
-    prepareSprite(&phoneToFriendTexture, &phoneToFriendSprite, "./resources/images/lifeline-phone-a-friend.png");
-    prepareSprite(&phoneToFriendOrangeTexture, &phoneToFriendOrangeSprite, "./resources/images/lifeline-phone-a-friend-orange.png");
-    prepareSprite(&audienceSupportTexture, &audienceSupportSprite, "./resources/images/lifeline-ask-the-audience.png");
-    prepareSprite(&audienceSupportOrangeTexture, &audienceSupportOrangeSprite, "./resources/images/lifeline-ask-the-audience-orange.png");
-    prepareSprite(&questionPanelTexture, &questionPanelSprite, "./resources/images/last-question.png");
-    prepareSprite(&answerTexture, &answerASprite, "./resources/images/answer.png");
-    prepareSprite(&selectedAnswerTexture, &selectedAnswerSprite, "./resources/images/incorrect-answer.png");
-    prepareSprite(&correctAnswerTexture, &correctAnswerSprite, "./resources/images/correct-answer.png");
-    prepareSprite(&moneyTreeTexture, &moneyTreeSprite, "./resources/images/money-tree.png");
+    prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/game-background.png");
+    prepareSprite(&fiftyTexture, &fiftySprite, "../resources/images/lifeline-50.png");
+    prepareSprite(&fiftyOrangeTexture, &fiftyOrangeSprite, "../resources/images/lifeline-50-orange.png");
+    prepareSprite(&phoneToFriendTexture, &phoneToFriendSprite, "../resources/images/lifeline-phone-a-friend.png");
+    prepareSprite(&phoneToFriendOrangeTexture, &phoneToFriendOrangeSprite, "../resources/images/lifeline-phone-a-friend-orange.png");
+    prepareSprite(&audienceSupportTexture, &audienceSupportSprite, "../resources/images/lifeline-ask-the-audience.png");
+    prepareSprite(&audienceSupportOrangeTexture, &audienceSupportOrangeSprite, "../resources/images/lifeline-ask-the-audience-orange.png");
+    prepareSprite(&questionPanelTexture, &questionPanelSprite, "../resources/images/last-question.png");
+    prepareSprite(&answerTexture, &answerASprite, "../resources/images/answer.png");
+    prepareSprite(&selectedAnswerTexture, &selectedAnswerSprite, "../resources/images/incorrect-answer.png");
+    prepareSprite(&correctAnswerTexture, &correctAnswerSprite, "../resources/images/correct-answer.png");
+    prepareSprite(&moneyTreeTexture, &moneyTreeSprite, "../resources/images/money-tree.png");
     answerBSprite.setTexture(answerTexture);
     answerCSprite.setTexture(answerTexture);
     answerDSprite.setTexture(answerTexture);
 
-    prepareSound(&gameMusicBuffer1, &gameMusic1, "./resources/sounds/music01.flac");
-    prepareSound(&gameMusicBuffer2, &gameMusic2, "./resources/sounds/music02.flac");
-    prepareSound(&gameMusicBuffer3, &gameMusic3, "./resources/sounds/music03.flac");
-    prepareSound(&gameMusicBuffer4, &gameMusic4, "./resources/sounds/music04.flac");
-    prepareSound(&nextQuestionBuffer, &nextQuestionSound, "./resources/sounds/newQuestion.flac");
-    prepareSound(&selectAnswerBuffer, &selectAnswerSound, "./resources/sounds/selectAnswer.flac");
-    prepareSound(&selectLifeLineBuffer, &selectLifeLineSound, "./resources/sounds/lifeLine.flac");
-    prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "./resources/sounds/correctAnswer1.flac");
-    prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "./resources/sounds/correctAnswer2.flac");
-    prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "./resources/sounds/incorrectAnswer.flac");
-    prepareSound(&winningBuffer1, &winningSound1, "./resources/sounds/Winning2.flac");
-    prepareSound(&winningBuffer2, &winningSound2, "./resources/sounds/Winning1.flac");
+    prepareSound(&gameMusicBuffer1, &gameMusic1, "../resources/sounds/music01.flac");
+    prepareSound(&gameMusicBuffer2, &gameMusic2, "../resources/sounds/music02.flac");
+    prepareSound(&gameMusicBuffer3, &gameMusic3, "../resources/sounds/music03.flac");
+    prepareSound(&gameMusicBuffer4, &gameMusic4, "../resources/sounds/music04.flac");
+    prepareSound(&nextQuestionBuffer, &nextQuestionSound, "../resources/sounds/newQuestion.flac");
+    prepareSound(&selectAnswerBuffer, &selectAnswerSound, "../resources/sounds/selectAnswer.flac");
+    prepareSound(&selectLifeLineBuffer, &selectLifeLineSound, "../resources/sounds/lifeLine.flac");
+    prepareSound(&correctAnswerBuffer1, &correctAnswerSound1, "../resources/sounds/correctAnswer1.flac");
+    prepareSound(&correctAnswerBuffer2, &correctAnswerSound2, "../resources/sounds/correctAnswer2.flac");
+    prepareSound(&incorrectAnswerBuffer, &incorrectAnswerSound, "../resources/sounds/incorrectAnswer.flac");
+    prepareSound(&winningBuffer1, &winningSound1, "../resources/sounds/Winning2.flac");
+    prepareSound(&winningBuffer2, &winningSound2, "../resources/sounds/Winning1.flac");
 
-    View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    View::prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
     for (int i = 0; i < 12; i++) {
         prepareText(&awards[i], awardsStr[i], &font, 50);
     }
 
-    prepareSprite(&resignButtonTexture, &resignButtonSprite, "./resources/images/incorrect-answer.png");
+    prepareSprite(&resignButtonTexture, &resignButtonSprite, "../resources/images/incorrect-answer.png");
     prepareText(&resignText, "resign", &font, 50);
     resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
 

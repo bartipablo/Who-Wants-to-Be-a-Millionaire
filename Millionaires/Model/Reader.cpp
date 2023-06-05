@@ -68,7 +68,7 @@ int Reader::countLinesInFile(std::string fileName) {
 Question Reader::getRandomQuestion(int questionNumber) {
     std::ostringstream oss;
     oss << questionNumber;
-    std::string fileName = "./resources/questions/question" + oss.str() + ".csv";
+    std::string fileName = "../resources/questions/question" + oss.str() + ".csv";
 
     std::ifstream file(fileName);
 

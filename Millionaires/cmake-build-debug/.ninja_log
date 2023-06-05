@@ -64,3 +64,11 @@
 1053	1415	1685938592124313768	CMakeFiles/Millionaires.dir/View/AudienceSupportView.cpp.o	fbfdea4ece91a643
 1058	1479	1685938592189801675	CMakeFiles/Millionaires.dir/View/WinnerView.cpp.o	4bb56a71e4caef8a
 1479	1514	1685938592226831214	Millionaires	5be35d0b6c664d72
+6	549	1685942476603544178	CMakeFiles/Millionaires.dir/View/AudienceSupportView.cpp.o	fbfdea4ece91a643
+7	627	1685942476688234469	CMakeFiles/Millionaires.dir/View/WinnerView.cpp.o	4bb56a71e4caef8a
+6	659	1685942476721082542	CMakeFiles/Millionaires.dir/View/StartView.cpp.o	294bcb7ede2beeee
+5	700	1685942476761689811	CMakeFiles/Millionaires.dir/View/GameView.cpp.o	cac15c506dc7c614
+6	720	1685942476782475080	CMakeFiles/Millionaires.dir/View/PhoneToFriendView.cpp.o	7f38f3432b9d556e
+724	776	1685942476840183621	Millionaires	5be35d0b6c664d72
+5	507	1685942527548614623	CMakeFiles/Millionaires.dir/Model/Reader.cpp.o	270e2963c597bd01
+507	555	1685942527599556213	Millionaires	5be35d0b6c664d72
