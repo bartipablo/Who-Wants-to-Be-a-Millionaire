@@ -85,6 +85,9 @@ void GameController::resetGameController() {
     lifeLineA->setAvailable(true);
     lifeLineB->setAvailable(true);
     lifeLineC->setAvailable(true);
+    lifeLineA->reset();
+    lifeLineB->reset();
+    lifeLineC->reset();
     questionNumber = 0;
     guaranteedAmount = 0;
     gainedAmount = 0;

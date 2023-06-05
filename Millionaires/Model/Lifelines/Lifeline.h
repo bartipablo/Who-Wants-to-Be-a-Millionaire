@@ -25,6 +25,9 @@ public:
 
     virtual void use() = 0;
 
+    virtual void reset() = 0;
+
+
 };
 
 

@@ -35,6 +35,8 @@ public:
     }
 
     void use() override;
+
+    void reset() override;
 };
 
 

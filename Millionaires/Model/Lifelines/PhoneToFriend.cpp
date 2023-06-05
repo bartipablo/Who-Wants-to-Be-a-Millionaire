@@ -85,3 +85,7 @@ Answer PhoneToFriend::getFriendAnswer(FriendReaction friendReaction) {
     }
     return A;
 }
+
+void PhoneToFriend::reset() {
+    return;
+}

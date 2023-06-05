@@ -101,3 +101,10 @@ void AudienceSupport::vote(Answer answer) {
             break;
     }
 }
+
+void AudienceSupport::reset() {
+    answerAVotes = 0;
+    answerBVotes = 0;
+    answerCVotes = 0;
+    answerDVotes = 0;
+}
