@@ -550,8 +550,6 @@ _Python_EXECUTABLE:INTERNAL=/Library/Frameworks/Python.framework/Versions/3.11/b
 //Python Properties
 _Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;3;64;;cpython-311-darwin;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages;/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages
 _Python_INTERPRETER_SIGNATURE:INTERNAL=3c97c57b8547b5d225a4131cf48fc285
-//Interpreter reason failure
-_Python_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python_NumPy_REASON_FAILURE:INTERNAL=
 cmake_package_name:INTERNAL=GTest
