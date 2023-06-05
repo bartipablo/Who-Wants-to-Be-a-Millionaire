@@ -1,22 +1,7 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires -B /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
--- The C compiler identification is AppleClang 14.0.3.14030022
--- The CXX compiler identification is AppleClang 14.0.3.14030022
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found SFML 2.5.1 in /opt/homebrew/lib/cmake/SFML
--- Found Python: /Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11 (found version "3.11.3") found components: Interpreter 
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
--- Found SFML 2.5.1 in /opt/homebrew/lib/cmake/SFML
+"C:\Program Files\JetBrains\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S G:\Projekty\who-wants-to-be-a-millionarie\CPP-Project\Millionaires -B G:\Projekty\who-wants-to-be-a-millionarie\CPP-Project\Millionaires\cmake-build-debug
+-- Found SFML 2.5.1 in C:/SFML-2.5.1/lib/cmake/SFML
+-- Found Python: C:/Python311/python.exe (found version "3.11.3") found components: Interpreter 
+-- Found SFML 2.5.1 in C:/SFML-2.5.1/lib/cmake/SFML
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug
+-- Build files have been written to: G:/Projekty/who-wants-to-be-a-millionarie/CPP-Project/Millionaires/cmake-build-debug

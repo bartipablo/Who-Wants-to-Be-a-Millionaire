@@ -5,12 +5,15 @@
 #ifndef MILLIONAIRES_CONFIGURATION_H
 #define MILLIONAIRES_CONFIGURATION_H
 
+#include <SFML/Graphics.hpp>
 
 class Configuration {
 private:
     static bool runProgram;
 
     static bool firstRunning;
+
+    static double getResolutionFactor();
 
 public:
     static bool programIsRunning();
@@ -20,6 +23,9 @@ public:
     static bool isTheFirstRunning();
 
     static void disableTheFirstRunning();
+
+    static double resolutionFactor;
+
 };
 
 

@@ -40,7 +40,7 @@ void GameView::waitForNextQuestionAfterSelectedAnswer() {
  **************************************/
 void GameView::runGameView() {
 
-    sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
+    sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Who want to be a millionaire?");
 
     backgroundSprite.setOrigin(backgroundSprite.getLocalBounds().width / 2, backgroundSprite.getLocalBounds().height / 2);
     backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
@@ -201,9 +201,11 @@ GameView::GameView() {
     }
 
     prepareSprite(&resignButtonTexture, &resignButtonSprite, "../resources/images/incorrect-answer.png");
-    prepareText(&resignText, "resign", &font, 50);
+    prepareText(&resignText, "resign", &font, 50 * Configuration::resolutionFactor);
     resignButtonCoordinate = getSpriteCoordinate(resignButtonSprite);
 
+
+    scale();
 
     //setting positions
     prepareAwardView();
@@ -231,18 +233,18 @@ void GameView::prepareAwardView() {
     awards[6].setFillColor(sf::Color::White);
     awards[11].setFillColor(sf::Color::White);
 
-    awards[0].setPosition(1930, 990);
-    awards[1].setPosition(1930, 900);
-    awards[2].setPosition(1930, 810);
-    awards[3].setPosition(1930, 720);
-    awards[4].setPosition(1930, 630);
-    awards[5].setPosition(1930, 540);
-    awards[6].setPosition(1930, 450);
-    awards[7].setPosition(1930, 360);
-    awards[8].setPosition(1930, 270);
-    awards[9].setPosition(1930, 180);
-    awards[10].setPosition(1930, 90);
-    awards[11].setPosition(1930, 0);
+    awards[0].setPosition(1930 * Configuration::resolutionFactor, 990 * Configuration::resolutionFactor);
+    awards[1].setPosition(1930 * Configuration::resolutionFactor, 900 * Configuration::resolutionFactor);
+    awards[2].setPosition(1930 * Configuration::resolutionFactor, 810 * Configuration::resolutionFactor);
+    awards[3].setPosition(1930 * Configuration::resolutionFactor, 720 * Configuration::resolutionFactor);
+    awards[4].setPosition(1930 * Configuration::resolutionFactor, 630 * Configuration::resolutionFactor);
+    awards[5].setPosition(1930 * Configuration::resolutionFactor, 540 * Configuration::resolutionFactor);
+    awards[6].setPosition(1930 * Configuration::resolutionFactor, 450 * Configuration::resolutionFactor);
+    awards[7].setPosition(1930 * Configuration::resolutionFactor, 360 * Configuration::resolutionFactor);
+    awards[8].setPosition(1930 * Configuration::resolutionFactor, 270 * Configuration::resolutionFactor);
+    awards[9].setPosition(1930 * Configuration::resolutionFactor, 180 * Configuration::resolutionFactor);
+    awards[10].setPosition(1930 * Configuration::resolutionFactor, 90 * Configuration::resolutionFactor);
+    awards[11].setPosition(1930 * Configuration::resolutionFactor, 0 * Configuration::resolutionFactor);
 }
 
 
@@ -250,60 +252,60 @@ void GameView::calculateMoneyTreeCoordinate() {
     switch (gameController.getQuestionNumber()) {
         case 2:
             awards[0].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 990-5);
+            moneyTreeSprite.setPosition(1930  * Configuration::resolutionFactor, (990-5)  * Configuration::resolutionFactor);
             break;
         case 3:
             awards[0].setFillColor(sf::Color(255, 140, 0));
             awards[1].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 900-5);
+            moneyTreeSprite.setPosition(1930  * Configuration::resolutionFactor, (900-5)  * Configuration::resolutionFactor);
             break;
         case 4:
             awards[1].setFillColor(sf::Color::White);
             awards[2].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 810-5);
+            moneyTreeSprite.setPosition(1930  * Configuration::resolutionFactor, (810-5)  * Configuration::resolutionFactor);
             break;
         case 5:
             awards[2].setFillColor(sf::Color(255, 140, 0));
             awards[3].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 720-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (720-5) * Configuration::resolutionFactor);
             break;
         case 6:
             awards[3].setFillColor(sf::Color(255, 140, 0));
             awards[4].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 630-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (630-5) * Configuration::resolutionFactor);
             break;
         case 7:
             awards[4].setFillColor(sf::Color(255, 140, 0));
             awards[5].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 540-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (540-5) * Configuration::resolutionFactor);
             break;
         case 8:
             awards[5].setFillColor(sf::Color(255, 140, 0));
             awards[6].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 450-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (450-5) * Configuration::resolutionFactor);
             break;
         case 9:
             awards[6].setFillColor(sf::Color::White);
             awards[7].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 360-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (360-5) * Configuration::resolutionFactor);
             break;
         case 10:
             awards[7].setFillColor(sf::Color(255, 140, 0));
             awards[8].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 270-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (270-5) * Configuration::resolutionFactor);
             break;
         case 11:
             awards[8].setFillColor(sf::Color(255, 140, 0));
             awards[9].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 180-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (180-5) * Configuration::resolutionFactor);
             break;
         case 12:
             awards[9].setFillColor(sf::Color(255, 140, 0));
             awards[10].setFillColor(sf::Color::Black);
-            moneyTreeSprite.setPosition(1930, 90-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (90-5) * Configuration::resolutionFactor);
             break;
         default:
-            moneyTreeSprite.setPosition(1930, 990-5);
+            moneyTreeSprite.setPosition(1930 * Configuration::resolutionFactor, (990-5) * Configuration::resolutionFactor);
     }
 }
 
@@ -313,22 +315,22 @@ void GameView::prepareLifeLinesView() {
     sf::Vector2f newScale(currentScale.x * 0.8f, currentScale.y * 0.8f);
 
     fiftySprite.setScale(newScale);
-    fiftySprite.setPosition(1960, 1110);
+    fiftySprite.setPosition(1960 * Configuration::resolutionFactor, 1110 * Configuration::resolutionFactor);
 
     fiftyOrangeSprite.setScale(newScale);
-    fiftyOrangeSprite.setPosition(1960, 1110);
+    fiftyOrangeSprite.setPosition(1960 * Configuration::resolutionFactor, 1110 * Configuration::resolutionFactor);
 
     phoneToFriendSprite.setScale(newScale);
-    phoneToFriendSprite.setPosition(1960, 1260);
+    phoneToFriendSprite.setPosition(1960 * Configuration::resolutionFactor, 1260 * Configuration::resolutionFactor);
 
     phoneToFriendOrangeSprite.setScale(newScale);
-    phoneToFriendOrangeSprite.setPosition(1960, 1260);
+    phoneToFriendOrangeSprite.setPosition(1960 * Configuration::resolutionFactor, 1260 * Configuration::resolutionFactor);
 
     audienceSupportSprite.setScale(newScale);
-    audienceSupportSprite.setPosition(1960, 1410);
+    audienceSupportSprite.setPosition(1960 * Configuration::resolutionFactor, 1410 * Configuration::resolutionFactor);
 
     audienceSupportOrangeSprite.setScale(newScale);
-    audienceSupportOrangeSprite.setPosition(1960, 1410);
+    audienceSupportOrangeSprite.setPosition(1960 * Configuration::resolutionFactor, 1410 * Configuration::resolutionFactor);
 }
 
 
@@ -337,7 +339,7 @@ void GameView::prepareQuestionsAndAnswerPanel() {
     sf::Vector2f newQuestionScale(questionCurrentScale.x * 0.9f, questionCurrentScale.y * 0.9f);
 
     questionPanelSprite.setScale(newQuestionScale);
-    questionPanelSprite.setPosition(70, 1050);
+    questionPanelSprite.setPosition(70 * Configuration::resolutionFactor, 1050 * Configuration::resolutionFactor);
 
     sf::Vector2f answerCurrentScale = questionPanelSprite.getScale();
     sf::Vector2f newAnswerScale(answerCurrentScale.x * 0.64f, answerCurrentScale.y * 1.0f);
@@ -350,23 +352,23 @@ void GameView::prepareQuestionsAndAnswerPanel() {
     answerCSprite.setScale(newAnswerScale);
     answerDSprite.setScale(newAnswerScale);
 
-    answerASprite.setPosition(70, 1290);
-    answerBSprite.setPosition(980, 1290);
-    answerCSprite.setPosition(70, 1420);
-    answerDSprite.setPosition(980, 1420);
+    answerASprite.setPosition(70 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
+    answerBSprite.setPosition(980 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
+    answerCSprite.setPosition(70 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
+    answerDSprite.setPosition(980 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
 
     switch(gameController.getQuestion().getCorrectAnswer()) {
         case A:
-            correctAnswerSprite.setPosition(70, 1290);
+            correctAnswerSprite.setPosition(70 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
             break;
         case B:
-            correctAnswerSprite.setPosition(980, 1290);
+            correctAnswerSprite.setPosition(980 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
             break;
         case C:
-            correctAnswerSprite.setPosition(70, 1420);
+            correctAnswerSprite.setPosition(70 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
             break;
         case D:
-            correctAnswerSprite.setPosition(980, 1420);
+            correctAnswerSprite.setPosition(980 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
             break;
     }
 }
@@ -387,7 +389,7 @@ void GameView::prepareSpritesCoordinate() {
 void GameView::prepareQuestionView() {
     std::string texts[3] = {"", "", ""};
     sf::Text tempText;
-    prepareText(&tempText, "", &font, 40);
+    prepareText(&tempText, "", &font, 40  * Configuration::resolutionFactor);
 
     int usingLines = 0;
 
@@ -399,8 +401,8 @@ void GameView::prepareQuestionView() {
         std::string tmpstr1 = wrappedText + " " + word;
         tempText.setString(tmpstr1);
 
-        if (tempText.getLocalBounds().width > questionPanelSpriteCoordinate.spriteSize.x - 300) {
-            wrappedText = centerString(wrappedText, (int) questionPanelSpriteCoordinate.spriteSize.x - 200, 40, font);
+        if (tempText.getLocalBounds().width > questionPanelSpriteCoordinate.spriteSize.x - 300 * Configuration::resolutionFactor) {
+            wrappedText = centerString(wrappedText, (int) (questionPanelSpriteCoordinate.spriteSize.x - 200 * Configuration::resolutionFactor), 40 * Configuration::resolutionFactor, font);
             texts[usingLines] = wrappedText;
             if (usingLines + 1 > 2) {
                 break;
@@ -416,12 +418,12 @@ void GameView::prepareQuestionView() {
             wrappedText += word;
         }
     }
-    wrappedText = centerString(wrappedText, questionPanelSpriteCoordinate.spriteSize.x - 200, 40, font);
+    wrappedText = centerString(wrappedText, (questionPanelSpriteCoordinate.spriteSize.x - 300  * Configuration::resolutionFactor), 40 * Configuration::resolutionFactor, font);
     texts[usingLines] = wrappedText;
 
-    prepareText(&questionText[0], texts[0], &font, 40);
-    prepareText(&questionText[1], texts[1], &font, 40);
-    prepareText(&questionText[2], texts[2], &font, 40);
+    prepareText(&questionText[0], texts[0], &font, 40 * Configuration::resolutionFactor);
+    prepareText(&questionText[1], texts[1], &font, 40 * Configuration::resolutionFactor);
+    prepareText(&questionText[2], texts[2], &font, 40 * Configuration::resolutionFactor);
 
     if (loadPolishCharacter) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
@@ -436,32 +438,32 @@ void GameView::prepareQuestionView() {
 
     switch(usingLines) {
         case 0:
-            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 80);
+            questionText[0].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 80 * Configuration::resolutionFactor));
             break;
         case 1:
-            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 40);
-            questionText[1].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 90);
+            questionText[0].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
+            questionText[1].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 90 * Configuration::resolutionFactor));
             break;
 
         default:
-            questionText[0].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 40);
-            questionText[1].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 80);
-            questionText[2].setPosition(questionPanelSpriteCoordinate.spritePosition.x + 100,
-                                        questionPanelSpriteCoordinate.spritePosition.y + 120);
+            questionText[0].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
+            questionText[1].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 80 * Configuration::resolutionFactor));
+            questionText[2].setPosition((questionPanelSpriteCoordinate.spritePosition.x + 100 * Configuration::resolutionFactor),
+                                        (questionPanelSpriteCoordinate.spritePosition.y + 120 * Configuration::resolutionFactor));
     }
 }
 
 
 void GameView::prepareAnswerView() {
-    prepareText(&answerA, gameController.getQuestion().getAnswerA(), &font, 40);
-    prepareText(&answerB, gameController.getQuestion().getAnswerB(), &font, 40);
-    prepareText(&answerC, gameController.getQuestion().getAnswerC(), &font, 40);
-    prepareText(&answerD, gameController.getQuestion().getAnswerD(), &font, 40);
+    prepareText(&answerA, gameController.getQuestion().getAnswerA(), &font, 40 * Configuration::resolutionFactor);
+    prepareText(&answerB, gameController.getQuestion().getAnswerB(), &font, 40 * Configuration::resolutionFactor);
+    prepareText(&answerC, gameController.getQuestion().getAnswerC(), &font, 40 * Configuration::resolutionFactor);
+    prepareText(&answerD, gameController.getQuestion().getAnswerD(), &font, 40 * Configuration::resolutionFactor);
 
     if (loadPolishCharacter) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
@@ -477,22 +479,21 @@ void GameView::prepareAnswerView() {
     }
 
 
-    answerA.setPosition(answerASpriteCoordinate.spritePosition.x + 80, answerASpriteCoordinate.spritePosition.y + 40);
-    answerB.setPosition(answerBSpriteCoordinate.spritePosition.x + 80, answerBSpriteCoordinate.spritePosition.y + 40);
-    answerC.setPosition(answerCSpriteCoordinate.spritePosition.x + 80, answerCSpriteCoordinate.spritePosition.y + 40);
-    answerD.setPosition(answerDSpriteCoordinate.spritePosition.x + 80, answerDSpriteCoordinate.spritePosition.y + 40);
+    answerA.setPosition((answerASpriteCoordinate.spritePosition.x + 80 * Configuration::resolutionFactor), (answerASpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
+    answerB.setPosition((answerBSpriteCoordinate.spritePosition.x + 80 * Configuration::resolutionFactor), (answerBSpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
+    answerC.setPosition((answerCSpriteCoordinate.spritePosition.x + 80 * Configuration::resolutionFactor), (answerCSpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
+    answerD.setPosition((answerDSpriteCoordinate.spritePosition.x + 80 * Configuration::resolutionFactor), (answerDSpriteCoordinate.spritePosition.y + 40 * Configuration::resolutionFactor));
 }
 
 
 void GameView::prepareResignButton() {
     sf::Vector2f currentSize = resignButtonSprite.getScale();
-    resignButtonSprite.setScale(currentSize.x * 0.25f, currentSize.y * 0.50f);
-    resignButtonSprite.setPosition(30, 30);
+    resignButtonSprite.setScale((currentSize.x * 0.25f) * Configuration::resolutionFactor, (currentSize.y * 0.50f) * Configuration::resolutionFactor);
+    resignButtonSprite.setPosition(30 * Configuration::resolutionFactor, 30 * Configuration::resolutionFactor);
 
     sf::Color color(72,34,120);
     resignText.setFillColor(color);
-    resignText.setPosition(140, 38);
-
+    resignText.setPosition(140 * Configuration::resolutionFactor, 38 * Configuration::resolutionFactor);
 }
 
 
@@ -586,6 +587,31 @@ std::string GameView::centerString(std::string string, int width, int fontSize, 
     return string;
 }
 
+void GameView::scale() {
+    backgroundSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    fiftySprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    fiftyOrangeSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    phoneToFriendSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    phoneToFriendOrangeSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    audienceSupportSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    audienceSupportOrangeSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    questionPanelSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    answerASprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    answerBSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    answerCSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    answerDSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    correctAnswerSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    selectedAnswerSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    moneyTreeSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    for (int i = 0; i < 12; i++) {
+        awards[i].setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    }
+    //answerA.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    //answerB.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    //answerC.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    //answerD.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+}
+
 /**************************************
         ~VIEW PREPARING AND SERVICE
  **************************************/
@@ -670,28 +696,28 @@ void GameView::commonHandlerAfterSelectedAnswer() {
 
 
 void GameView::answerAButtonHandler() {
-    selectedAnswerSprite.setPosition(70, 1290);
+    selectedAnswerSprite.setPosition(70 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
     gameController.setSelectedAnswer(A);
     commonHandlerAfterSelectedAnswer();
 }
 
 
 void GameView::answerBButtonHandler() {
-    selectedAnswerSprite.setPosition(980, 1290);
+    selectedAnswerSprite.setPosition(980 * Configuration::resolutionFactor, 1290 * Configuration::resolutionFactor);
     gameController.setSelectedAnswer(B);
     commonHandlerAfterSelectedAnswer();
 }
 
 
 void GameView::answerCButtonHandler() {
-    selectedAnswerSprite.setPosition(70, 1420);
+    selectedAnswerSprite.setPosition(70 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
     gameController.setSelectedAnswer(C);
     commonHandlerAfterSelectedAnswer();
 }
 
 
 void GameView::answerDButtonHandler() {
-    selectedAnswerSprite.setPosition(980, 1420);
+    selectedAnswerSprite.setPosition(980 * Configuration::resolutionFactor, 1420 * Configuration::resolutionFactor);
     gameController.setSelectedAnswer(D);
     commonHandlerAfterSelectedAnswer();
 }
@@ -804,6 +830,7 @@ void GameView::resetGame() {
     resetAll = false;
     sumUp = false;
 }
+
 /**************************************
         ~ACTION HANDLERS
  **************************************/
