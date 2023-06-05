@@ -6,7 +6,7 @@
 
 
 void StartView::runStartView() {
-    sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
+    sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Who want to be a millionaire?");
 
     std::thread loadingThread([this]() {
         loadGameView();
@@ -16,14 +16,18 @@ void StartView::runStartView() {
     bool menuMusicIsPlaying = false;
 
     startButton.setFillColor(sf::Color::White);
-    startButton.setPosition(930, 1300);
+    startButton.setPosition(930 * Configuration::resolutionFactor, 1300 * Configuration::resolutionFactor);
+    startButton.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
 
     backgroundSprite.setOrigin(backgroundSprite.getLocalBounds().width / 2, backgroundSprite.getLocalBounds().height / 2);
     backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    backgroundSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
     logoSprite.setOrigin(logoSprite.getLocalBounds().width / 2, logoSprite.getLocalBounds().height / 2);
     logoSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    logoSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
     loading.setOrigin(loading.getLocalBounds().width / 2, loading.getLocalBounds().height / 2);
     loading.setPosition(window.getSize().x / 2, window.getSize().y / 2 + 680);
+    loading.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
 
     float rotationSpeed = 0.015f;
 

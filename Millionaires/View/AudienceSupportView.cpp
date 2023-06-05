@@ -3,45 +3,47 @@
 //
 
 #include "AudienceSupportView.h"
+#include "../Configuration.h"
 
 AudienceSupportView::AudienceSupportView(int answerAVotes, int answerBVotes, int answerCVotes, int answerDVotes)
         : answerAVotes(answerAVotes), answerBVotes(answerBVotes), answerCVotes(answerCVotes),
           answerDVotes(answerDVotes) {
     prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/audience-support-background.png");
-    backgroundSprite.setPosition(-100, 0);
+    backgroundSprite.setPosition(-100 * Configuration::resolutionFactor, 0);
+    backgroundSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
 
     prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
-    View::prepareText(&answerA, "A", &font, 80);
-    View::prepareText(&answerB, "B", &font, 80);
-    View::prepareText(&answerC, "C", &font, 80);
-    View::prepareText(&answerD, "D", &font, 80);
-    View::prepareText(&closeButton, "close", &font, 80);
+    View::prepareText(&answerA, "A", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&answerB, "B", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&answerC, "C", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&answerD, "D", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&closeButton, "close", &font, 80 * Configuration::resolutionFactor);
 
-    answerA.setPosition(500, 1200);
-    answerB.setPosition(900, 1200);
-    answerC.setPosition(1300, 1200);
-    answerD.setPosition(1700, 1200);
-    closeButton.setPosition(1015, 1400);
+    answerA.setPosition(500 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor);
+    answerB.setPosition(900 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor);
+    answerC.setPosition(1300 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor);
+    answerD.setPosition(1700 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor);
+    closeButton.setPosition(1015 * Configuration::resolutionFactor, 1400 * Configuration::resolutionFactor);
 
     int votesSum = answerAVotes + answerBVotes + answerCVotes + answerDVotes;
 
-    View::prepareText(&noVotesByPercentageA, std::to_string((int) std::round(100 * answerAVotes / votesSum)) + " %", &font, 80);
-    View::prepareText(&noVotesByPercentageB, std::to_string((int) std::round(100 * answerBVotes / votesSum)) + " %", &font, 80);
-    View::prepareText(&noVotesByPercentageC, std::to_string((int) std::round(100 * answerCVotes / votesSum)) + " %", &font, 80);
-    View::prepareText(&noVotesByPercentageD, std::to_string((int) std::round(100 * answerDVotes / votesSum)) + " %", &font, 80);
+    View::prepareText(&noVotesByPercentageA, std::to_string((int) std::round(100 * answerAVotes / votesSum)) + " %", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&noVotesByPercentageB, std::to_string((int) std::round(100 * answerBVotes / votesSum)) + " %", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&noVotesByPercentageC, std::to_string((int) std::round(100 * answerCVotes / votesSum)) + " %", &font, 80 * Configuration::resolutionFactor);
+    View::prepareText(&noVotesByPercentageD, std::to_string((int) std::round(100 * answerDVotes / votesSum)) + " %", &font, 80 * Configuration::resolutionFactor);
 
-    noVotesByPercentageA.setPosition(450, 470);
-    noVotesByPercentageB.setPosition(850, 470);
-    noVotesByPercentageC.setPosition(1250, 470);
-    noVotesByPercentageD.setPosition(1650, 470);
+    noVotesByPercentageA.setPosition(450 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
+    noVotesByPercentageB.setPosition(850 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
+    noVotesByPercentageC.setPosition(1250 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
+    noVotesByPercentageD.setPosition(1650 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
 
 }
 
 void AudienceSupportView::runAudienceSupportView() {
-    sf::RenderWindow window(sf::VideoMode(2200, 1600), "Audience support");
+    sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Audience support");
 
-    int maxHeight = 600;
+    int maxHeight = 600 * Configuration::resolutionFactor;
     sf::Color barColor = sf::Color::Blue;
 
     while (window.isOpen())
@@ -89,22 +91,22 @@ void AudienceSupportView::runAudienceSupportView() {
 
 
         //drawing bar chart
-        sf::RectangleShape ABar(sf::Vector2f(100, ABarHeight));
-        ABar.setPosition(480, 1200 - ABarHeight);
+        sf::RectangleShape ABar(sf::Vector2f(100 * Configuration::resolutionFactor, ABarHeight));
+        ABar.setPosition(480 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor - ABarHeight);
         ABar.setFillColor(barColor);
 
 
-        sf::RectangleShape BBar(sf::Vector2f(100, BBarHeight));
-        BBar.setPosition(880, 1200 - BBarHeight);
+        sf::RectangleShape BBar(sf::Vector2f(100 * Configuration::resolutionFactor, BBarHeight));
+        BBar.setPosition(880 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor - BBarHeight);
         BBar.setFillColor(barColor);
 
 
-        sf::RectangleShape CBar(sf::Vector2f(100, CBarHeight));
-        CBar.setPosition(1280, 1200 - CBarHeight);
+        sf::RectangleShape CBar(sf::Vector2f(100 * Configuration::resolutionFactor, CBarHeight));
+        CBar.setPosition(1280 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor - CBarHeight);
         CBar.setFillColor(barColor);
 
-        sf::RectangleShape DBar(sf::Vector2f(100, DBarHeight));
-        DBar.setPosition(1680, 1200 - DBarHeight);
+        sf::RectangleShape DBar(sf::Vector2f(100 * Configuration::resolutionFactor, DBarHeight));
+        DBar.setPosition(1680 * Configuration::resolutionFactor, 1200 * Configuration::resolutionFactor - DBarHeight);
         DBar.setFillColor(barColor);
 
 

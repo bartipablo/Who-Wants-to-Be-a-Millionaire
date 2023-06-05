@@ -6,29 +6,30 @@
 
 WinnerView::WinnerView(int gainedAmount) :  gainedAmount(gainedAmount) {
     prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/winner-background.png");
-    backgroundSprite.setPosition(-100, 0);
+    backgroundSprite.setPosition(-100 * Configuration::resolutionFactor, 0);
+    backgroundSprite.setScale(Configuration::resolutionFactor,  Configuration::resolutionFactor);
     prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
-    prepareText(&hostText, "Regis Philbin", &font, 40);
+    prepareText(&hostText, "Regis Philbin", &font, 40 * Configuration::resolutionFactor);
     hostText.setFillColor(sf::Color::Black);
-    hostText.setPosition(1400, 1130);
+    hostText.setPosition(1400 * Configuration::resolutionFactor, 1130 * Configuration::resolutionFactor);
 
-    prepareText(&playerNameText, "Player", &font, 40);
+    prepareText(&playerNameText, "Player", &font, 40 * Configuration::resolutionFactor);
     playerNameText.setFillColor(sf::Color::Black);
-    playerNameText.setPosition(1000, 940);
+    playerNameText.setPosition(1000 * Configuration::resolutionFactor, 940 * Configuration::resolutionFactor);
 
-    prepareText(&playAgainButton, "Play again", &font, 70);
-    playAgainButton.setPosition(400, 1400);
+    prepareText(&playAgainButton, "Play again", &font, 70 * Configuration::resolutionFactor);
+    playAgainButton.setPosition(400 * Configuration::resolutionFactor, 1400 * Configuration::resolutionFactor);
 
-    prepareText(&exitButton, "exit", &font, 70);
-    exitButton.setPosition(1650, 1400);
+    prepareText(&exitButton, "exit", &font, 70 * Configuration::resolutionFactor);
+    exitButton.setPosition(1650 * Configuration::resolutionFactor, 1400 * Configuration::resolutionFactor);
 
     prepareGainedAmount();
     prepareDate();
 }
 
 void WinnerView::runWinnerView() {
-    sf::RenderWindow window(sf::VideoMode(2200, 1600), "Who want to be a millionaire?");
+    sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Who want to be a millionaire?");
 
     while (window.isOpen())
     {
@@ -73,9 +74,9 @@ void WinnerView::runWinnerView() {
 }
 
 void WinnerView::prepareGainedAmount() {
-    prepareText(&gainedAmountText, std::to_string(gainedAmount), &font, 40);
+    prepareText(&gainedAmountText, std::to_string(gainedAmount), &font, 40 * Configuration::resolutionFactor);
     gainedAmountText.setFillColor(sf::Color::Black);
-    gainedAmountText.setPosition(1450, 948);
+    gainedAmountText.setPosition(1450 * Configuration::resolutionFactor, 948 * Configuration::resolutionFactor);
 
     std::string gainedAmountDescriptionStr = "";
     switch(gainedAmount) {
@@ -116,9 +117,9 @@ void WinnerView::prepareGainedAmount() {
             gainedAmountDescriptionStr = "ONE MILLION";
             break;
     }
-    prepareText(&gainedAmountDescriptionText, gainedAmountDescriptionStr, &font, 40);
+    prepareText(&gainedAmountDescriptionText, gainedAmountDescriptionStr, &font, 40 * Configuration::resolutionFactor);
     gainedAmountDescriptionText.setFillColor(sf::Color::Black);
-    gainedAmountDescriptionText.setPosition(750, 1030);
+    gainedAmountDescriptionText.setPosition(750 * Configuration::resolutionFactor, 1030 * Configuration::resolutionFactor);
 }
 
 void WinnerView::prepareDate() {
@@ -128,7 +129,7 @@ void WinnerView::prepareDate() {
     std::strftime(buffer, sizeof(buffer), "%d-%m-%Y", std::localtime(&currentTime));
     std::string currentDate(buffer);
 
-    prepareText(&dateText, currentDate, &font, 30);
+    prepareText(&dateText, currentDate, &font, 30 * Configuration::resolutionFactor);
     dateText.setFillColor(sf::Color::Black);
-    dateText.setPosition(1480, 847);
+    dateText.setPosition(1480 * Configuration::resolutionFactor, 847 * Configuration::resolutionFactor);
 }

@@ -4,7 +4,7 @@
 
 #include <codecvt>
 #include "PhoneToFriendView.h"
-
+#include "../Configuration.h"
 
 void PhoneToFriendView::dialogsHandler() {
     lineDialogsToShow = 0;
@@ -25,7 +25,7 @@ void PhoneToFriendView::runPhoneToFriendView() {
     std::thread dialogsThread([this]() {
         dialogsHandler();
     });
-    sf::RenderWindow window(sf::VideoMode(2200, 1600), "Phone to friend");
+    sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Phone to friend");
 
     while (window.isOpen())
     {
@@ -80,7 +80,8 @@ PhoneToFriendView::PhoneToFriendView(Question *question, std::string friendAnswe
     this->friendAnswer = friendAnswer;
 
     prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/output-onlinepngtools.png");
-    backgroundSprite.setPosition(-100, 0);
+    backgroundSprite.setPosition(-100 * Configuration::resolutionFactor, 0);
+    backgroundSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
 
     prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
@@ -94,7 +95,7 @@ std::string PhoneToFriendView::wrapText(std::string inputString, float maxWidth)
 
     sf::Text tempText;
     tempText.setFont(font);
-    tempText.setCharacterSize(40);
+    tempText.setCharacterSize(40 * Configuration::resolutionFactor);
     tempText.setString(wideString);
     sf::FloatRect tempBounds = tempText.getLocalBounds();
     float tempWidth = tempBounds.width;
@@ -148,16 +149,16 @@ void PhoneToFriendView::prepareText() {
     int i = 0;
     int yPosition = 600;
 
-    View::prepareText(&dialogs[0], "You: Uwaga czytam pytanie.", &font, 40);
-    dialogs[i].setPosition(30, yPosition);
+    View::prepareText(&dialogs[0], "You: Uwaga czytam pytanie.", &font, 40 * Configuration::resolutionFactor);
+    dialogs[i].setPosition(30 * Configuration::resolutionFactor, yPosition * Configuration::resolutionFactor);
     i++;
 
 
-    View::prepareText(&dialogs[i], "", &font, 40);
-    std::string wrappedText = wrapText("You: " + question->getQuestion(), 1600);
+    View::prepareText(&dialogs[i], "", &font, 40 * Configuration::resolutionFactor);
+    std::string wrappedText = wrapText("You: " + question->getQuestion(), 1600 * Configuration::resolutionFactor);
     int wrappedTextLineNo = countLines(wrappedText);
     dialogs[i].setString(wrappedText);
-    dialogs[i].setPosition(30, 600 + i*100);
+    dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100) * Configuration::resolutionFactor);
     if (loadPolishCharacters) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring questionLine = converter.from_bytes(wrappedText);
@@ -166,60 +167,60 @@ void PhoneToFriendView::prepareText() {
     i++;
 
     if (question->isActiveAnswerA()) {
-        View::prepareText(&dialogs[i], "You: " + question->getAnswerA(), &font, 40);
+        View::prepareText(&dialogs[i], "You: " + question->getAnswerA(), &font, 40 * Configuration::resolutionFactor);
         if (loadPolishCharacters) {
             std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
             std::wstring questionLine = converter.from_bytes("You: " + question->getAnswerA());
             dialogs[i].setString(questionLine);
         }
-        dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
+        dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100 + (wrappedTextLineNo-1)*100) * Configuration::resolutionFactor);
         i++;
     }
 
     if (question->isActiveAnswerB()) {
-        View::prepareText(&dialogs[i], "You: " + question->getAnswerB(), &font, 40);
+        View::prepareText(&dialogs[i], "You: " + question->getAnswerB(), &font, 40 * Configuration::resolutionFactor);
         if (loadPolishCharacters) {
             std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
             std::wstring questionLine = converter.from_bytes("You: " + question->getAnswerB());
             dialogs[i].setString(questionLine);
         }
-        dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
+        dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100 + (wrappedTextLineNo-1)*100) * Configuration::resolutionFactor);
         i++;
     }
 
     if (question->isActiveAnswerC()) {
-        View::prepareText(&dialogs[i], "You: " + question->getAnswerC(), &font, 40);
+        View::prepareText(&dialogs[i], "You: " + question->getAnswerC(), &font, 40 * Configuration::resolutionFactor);
         if (loadPolishCharacters) {
             std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
             std::wstring questionLine = converter.from_bytes("You: " + question->getAnswerC());
             dialogs[i].setString(questionLine);
         }
-        dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
+        dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100 + (wrappedTextLineNo-1)*100) * Configuration::resolutionFactor);
         i++;
     }
 
     if (question->isActiveAnswerD()) {
-        View::prepareText(&dialogs[i], "You: " + question->getAnswerD(), &font, 40);
+        View::prepareText(&dialogs[i], "You: " + question->getAnswerD(), &font, 40 * Configuration::resolutionFactor);
         if (loadPolishCharacters) {
             std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
             std::wstring questionLine = converter.from_bytes("You: " + question->getAnswerD());
             dialogs[i].setString(questionLine);
         }
-        dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
+        dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100 + (wrappedTextLineNo-1)*100) * Configuration::resolutionFactor);
         i++;
     }
 
-    View::prepareText(&dialogs[i], "Friend: " + friendAnswer, &font, 40);
+    View::prepareText(&dialogs[i], "Friend: " + friendAnswer, &font, 40 * Configuration::resolutionFactor);
     if (loadPolishCharacters) {
         std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
         std::wstring questionLine = converter.from_bytes("Friend: " + friendAnswer);
         dialogs[i].setString(questionLine);
     }
-    dialogs[i].setPosition(30, 600 + i*100 + (wrappedTextLineNo-1)*100);
+    dialogs[i].setPosition(30 * Configuration::resolutionFactor, (600 + i*100 + (wrappedTextLineNo-1)*100) * Configuration::resolutionFactor);
     i++;
 
     lineDialogsNo = i;
 
-    View::prepareText(&closeButton, "Close", &font, 80);
-    closeButton.setPosition(970, 1400);
+    View::prepareText(&closeButton, "Close", &font, 80 * Configuration::resolutionFactor);
+    closeButton.setPosition(970 * Configuration::resolutionFactor, 1400 * Configuration::resolutionFactor);
 }

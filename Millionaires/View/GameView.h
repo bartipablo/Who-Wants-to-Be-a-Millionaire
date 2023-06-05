@@ -264,6 +264,8 @@ private:
 
     void resignButtonHandler();
 
+    void scale();
+
     /**************************************
              Methods
     **************************************/
