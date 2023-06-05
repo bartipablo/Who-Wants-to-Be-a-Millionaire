@@ -165,6 +165,162 @@
 		{
 			"isExternal" : true,
 			"path" : "/opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake"
+		},
+		{
+			"path" : "tests/CMakeLists.txt"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/SFML/SFMLConfigVersion.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/SFML/SFMLConfig.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/SFML/SFMLSharedTargets.cmake"
+		},
+		{
+			"isExternal" : true,
+			"path" : "/opt/homebrew/lib/cmake/SFML/SFMLConfigDependencies.cmake"
+		},
+		{
+			"path" : "tests/lib/googletest/CMakeLists.txt"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeDependentOption.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/GNUInstallDirs.cmake"
+		},
+		{
+			"path" : "tests/lib/googletest/googlemock/CMakeLists.txt"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "tests/lib/googletest/googlemock/cmake/gmock.pc.in"
+		},
+		{
+			"path" : "tests/lib/googletest/googlemock/cmake/gmock_main.pc.in"
+		},
+		{
+			"path" : "tests/lib/googletest/googletest/CMakeLists.txt"
+		},
+		{
+			"path" : "tests/lib/googletest/googletest/cmake/internal_utils.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPython/Support.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
+		},
+		{
+			"path" : "tests/lib/googletest/googletest/cmake/Config.cmake.in"
+		},
+		{
+			"path" : "tests/lib/googletest/googletest/cmake/gtest.pc.in"
+		},
+		{
+			"path" : "tests/lib/googletest/googletest/cmake/gtest_main.pc.in"
 		}
 	],
 	"kind" : "cmakeFiles",

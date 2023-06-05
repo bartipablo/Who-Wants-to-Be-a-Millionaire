@@ -1,4 +1,4 @@
-# Install script for directory: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires
+# Install script for directory: /Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/tests/lib/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,17 +38,8 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/cmake_install.cmake")
+  # Include the install script for each subdirectory.
+  include("/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/tests/lib/googletest/googlemock/cmake_install.cmake")
+
 endif()
 
-if(CMAKE_INSTALL_COMPONENT)
-  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
-else()
-  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
-endif()
-
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
-       "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/bartipablo/Projects/AGH/CPP-Project/Millionaires/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
-     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
