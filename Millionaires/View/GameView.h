@@ -143,12 +143,6 @@ private:
 
     sf::SoundBuffer gameMusicBuffer4;
 
-    sf::SoundBuffer gameMusicBuffer5;
-
-    sf::SoundBuffer gameMusicBuffer6;
-
-    sf::SoundBuffer gameMusicBuffer7;
-
     sf::SoundBuffer nextQuestionBuffer;
 
     sf::SoundBuffer selectAnswerBuffer;
@@ -172,12 +166,6 @@ private:
     sf::Sound gameMusic3;
 
     sf::Sound gameMusic4;
-
-    sf::Sound gameMusic5;
-
-    sf::Sound gameMusic6;
-
-    sf::Sound gameMusic7;
 
     sf::Sound nextQuestionSound;
 

@@ -75,13 +75,13 @@ void StartView::runStartView() {
 }
 
 StartView::StartView() {
-    View::prepareSprite(&logoTexture, &logoSprite, "./resources/images/logo.png");
-    View::prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/background.png");
+    View::prepareSprite(&logoTexture, &logoSprite, "../resources/images/logo.png");
+    View::prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/background.png");
 
-    View::prepareSound(&startMusicBuffer, &startMusic, "./resources/sounds/StartGame.wav");
-    View::prepareSound(&menuMusicBuffer, &menuMusic, "./resources/sounds/music01.wav");
+    View::prepareSound(&startMusicBuffer, &startMusic, "../resources/sounds/StartGame.flac");
+    View::prepareSound(&menuMusicBuffer, &menuMusic, "../resources/sounds/music01.flac");
 
-    View::prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    View::prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
     View::prepareText(&startButton, "Start", &font, 120);
     View::prepareText(&loading, "Loading...", &font, 60);
 }

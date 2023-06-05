@@ -57,3 +57,7 @@ void FiftyFifty::use() {
 
     Lifeline::available = false;
 }
+
+void FiftyFifty::reset() {
+    return;
+}

@@ -5,9 +5,9 @@
 #include "WinnerView.h"
 
 WinnerView::WinnerView(int gainedAmount) :  gainedAmount(gainedAmount) {
-    prepareSprite(&backgroundTexture, &backgroundSprite, "./resources/images/winner-background.png");
+    prepareSprite(&backgroundTexture, &backgroundSprite, "../resources/images/winner-background.png");
     backgroundSprite.setPosition(-100, 0);
-    prepareFont(&font, "./resources/fonts/OpenSans-Bold.ttf");
+    prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
     prepareText(&hostText, "Regis Philbin", &font, 40);
     hostText.setFillColor(sf::Color::Black);
