@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/bartipablo/Projects/AGH/CPP-Project-New/CPP-Project/Who-Wants-to-Be-a-Millionaire -B /Users/bartipablo/Projects/AGH/CPP-Project-New/CPP-Project/Who-Wants-to-Be-a-Millionaire/build
+-- Found SFML 2.5.1 in /opt/homebrew/lib/cmake/SFML
+-- Found SFML 2.5.1 in /opt/homebrew/lib/cmake/SFML
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/bartipablo/Projects/AGH/CPP-Project-New/CPP-Project/Who-Wants-to-Be-a-Millionaire/build
