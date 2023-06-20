@@ -20,6 +20,9 @@ private:
 
     static Answer readCorrectAnswer(std::string correctAnswerStr);
 
+    static void shuffleAnswers(std::string& answerStrA, std::string& answerStrB, std::string& answerStrC,
+                               std::string& answerStrD, std::string& correctAnswerStr);
+
 public:
     static Question getRandomQuestion(int questionNumber);
 

@@ -97,6 +97,8 @@ Question Reader::getRandomQuestion(int questionNumber) {
         std::getline(ss, answerD, ';');
         std::getline(ss, correctAnswerString, ';');
 
+        shuffleAnswers(answerA, answerB, answerC, answerD, correctAnswerString);
+
         file.close();
 
         return Question(question, answerA, answerB, answerC,
@@ -121,6 +123,38 @@ Answer Reader::readCorrectAnswer(std::string correctAnswerStr) {
             return D;
         default:
             return A;
+    }
+}
+
+void Reader::shuffleAnswers(std::string &answerStrA, std::string &answerStrB, std::string &answerStrC,
+                            std::string &answerStrD, std::string &correctAnswerStr) {
+
+    std::vector<std::string> answers = {answerStrA, answerStrB, answerStrC, answerStrD};
+
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::shuffle(answers.begin(), answers.end(), std::default_random_engine(seed));
+
+    int correctAnswerIndex = std::find(answers.begin(), answers.end(), correctAnswerStr) - answers.begin();
+
+    answerStrA = "A. " + answers[0];
+    answerStrB = "B. " + answers[1];
+    answerStrC = "C. " + answers[2];
+    answerStrD = "D. " + answers[3];
+    switch (correctAnswerIndex) {
+        case 0:
+            correctAnswerStr = 'A';
+            break;
+        case 1:
+            correctAnswerStr = 'B';
+            break;
+        case 2:
+            correctAnswerStr = 'C';
+            break;
+        case 3:
+            correctAnswerStr = 'D';
+            break;
+        default:
+            correctAnswerStr = 'A';
     }
 }
 
