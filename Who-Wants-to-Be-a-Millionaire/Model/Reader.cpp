@@ -80,6 +80,15 @@ Question Reader::getRandomQuestion(int questionNumber) {
             std::getline(file, readLine);
         }
 
+        if (Configuration::isSetGenerateQuestionByAI()) {
+            try {
+                std::string generatedByAI = AIQuestionGenerator::generateQuestionByAI();
+                readLine = generatedByAI;
+            } catch (const std::runtime_error& e) {
+                std::cout << "Wyjątek std::runtime_error został przechwycony: " << e.what() << std::endl;
+            }
+        }
+
         std::stringstream ss(readLine);
 
         std::string question;

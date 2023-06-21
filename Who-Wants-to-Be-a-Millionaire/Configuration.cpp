@@ -4,6 +4,9 @@
 
 #include "Configuration.h"
 
+bool Configuration::generateQuestionByAI = false;
+
+
 bool Configuration::runProgram = true;
 
 
@@ -33,4 +36,12 @@ double Configuration::getResolutionFactor() {
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     float result = std::min(static_cast<float>(desktopMode.height) / 1600.0f, static_cast<float>(desktopMode.width) / 2200.0f) * 0.90;
     return result;
+}
+
+bool Configuration::isSetGenerateQuestionByAI() {
+    return generateQuestionByAI;
+}
+
+void Configuration::setGeneratingQuestionByAI(bool flag) {
+    generateQuestionByAI = flag;
 }

@@ -3099,12 +3099,7 @@ using enable_if_t = typename std::enable_if<B, T>::type;
 //   template< class T, T... Ints >
 //   void user_function(integer_sequence<T, Ints...>);
 //
-//   int main()
-//   {
-//     // user_function's `T` will be deduced to `int` and `Ints...`
-//     // will be deduced to `0, 1, 2, 3, 4`.
-//     user_function(make_integer_sequence<int, 5>());
-//   }
+
 template <typename T, T... Ints>
 struct integer_sequence
 {

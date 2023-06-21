@@ -11,6 +11,8 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include "./AI/AIQuestionGenerator.h"
+#include "../Configuration.h"
 
 class Reader {
 private:

@@ -27,6 +27,8 @@ void StartView::runStartView() {
     logoSprite.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
     loading.setOrigin(loading.getLocalBounds().width / 2, loading.getLocalBounds().height / 2);
     loading.setPosition(window.getSize().x / 2, window.getSize().y / 2 + 680);
+    switchOnGeneratingQuestionByAIButton.setPosition(window.getSize().x / 3.5, 50);
+    switchOffGeneratingQuestionByAIButton.setPosition(window.getSize().x / 3.5, 50);
     loading.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
 
     float rotationSpeed = 0.015f;
@@ -49,6 +51,15 @@ void StartView::runStartView() {
                         window.close();
                         handleClickStart(startButton);
                     }
+
+                    if (switchOnGeneratingQuestionByAIButton.getGlobalBounds().contains(mousePosition) && !Configuration::isSetGenerateQuestionByAI()) {
+                        Configuration::setGeneratingQuestionByAI(true);
+                        continue;
+                    }
+
+                    if (switchOffGeneratingQuestionByAIButton.getGlobalBounds().contains(mousePosition) && Configuration::isSetGenerateQuestionByAI()) {
+                        Configuration::setGeneratingQuestionByAI(false);
+                    }
                 }
             }
         }
@@ -57,8 +68,15 @@ void StartView::runStartView() {
 
         backgroundSprite.rotate(rotationSpeed * 0.5f);
 
+
+
+
         window.draw(backgroundSprite);
         window.draw(logoSprite);
+
+        if (Configuration::isSetGenerateQuestionByAI()) window.draw(switchOffGeneratingQuestionByAIButton);
+        else window.draw(switchOnGeneratingQuestionByAIButton);
+
         if (!isLoadedGameView) window.draw(loading);
         else window.draw(startButton);
 
@@ -87,7 +105,10 @@ StartView::StartView() {
 
     View::prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
     View::prepareText(&startButton, "Start", &font, 120);
-    View::prepareText(&loading, "Loading...", &font, 60);
+    View::prepareText(&loading, "Loading resources...", &font, 60);
+    View::prepareText(&switchOffGeneratingQuestionByAIButton, "AI questions generation (BETA): on", &font, 60);
+    View::prepareText(&switchOnGeneratingQuestionByAIButton, "AI questions generation (BETA): off", &font, 60);
+
 }
 
 

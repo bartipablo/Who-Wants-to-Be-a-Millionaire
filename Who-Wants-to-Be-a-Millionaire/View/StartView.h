@@ -13,6 +13,8 @@
 #include "GameView.h"
 #include "View.h"
 #include "../Configuration.h"
+#include "../Model/AI/AIQuestionGenerator.h"
+
 
 class StartView: public View {
 private:
@@ -36,6 +38,10 @@ private:
 
     sf::Text startButton;
 
+    sf::Text switchOnGeneratingQuestionByAIButton;
+
+    sf::Text switchOffGeneratingQuestionByAIButton;
+
     sf::Text loading;
 
     void handleClickStart(sf::Text& button);
@@ -45,6 +51,7 @@ private:
     std::unique_ptr<GameView> gameView;
 
     bool isLoadedGameView;
+
 
 public:
     StartView();

@@ -9,6 +9,8 @@
 
 class Configuration {
 private:
+    static bool generateQuestionByAI;
+
     static bool runProgram;
 
     static bool firstRunning;
@@ -16,6 +18,8 @@ private:
     static double getResolutionFactor();
 
 public:
+    static bool isSetGenerateQuestionByAI();
+
     static bool programIsRunning();
 
     static void disableProgram();
@@ -23,6 +27,8 @@ public:
     static bool isTheFirstRunning();
 
     static void disableTheFirstRunning();
+
+    static void setGeneratingQuestionByAI(bool flag);
 
     static double resolutionFactor;
 
