@@ -45,6 +45,8 @@ void GameView::runGameView() {
     backgroundSprite.setOrigin(backgroundSprite.getLocalBounds().width / 2, backgroundSprite.getLocalBounds().height / 2);
     backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
 
+    //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
     while (window.isOpen())
     {
         if (sumUp) {
@@ -213,6 +215,8 @@ GameView::GameView() {
     prepareQuestionsAndAnswerPanel();
     prepareSpritesCoordinate();
     prepareResignButton();
+
+    icon.loadFromFile("../resources/images/icon.png");
 }
 
 

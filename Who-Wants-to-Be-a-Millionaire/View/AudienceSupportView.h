@@ -10,6 +10,8 @@
 
 class AudienceSupportView: public View  {
 private:
+    sf::Image icon;
+
     int answerAVotes;
 
     int answerBVotes;

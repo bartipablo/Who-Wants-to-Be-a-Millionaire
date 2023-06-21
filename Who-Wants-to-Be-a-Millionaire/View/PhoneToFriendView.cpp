@@ -27,6 +27,8 @@ void PhoneToFriendView::runPhoneToFriendView() {
     });
     sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Phone to friend");
 
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -86,6 +88,8 @@ PhoneToFriendView::PhoneToFriendView(Question *question, std::string friendAnswe
     prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
 
     prepareText();
+
+    icon.loadFromFile("../resources/images/icon.png");
 }
 
 std::string PhoneToFriendView::wrapText(std::string inputString, float maxWidth)
@@ -149,7 +153,7 @@ void PhoneToFriendView::prepareText() {
     int i = 0;
     int yPosition = 600;
 
-    View::prepareText(&dialogs[0], "You: Uwaga czytam pytanie.", &font, 40 * Configuration::resolutionFactor);
+    View::prepareText(&dialogs[0], "You: Caution, I'm reading a questions", &font, 40 * Configuration::resolutionFactor);
     dialogs[i].setPosition(30 * Configuration::resolutionFactor, yPosition * Configuration::resolutionFactor);
     i++;
 

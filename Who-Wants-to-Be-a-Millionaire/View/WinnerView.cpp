@@ -26,10 +26,14 @@ WinnerView::WinnerView(int gainedAmount) :  gainedAmount(gainedAmount) {
 
     prepareGainedAmount();
     prepareDate();
+
+    icon.loadFromFile("../resources/images/icon.png");
 }
 
 void WinnerView::runWinnerView() {
     sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Who want to be a millionaire?");
+
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     while (window.isOpen())
     {

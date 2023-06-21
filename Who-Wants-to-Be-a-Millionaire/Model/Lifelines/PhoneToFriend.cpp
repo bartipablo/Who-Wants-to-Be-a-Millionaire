@@ -22,13 +22,13 @@ void PhoneToFriend::use() {
 
     switch (friendReaction) {
         case sure:
-            finallyAnswer = "Jestem pewien, że to odpowiedź: " + answerToString(friendAnswer);
+            finallyAnswer = "I am sure that the answer is: " + answerToString(friendAnswer);
             break;
         case uncertain:
-            finallyAnswer = "Wydaje mi się, że to odpowiedź: " + answerToString(friendAnswer);
+            finallyAnswer = "It seems to me that the answer is: " + answerToString(friendAnswer);
             break;
         case doesNotKnow:
-            finallyAnswer = "Niestety, nic nie przychodzi mi do głowy";
+            finallyAnswer = "Unfortunately i dont know the answer.";
             break;
     }
 

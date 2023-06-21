@@ -13,6 +13,8 @@
 
 class PhoneToFriendView : public View {
 private:
+    sf::Image icon;
+
     void dialogsHandler();
 
     bool loadPolishCharacters = true;

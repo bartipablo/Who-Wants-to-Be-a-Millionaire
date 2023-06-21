@@ -8,7 +8,7 @@
 
 
 std::string AIQuestionGenerator::generateQuestionByAI() {
-    openai::start("");
+    openai::start("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");
 
     auto chat = openai::chat().create(R"(
     {

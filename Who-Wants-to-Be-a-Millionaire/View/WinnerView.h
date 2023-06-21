@@ -12,6 +12,7 @@
 class WinnerView: public View {
 
 private:
+    sf::Image icon;
 
     sf::Texture backgroundTexture;
 

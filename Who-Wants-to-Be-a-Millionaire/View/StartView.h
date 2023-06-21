@@ -18,6 +18,8 @@
 
 class StartView: public View {
 private:
+    sf::Image icon;
+
     sf::Texture logoTexture;
 
     sf::Texture backgroundTexture;

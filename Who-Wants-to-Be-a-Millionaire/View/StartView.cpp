@@ -30,6 +30,10 @@ void StartView::runStartView() {
     switchOnGeneratingQuestionByAIButton.setPosition(window.getSize().x / 3.5, 50);
     switchOffGeneratingQuestionByAIButton.setPosition(window.getSize().x / 3.5, 50);
     loading.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    switchOnGeneratingQuestionByAIButton.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+    switchOffGeneratingQuestionByAIButton.setScale(Configuration::resolutionFactor, Configuration::resolutionFactor);
+
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     float rotationSpeed = 0.015f;
 
@@ -109,6 +113,7 @@ StartView::StartView() {
     View::prepareText(&switchOffGeneratingQuestionByAIButton, "AI questions generation (BETA): on", &font, 60);
     View::prepareText(&switchOnGeneratingQuestionByAIButton, "AI questions generation (BETA): off", &font, 60);
 
+    icon.loadFromFile("../resources/images/icon.png");
 }
 
 

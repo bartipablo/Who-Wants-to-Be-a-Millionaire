@@ -38,13 +38,17 @@ AudienceSupportView::AudienceSupportView(int answerAVotes, int answerBVotes, int
     noVotesByPercentageC.setPosition(1250 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
     noVotesByPercentageD.setPosition(1650 * Configuration::resolutionFactor, 470 * Configuration::resolutionFactor);
 
+    icon.loadFromFile("../resources/images/icon.png");
 }
 
 void AudienceSupportView::runAudienceSupportView() {
     sf::RenderWindow window(sf::VideoMode(2200 * Configuration::resolutionFactor, 1600 * Configuration::resolutionFactor), "Audience support");
 
+
     int maxHeight = 600 * Configuration::resolutionFactor;
     sf::Color barColor = sf::Color::Blue;
+
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     while (window.isOpen())
     {

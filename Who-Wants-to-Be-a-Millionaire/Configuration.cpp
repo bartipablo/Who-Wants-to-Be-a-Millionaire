@@ -35,7 +35,7 @@ void Configuration::disableTheFirstRunning() {
 double Configuration::getResolutionFactor() {
     sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
     float result = std::min(static_cast<float>(desktopMode.height) / 1600.0f, static_cast<float>(desktopMode.width) / 2200.0f) * 0.90;
-    return result;
+    return result*0.95;
 }
 
 bool Configuration::isSetGenerateQuestionByAI() {
