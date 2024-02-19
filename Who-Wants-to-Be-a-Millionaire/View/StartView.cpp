@@ -110,8 +110,8 @@ StartView::StartView() {
     View::prepareFont(&font, "../resources/fonts/OpenSans-Bold.ttf");
     View::prepareText(&startButton, "Start", &font, 120);
     View::prepareText(&loading, "Loading resources...", &font, 60);
-    View::prepareText(&switchOffGeneratingQuestionByAIButton, "AI questions generation (BETA): on", &font, 60);
-    View::prepareText(&switchOnGeneratingQuestionByAIButton, "AI questions generation (BETA): off", &font, 60);
+    View::prepareText(&switchOffGeneratingQuestionByAIButton, "AI questions generation: on", &font, 60);
+    View::prepareText(&switchOnGeneratingQuestionByAIButton, "AI questions generation: off", &font, 60);
 
     icon.loadFromFile("../resources/images/icon.png");
 }

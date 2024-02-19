@@ -4,11 +4,28 @@
 
 #include "AIQuestionGenerator.h"
 
+std::string AIQuestionGenerator::readKey() {
+    std::ifstream file("../keys/keys");
+    std::string content;
 
+    if (file.is_open()) {
+        std::string line;
+
+        std::getline(file, line);
+        content += line;
+
+        file.close();
+    } else {
+        std::cerr << "Unable to read key from keys file!" << std::endl;
+        std::cerr << "Make sure the file exists (keys directory) and contains your API key" << std::endl;
+    }
+    return content;
+}
 
 
 std::string AIQuestionGenerator::generateQuestionByAI() {
-    openai::start("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");
+    std::string key = readKey();
+    openai::start(key);
 
     auto chat = openai::chat().create(R"(
     {

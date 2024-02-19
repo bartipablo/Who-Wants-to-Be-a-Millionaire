@@ -45,7 +45,7 @@ void GameView::runGameView() {
     backgroundSprite.setOrigin(backgroundSprite.getLocalBounds().width / 2, backgroundSprite.getLocalBounds().height / 2);
     backgroundSprite.setPosition(window.getSize().x / 2, window.getSize().y / 2);
 
-    //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     while (window.isOpen())
     {
@@ -77,12 +77,12 @@ void GameView::runGameView() {
                 try {
                     waitForCorrectAnswerThread.join();
                 } catch (const std::exception& e) {
-                    std::cout << "Exception: " << e.what() << std::endl;
+                    //std::cout << "Exception: " << e.what() << std::endl;
                 }
                 try {
                     waitForSumUpThread.join();
                 } catch (const std::exception& e) {
-                    std::cout << "Exception: " << e.what() << std::endl;
+                    //std::cout << "Exception: " << e.what() << std::endl;
                 }
                 window.close();
                 Configuration::disableProgram();
@@ -690,7 +690,7 @@ void GameView::commonHandlerAfterSelectedAnswer() {
     try {
         waitForCorrectAnswerThread.join();
     } catch (const std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        //std::cout << "Exception: " << e.what() << std::endl;
     }
     std::thread thread([this]() {
         waitForCorrectAnswerAfterSelectedAnswer();
@@ -764,7 +764,7 @@ void GameView::handlingTheSelectedAnswer() {
         try {
             waitForCorrectAnswerThread.join();
         } catch (const std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
+            //std::cout << "Exception: " << e.what() << std::endl;
         }
         std::thread thread([this]() {
             waitForNextQuestionAfterSelectedAnswer();
@@ -776,12 +776,12 @@ void GameView::handlingTheSelectedAnswer() {
         try {
             waitForCorrectAnswerThread.join();
         } catch (const std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
+            //std::cout << "Exception: " << e.what() << std::endl;
         }
         try {
             waitForSumUpThread.join();
         } catch (const std::exception& e) {
-            std::cout << "Exception: " << e.what() << std::endl;
+            //std::cout << "Exception: " << e.what() << std::endl;
         }
         incorrectAnswerSound.play();
         std::thread dialogsThread([this]() {

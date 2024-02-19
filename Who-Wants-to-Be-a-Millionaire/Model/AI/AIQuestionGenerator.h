@@ -7,6 +7,9 @@
 
 #include <curl/curl.h>
 #include "openai.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 class AIQuestionGenerator {
 
@@ -14,6 +17,8 @@ class AIQuestionGenerator {
 public:
 
     static std::string generateQuestionByAI();
+
+    static std::string readKey();
 
 };
 
